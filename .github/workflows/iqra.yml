@@ -1,7 +1,7 @@
 name: Iqra
 on: [ push ]
 jobs:
-  setup:
+  build:
     runs-on: ubuntu-latest
     services:
       mysql:
@@ -19,6 +19,8 @@ jobs:
         uses: shivammathur/setup-php@2cb9b829437ee246e9b3cac53555a39208ca6d28
         with:
           php-version: '8.0'
+      - name: Check PHP Version
+        run: php -v
       - name: Check out repository
         uses: actions/checkout@v2
       - name: Copy .env.local
@@ -33,21 +35,16 @@ jobs:
             ${{ runner.os }}-php-
       - name: Install Dependencies
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-
-#    build:
-#        runs-on: ubuntu-latest
-#        steps:
-#            - uses: actions/checkout@v2
-#            - uses: actions/setup-node@v2
-#              with:
-#                  node-version: '14'
-#            - run: npm install -g bats
-
-#    test:
-#        runs-on: ubuntu-latest
-#        steps:
-#            - uses: actions/checkout@v2
-#            - uses: actions/setup-node@v2
-#              with:
-#                  node-version: '14'
-#            - run: npm install -g bats
+      - name:  Install Symfony CLI
+        run: |
+          wget https://get.symfony.com/cli/installer -O - | bash
+          mv /home/runner/.symfony/bin/symfony /usr/local/bin/symfony
+      - name: Check Symfony Requirements
+        run: symfony check:requirements
+      - name:  Install PHP CS Fixer
+        run: |
+          wget https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v3.4.0/php-cs-fixer.phar -O php-cs-fixer
+          chmod a+x php-cs-fixer
+          mv php-cs-fixer /usr/local/bin/php-cs-fixer
+      - name: Coding standards checks
+        run: php-cs-fixer fix src --allow-risky=yes --dry-run
