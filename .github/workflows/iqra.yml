@@ -41,10 +41,7 @@ jobs:
           mv /home/runner/.symfony/bin/symfony /usr/local/bin/symfony
       - name: Check Symfony Requirements
         run: symfony check:requirements
-      - name:  Install PHP CS Fixer
-        run: |
-          wget https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v3.4.0/php-cs-fixer.phar -O php-cs-fixer
-          chmod a+x php-cs-fixer
-          mv php-cs-fixer /usr/local/bin/php-cs-fixer
-      - name: Coding standards checks
-        run: php-cs-fixer fix src --allow-risky=yes --dry-run
+      - name: Coding Standards Checks
+        run: ./vendor/bin/php-cs-fixer fix src --allow-risky=yes --dry-run
+#      - name: Static Analysis Of PHP Code
+#        run: ./vendor/bin/psalm --debug
