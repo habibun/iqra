@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="https://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="https://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+<entity name="App\Domain\Quran\Chapter" table="quran_chapter">
+    <id name="id" type="integer">
+        <generator strategy="AUTO"/>
+    </id>
+    <field name="number" type="smallint"  />
+    <field name="name" type="string" length="50" />
+    <field name="englishName" type="string" length="50" />
+    <field name="englishNameTranslation" type="string" length="50" />
+
+    <many-to-one field="revelationType" target-entity="App\Domain\Quran\Chapter\RevelationType">
+        <join-column name="revelation_type_id" referenced-column-name="id" />
+    </many-to-one>
+    <many-to-one field="quran" target-entity="App\Domain\Quran" inversed-by="chapters">
+        <join-column name="quran_id" referenced-column-name="id" />
+    </many-to-one>
+
+    <one-to-many field="verses" target-entity="App\Domain\Quran\Chapter\Verse" mapped-by="chapter">
+        <cascade>
+            <cascade-persist/>
+        </cascade>
+        <order-by>
+            <order-by-field name="number" direction="ASC" />
+        </order-by>
+    </one-to-many>
+</entity>
+
+</doctrine-mapping>
