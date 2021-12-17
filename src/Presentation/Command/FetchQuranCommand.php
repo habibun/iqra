@@ -24,7 +24,6 @@ class FetchQuranCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-
         $data = $this->fetchQuran->fetch();
         $this->quranService->create($data);
 
@@ -39,4 +38,3 @@ class FetchQuranCommand extends Command
         // return Command::INVALID
     }
 }
-
