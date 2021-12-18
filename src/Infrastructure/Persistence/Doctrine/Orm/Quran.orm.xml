@@ -20,27 +20,22 @@
         <join-column name="type_id" referenced-column-name="id" />
     </many-to-one>
 
-    <many-to-one field="translation" target-entity="App\Domain\Quran\Translation">
-        <join-column name="translation_id" referenced-column-name="id" />
-    </many-to-one>
-
-    <many-to-one field="recitation" target-entity="App\Domain\Quran\Recitation">
-        <join-column name="recitation_id" referenced-column-name="id" />
+    <many-to-one field="narration" target-entity="App\Domain\Quran\Narration">
+        <join-column name="narration_id" referenced-column-name="id" />
     </many-to-one>
 
     <many-to-one field="language" target-entity="App\Domain\Quran\Language">
         <join-column name="language_id" referenced-column-name="id" />
     </many-to-one>
 
-<!--    <one-to-many field="chapters" target-entity="App\Domain\Quran\Chapter" mapped-by="quran">-->
-<!--        <cascade>-->
-<!--            <cascade-persist/>-->
-<!--        </cascade>-->
-<!--        <order-by>-->
-<!--            <order-by-field name="number" direction="ASC" />-->
-<!--        </order-by>-->
-<!--    </one-to-many>-->
-
+    <one-to-many field="chapters" target-entity="App\Domain\Quran\Chapter" mapped-by="quran">
+        <cascade>
+            <cascade-persist/>
+        </cascade>
+        <order-by>
+            <order-by-field name="number" direction="ASC" />
+        </order-by>
+    </one-to-many>
 </entity>
 
 </doctrine-mapping>

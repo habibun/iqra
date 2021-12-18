@@ -9,7 +9,7 @@ use App\Domain\Quran\Chapter\Verse;
 class Chapter
 {
     private int $id;
-    private int $name;
+    private string $name;
     private int $number;
     private string $englishName;
     private string $englishNameTranslation;
@@ -22,19 +22,12 @@ class Chapter
         return $this->id;
     }
 
-    public function setId(int $id): self
-    {
-        $this->id = $id;
-
-        return $this;
-    }
-
-    public function getName(): int
+    public function getName(): string
     {
         return $this->name;
     }
 
-    public function setName(int $name): self
+    public function setName(string $name): self
     {
         $this->name = $name;
 
@@ -97,6 +90,18 @@ class Chapter
     public function setRevelationType(RevelationType $revelationType): self
     {
         $this->revelationType = $revelationType;
+
+        return $this;
+    }
+
+    public function getQuran(): Quran
+    {
+        return $this->quran;
+    }
+
+    public function setQuran(Quran $quran): Chapter
+    {
+        $this->quran = $quran;
 
         return $this;
     }

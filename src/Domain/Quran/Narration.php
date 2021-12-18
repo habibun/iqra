@@ -2,13 +2,11 @@
 
 namespace App\Domain\Quran;
 
-class Format
+class Narration
 {
-    public const TEXT = 1;
-    public const AUDIO = 2;
-
     private int $id;
     private string $name;
+    private string $englishName;
 
     public function getId(): int
     {
@@ -27,11 +25,15 @@ class Format
         return $this;
     }
 
-    public static function getPreDefinedFormat()
+    public function getEnglishName(): string
     {
-        return [
-            'text' => Format::TEXT,
-            'audio' => Format::AUDIO,
-        ];
+        return $this->englishName;
+    }
+
+    public function setEnglishName(string $englishName): Narration
+    {
+        $this->englishName = $englishName;
+
+        return $this;
     }
 }

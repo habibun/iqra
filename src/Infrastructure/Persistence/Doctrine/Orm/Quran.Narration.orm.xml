@@ -4,12 +4,12 @@
                   xsi:schemaLocation="https://doctrine-project.org/schemas/orm/doctrine-mapping
                           https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-<entity name="App\Domain\Quran\Recitation" table="quran_recitation">
-
+<entity name="App\Domain\Quran\Narration" table="quran_narration">
     <id name="id" type="integer">
         <generator strategy="AUTO"/>
     </id>
-
+    <field name="name" type="string" length="50" />
+    <field name="englishName" type="string" length="50" />
 </entity>
 
 </doctrine-mapping>

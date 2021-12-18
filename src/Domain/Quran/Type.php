@@ -11,29 +11,33 @@ class Type
     public const VERSEBYVERSE = 5;
 
     private int $id;
-    private int $name;
+    private string $name;
 
     public function getId(): int
     {
         return $this->id;
     }
 
-    public function setId(int $id): self
-    {
-        $this->id = $id;
-
-        return $this;
-    }
-
-    public function getName(): int
+    public function getName(): string
     {
         return $this->name;
     }
 
-    public function setName(int $name): self
+    public function setName(string $name): self
     {
         $this->name = $name;
 
         return $this;
+    }
+
+    public static function getPreDefinedType()
+    {
+        return [
+            'tafsir' => Type::TAFSIR,
+            'translation' => Type::TRANSLATION,
+            'quran' => Type::QURAN,
+            'transliteration' => Type::TRANSLITERATION,
+            'versebyverse' => Type::VERSEBYVERSE,
+        ];
     }
 }

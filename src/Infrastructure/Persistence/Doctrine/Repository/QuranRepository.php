@@ -14,11 +14,6 @@ class QuranRepository extends ServiceEntityRepository implements QuranRepository
         parent::__construct($registry, Quran::class);
     }
 
-    public function get(Quran $quran)
-    {
-        // TODO: Implement get() method.
-    }
-
     public function store(Quran $quran)
     {
         $this->getEntityManager()->persist($quran);

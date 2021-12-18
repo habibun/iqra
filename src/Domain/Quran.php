@@ -5,8 +5,7 @@ namespace App\Domain;
 use App\Domain\Quran\Chapter;
 use App\Domain\Quran\Format;
 use App\Domain\Quran\Language;
-use App\Domain\Quran\Recitation;
-use App\Domain\Quran\Translation;
+use App\Domain\Quran\Narration;
 use App\Domain\Quran\Type;
 
 class Quran
@@ -14,21 +13,13 @@ class Quran
     private int $id;
     private Format $format;
     private Type $type;
-    private Translation $translation;
-    private Recitation $recitation;
+    private Narration $narration;
     private Chapter $chapters;
     private Language $language;
 
     public function getId(): int
     {
         return $this->id;
-    }
-
-    public function setId(int $id): self
-    {
-        $this->id = $id;
-
-        return $this;
     }
 
     public function getFormat(): Format
@@ -55,26 +46,26 @@ class Quran
         return $this;
     }
 
-    public function getTranslation(): Translation
+    public function getNarration(): Narration
     {
-        return $this->translation;
+        return $this->narration;
     }
 
-    public function setTranslation(Translation $translation): self
+    public function setNarration(Narration $narration): Quran
     {
-        $this->translation = $translation;
+        $this->narration = $narration;
 
         return $this;
     }
 
-    public function getRecitation(): Recitation
+    public function getLanguage(): Language
     {
-        return $this->recitation;
+        return $this->language;
     }
 
-    public function setRecitation(Recitation $recitation): self
+    public function setLanguage(Language $language): Quran
     {
-        $this->recitation = $recitation;
+        $this->language = $language;
 
         return $this;
     }
