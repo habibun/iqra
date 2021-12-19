@@ -2,16 +2,16 @@
 
 namespace App\Infrastructure\Persistence\Doctrine\Repository;
 
-use App\Domain\Quran\Format;
-use App\Domain\Repository\FormatRepositoryInterface;
+use App\Domain\Quran\Language;
+use App\Domain\Repository\LanguageRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-class FormatRepository extends ServiceEntityRepository implements FormatRepositoryInterface
+class LanguageRepository extends ServiceEntityRepository implements LanguageRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Format::class);
+        parent::__construct($registry, Language::class);
     }
 
     public function getById(int $id)
@@ -22,11 +22,5 @@ class FormatRepository extends ServiceEntityRepository implements FormatReposito
     public function getOneByName(string $name)
     {
         return $this->findOneBy(['name' => $name]);
-    }
-
-    public function add(Format $format)
-    {
-        $this->getEntityManager()->persist($format);
-        $this->getEntityManager()->flush($format);
     }
 }

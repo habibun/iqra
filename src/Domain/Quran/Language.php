@@ -34,4 +34,13 @@ class Language
 
         return $this;
     }
+
+    public static function getPreDefinedLanguage()
+    {
+        return [
+            'arabic' => Language::ARABIC,
+            'english' => Language::ENGLISH,
+            'bengali' => Language::BENGALI,
+        ];
+    }
 }

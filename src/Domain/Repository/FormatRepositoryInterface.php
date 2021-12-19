@@ -6,7 +6,7 @@ use App\Domain\Quran\Format;
 
 interface FormatRepositoryInterface
 {
-    public function get(Format $format);
+    public function getById(int $id);
 
     public function add(Format $format);
 

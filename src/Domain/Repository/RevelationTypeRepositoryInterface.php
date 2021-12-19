@@ -6,7 +6,7 @@ use App\Domain\Quran\Chapter\RevelationType;
 
 interface RevelationTypeRepositoryInterface
 {
-    public function get(RevelationType $type);
+    public function getById(int $id);
 
     public function add(RevelationType $type);
 

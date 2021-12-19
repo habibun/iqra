@@ -14,9 +14,9 @@ class TypeRepository extends ServiceEntityRepository implements TypeRepositoryIn
         parent::__construct($registry, Type::class);
     }
 
-    public function get(Type $format)
+    public function getById(int $id)
     {
-        return $this->find($format);
+        return $this->find($id);
     }
 
     public function getOneByName(string $name)

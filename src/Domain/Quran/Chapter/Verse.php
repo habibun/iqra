@@ -131,12 +131,10 @@ class Verse
         return $this;
     }
 
-
     public function getChapter(): Chapter
     {
         return $this->chapter;
     }
-
 
     public function setChapter(Chapter $chapter): Verse
     {

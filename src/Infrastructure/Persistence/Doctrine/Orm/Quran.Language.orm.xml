@@ -5,9 +5,7 @@
                           https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
 <entity name="App\Domain\Quran\Language" table="quran_language">
-    <id name="id" type="integer">
-        <generator strategy="AUTO"/>
-    </id>
+    <id name="id" type="integer"/>
     <field name="name" type="string" length="50" />
 </entity>
 

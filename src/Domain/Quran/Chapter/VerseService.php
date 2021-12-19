@@ -15,7 +15,7 @@ class VerseService implements VerseServiceInterface
 
     public function create(array $verseData)
     {
-        dump("----------\n",$verseData['sajda'], "-----------------------\n");
+        dump("----------\n", $verseData['sajda'], "-----------------------\n");
         $Verse = (new Verse())
             ->setNumber($verseData['number'])
             ->setText($verseData['text'])

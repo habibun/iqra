@@ -14,9 +14,9 @@ class RevelationTypeRepository extends ServiceEntityRepository implements Revela
         parent::__construct($registry, RevelationType::class);
     }
 
-    public function get(RevelationType $revelationType)
+    public function getById(int $id)
     {
-        return $this->find($revelationType);
+        return $this->find($id);
     }
 
     public function getOneByName(string $name)

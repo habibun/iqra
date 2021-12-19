@@ -2,13 +2,9 @@
 
 namespace App\Domain\Repository;
 
-use App\Domain\Quran\Type;
-
-interface TypeRepositoryInterface
+interface LanguageRepositoryInterface
 {
     public function getById(int $id);
-
-    public function add(Type $type);
 
     public function getOneByName(string $name);
 }

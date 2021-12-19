@@ -3,44 +3,48 @@
 namespace App\Application\Service;
 
 use App\Domain\Quran as QuranEntity;
-use App\Domain\Quran\Chapter\RevelationTypeServiceInterface;
 use App\Domain\Quran\Chapter\VerseServiceInterface;
 use App\Domain\Quran\ChapterServiceInterface;
-use App\Domain\Quran\FormatServiceInterface;
 use App\Domain\Quran\NarrationServiceInterface;
-use App\Domain\Quran\TypeServiceInterface;
+use App\Domain\Repository\FormatRepositoryInterface;
+use App\Domain\Repository\LanguageRepositoryInterface;
+use App\Domain\Repository\RevelationTypeRepositoryInterface;
+use App\Domain\Repository\TypeRepositoryInterface;
 use App\Infrastructure\Persistence\Doctrine\Repository\QuranRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
 class QuranService
 {
     private QuranRepository $quran;
-    private FormatServiceInterface $formatService;
+    private FormatRepositoryInterface $formatRepository;
     private NarrationServiceInterface $narrationService;
-    private TypeServiceInterface $typeService;
+    private TypeRepositoryInterface $typeRepository;
     private ChapterServiceInterface $chapterService;
     private VerseServiceInterface $verseService;
+    private RevelationTypeRepositoryInterface $revelationTypeRepository;
     private EntityManagerInterface $em;
-    private RevelationTypeServiceInterface $revelationTypeService;
+    private LanguageRepositoryInterface $languageRepository;
 
     public function __construct(
         QuranRepository $quran,
-        FormatServiceInterface $formatService,
+        FormatRepositoryInterface $formatRepository,
         NarrationServiceInterface $narrationService,
-        TypeServiceInterface $typeService,
+        TypeRepositoryInterface $typeRepository,
         ChapterServiceInterface $chapterService,
         VerseServiceInterface $verseService,
-        RevelationTypeServiceInterface $revelationTypeService,
-        EntityManagerInterface $em
+        RevelationTypeRepositoryInterface $revelationTypeRepository,
+        EntityManagerInterface $em,
+        LanguageRepositoryInterface $languageRepository
     ) {
         $this->quran = $quran;
-        $this->formatService = $formatService;
+        $this->formatRepository = $formatRepository;
         $this->narrationService = $narrationService;
-        $this->typeService = $typeService;
+        $this->typeRepository = $typeRepository;
         $this->chapterService = $chapterService;
         $this->verseService = $verseService;
+        $this->revelationTypeRepository = $revelationTypeRepository;
         $this->em = $em;
-        $this->revelationTypeService = $revelationTypeService;
+        $this->languageRepository = $languageRepository;
     }
 
     public function create(array $data)
@@ -48,18 +52,20 @@ class QuranService
         $surahs = $data['surahs'];
         $edition = $data['edition'];
 
-        $format = $this->formatService->create($edition['format']);
-        $type = $this->typeService->create($edition['type']);
+        $format = $this->formatRepository->getById($edition['format']);
+        $language = $this->languageRepository->getById($edition['language']);
+        $type = $this->typeRepository->getById($edition['type']);
         $narration = $this->narrationService->create($edition['name'], $edition['englishName']);
 
         $quran = (new QuranEntity())
             ->setFormat($format)
             ->setType($type)
             ->setNarration($narration)
+            ->setLanguage($language)
         ;
 
         foreach ($surahs as $surah) {
-            $revelationType = $this->revelationTypeService->create(strtolower($surah['revelationType']));
+            $revelationType = $this->revelationTypeRepository->getById(strtolower($surah['revelationType']));
             $chapter = $this->chapterService->create(
                 $surah['number'],
                 $surah['name'],
