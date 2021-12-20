@@ -41,7 +41,7 @@ jobs:
           mv /home/runner/.symfony/bin/symfony /usr/local/bin/symfony
       - name: Check Symfony Requirements
         run: symfony check:requirements
-      - name: Coding Standards Checks
-        run: ./vendor/bin/php-cs-fixer fix --allow-risky=yes --dry-run
-#      - name: Static Analysis Of PHP Code
-#        run: ./vendor/bin/psalm --debug
+      - name: PHP CS Fixer - Coding Standards Checks
+        run: make cs-check
+      - name: Psalm - Static Analysis Of PHP Code
+        run: make ps-check
