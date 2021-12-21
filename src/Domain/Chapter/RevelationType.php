@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Domain\Quran;
+namespace App\Domain\Chapter;
 
-class Narration
+class RevelationType
 {
+    public const MECCAN = 1;
+    public const MEDINAN = 2;
+
     private int $id;
     private string $name;
-    private string $englishName;
 
     public function getId(): int
     {
@@ -25,15 +27,11 @@ class Narration
         return $this;
     }
 
-    public function getEnglishName(): string
+    public static function getPreDefinedRevelationType()
     {
-        return $this->englishName;
-    }
-
-    public function setEnglishName(string $englishName): Narration
-    {
-        $this->englishName = $englishName;
-
-        return $this;
+        return [
+            'meccan' => RevelationType::MECCAN,
+            'medinan' => RevelationType::MEDINAN,
+        ];
     }
 }

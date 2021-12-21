@@ -2,7 +2,7 @@
 
 namespace App\Domain\Repository;
 
-use App\Domain\Quran\Type;
+use App\Domain\Type;
 
 interface TypeRepositoryInterface
 {

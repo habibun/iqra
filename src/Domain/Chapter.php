@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Domain\Quran;
+namespace App\Domain;
 
+use App\Domain\Chapter\RevelationType;
+use App\Domain\Chapter\Verse;
 use App\Domain\Quran;
-use App\Domain\Quran\Chapter\RevelationType;
-use App\Domain\Quran\Chapter\Verse;
 
 class Chapter
 {

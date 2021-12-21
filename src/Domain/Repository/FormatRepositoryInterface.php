@@ -2,7 +2,7 @@
 
 namespace App\Domain\Repository;
 
-use App\Domain\Quran\Format;
+use App\Domain\Format;
 
 interface FormatRepositoryInterface
 {

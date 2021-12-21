@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Domain\Quran\Chapter;
+namespace App\Domain;
 
-class RevelationType
+class Format
 {
-    public const MECCAN = 1;
-    public const MEDINAN = 2;
+    public const TEXT = 1;
+    public const AUDIO = 2;
 
     private int $id;
     private string $name;
@@ -27,11 +27,11 @@ class RevelationType
         return $this;
     }
 
-    public static function getPreDefinedRevelationType()
+    public static function getPreDefinedFormat()
     {
         return [
-            'meccan' => RevelationType::MECCAN,
-            'medinan' => RevelationType::MEDINAN,
+            'text' => Format::TEXT,
+            'audio' => Format::AUDIO,
         ];
     }
 }

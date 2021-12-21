@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Domain\Quran;
+namespace App\Domain\Service;
 
+use App\Domain\Narration;
 use App\Domain\Repository\NarrationRepositoryInterface;
 
 class NarrationService implements NarrationServiceInterface

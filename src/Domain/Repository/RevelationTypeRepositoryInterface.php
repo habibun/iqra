@@ -2,7 +2,7 @@
 
 namespace App\Domain\Repository;
 
-use App\Domain\Quran\Chapter\RevelationType;
+use App\Domain\Chapter\RevelationType;
 
 interface RevelationTypeRepositoryInterface
 {

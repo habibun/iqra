@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Domain;
+namespace App\Application\Service;
 
+use App\Domain\Service\FetchQuranInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
-class FetchQuranAlQuranCloud implements FetchQuran
+class FetchQuranFromApiQuranInterface implements FetchQuranInterface
 {
     private HttpClientInterface $client;
 

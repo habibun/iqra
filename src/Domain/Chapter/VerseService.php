@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Domain\Quran\Chapter;
+namespace App\Domain\Chapter;
 
 use App\Domain\Repository\VerseRepositoryInterface;
+use function dump;
 
 class VerseService implements VerseServiceInterface
 {

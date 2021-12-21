@@ -2,8 +2,8 @@
 
 namespace App\Infrastructure\Persistence\Doctrine\Repository;
 
-use App\Domain\Quran\Type;
 use App\Domain\Repository\TypeRepositoryInterface;
+use App\Domain\Type;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

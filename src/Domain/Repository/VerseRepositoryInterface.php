@@ -2,7 +2,7 @@
 
 namespace App\Domain\Repository;
 
-use App\Domain\Quran\Chapter\Verse;
+use App\Domain\Chapter\Verse;
 
 interface VerseRepositoryInterface
 {

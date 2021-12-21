@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Domain\Quran;
+namespace App\Domain\Service;
 
-use App\Domain\Quran\Chapter\RevelationType;
+use App\Domain\Chapter;
+use App\Domain\Chapter\RevelationType;
 use App\Domain\Repository\ChapterRepositoryInterface;
 
 class ChapterService implements ChapterServiceInterface

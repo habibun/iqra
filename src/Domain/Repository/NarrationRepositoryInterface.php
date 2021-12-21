@@ -2,7 +2,7 @@
 
 namespace App\Domain\Repository;
 
-use App\Domain\Quran\Narration;
+use App\Domain\Narration;
 
 interface NarrationRepositoryInterface
 {

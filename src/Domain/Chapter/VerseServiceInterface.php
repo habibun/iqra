@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Quran\Chapter;
+namespace App\Domain\Chapter;
 
 interface VerseServiceInterface
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Domain\Quran\Chapter;
+namespace App\Domain\Chapter;
 
-use App\Domain\Quran\Chapter;
+use App\Domain\Chapter;
 
 class Verse
 {

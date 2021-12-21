@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Quran;
+namespace App\Domain;
 
 class Language
 {
