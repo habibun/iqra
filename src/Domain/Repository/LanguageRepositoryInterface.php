@@ -2,9 +2,10 @@
 
 namespace App\Domain\Repository;
 
+use App\Domain\Model\Language;
+
 interface LanguageRepositoryInterface
 {
-    public function getById(int $id);
-
-    public function getOneByName(string $name);
+    public function add(Language $language);
+    public function getByIsoCode(string $isoCode);
 }

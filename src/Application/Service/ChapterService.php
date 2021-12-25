@@ -2,7 +2,7 @@
 
 namespace App\Application\Service;
 
-use App\Domain\Chapter;
+use App\Domain\Model\Chapter;
 use App\Domain\Repository\ChapterRepositoryInterface;
 
 class ChapterService
@@ -14,12 +14,24 @@ class ChapterService
         $this->chapterRepository = $chapterRepository;
     }
 
-    public function createChapter($revelationPlace, $revelationOrder, $bismillahPre, $nameComplex, $nameArabic, $versesCount, $pages, $translatedName)
-    {
-        dd($revelationOrder);
-        $post = Chapter::create($revelationPlace, $revelationOrder, $bismillahPre, $nameComplex, $nameArabic, $versesCount, $pages, $translatedName);
+    public function createChapter(
+        string $revelationPlace,
+      int $revelationOrder,
+       bool $bismillahPre,
+      string $nameSimple,
+      string $nameComplex,
+      string $nameArabic,
+      int $versesCount,
+        array $pages
+    ) {
+        $post = Chapter::create($revelationPlace, $revelationOrder, $bismillahPre, $nameSimple, $nameComplex, $nameArabic, $versesCount, $pages);
         $this->chapterRepository->add($post);
 
         return $post;
+    }
+
+    public function getByNameSimple(string $nameSimple)
+    {
+        return $this->chapterRepository->getByNameSimple($nameSimple);
     }
 }

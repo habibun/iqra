@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Domain\Chapter;
+namespace App\Domain\Model\Chapter;
 
-use App\Domain\Chapter;
+use App\Domain\Model\Chapter;
 
 class Verse
 {

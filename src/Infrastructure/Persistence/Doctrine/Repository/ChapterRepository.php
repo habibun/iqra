@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Persistence\Doctrine\Repository;
 
-use App\Domain\Chapter;
+use App\Domain\Model\Chapter;
 use App\Domain\Repository\ChapterRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -18,5 +18,10 @@ class ChapterRepository extends ServiceEntityRepository implements ChapterReposi
     {
         $this->getEntityManager()->persist($chapter);
         $this->getEntityManager()->flush($chapter);
+    }
+
+    public function getByNameSimple(string $nameSimple)
+    {
+        return $this->findOneBy(['nameSimple' => $nameSimple]);
     }
 }

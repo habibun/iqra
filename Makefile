@@ -14,6 +14,7 @@ db-diff:
 db-reset: # reset database
 	${console} d:d:d --force --if-exists
 	${console} d:d:c --if-not-exists
+	${console} d:s:c
 	#${console} d:m:m -n
 
 .PHONY: composer-install

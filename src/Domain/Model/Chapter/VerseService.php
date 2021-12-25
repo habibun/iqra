@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Chapter;
+namespace App\Domain\Model\Chapter;
 
 use App\Domain\Repository\VerseRepositoryInterface;
 use function dump;

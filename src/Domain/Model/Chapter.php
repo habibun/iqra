@@ -1,7 +1,10 @@
 <?php
 
-namespace App\Domain;
+namespace App\Domain\Model;
 
+use App\Domain\Model\Chapter\TranslatedName;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use http\Exception\RuntimeException;
 
 class Chapter
@@ -10,27 +13,44 @@ class Chapter
     private string $revelationPlace;
     private int $revelationOrder;
     private bool $bismillahPre;
+    private string $nameSimple;
     private string $nameComplex;
     private string $nameArabic;
     private int $versesCount;
     private array $pages;
-    private translatedName $translatedName;
+    private Collection $translatedNames;
 
-    public static function create($revelationPlace, $revelationOrder, $bismillahPre, $nameComplex, $nameArabic, $versesCount, $pages, $translatedName)
-    {
-        return new static($revelationPlace, $revelationOrder, $bismillahPre, $nameComplex,$nameArabic , $versesCount, $pages,$translatedName);
+    public static function create(
+        string $revelationPlace,
+        int $revelationOrder,
+        bool $bismillahPre,
+        string $nameSimple,
+        string $nameComplex,
+        string $nameArabic,
+        int $versesCount,
+        array $pages,
+    ) {
+        return new static($revelationPlace, $revelationOrder, $bismillahPre, $nameSimple, $nameComplex, $nameArabic , $versesCount, $pages);
     }
 
-    private function __construct($revelationPlace, $revelationOrder, $bismillahPre, $nameComplex, $nameArabic, $versesCount, $pages, $translatedName)
-    {
+    private function __construct(
+        string $revelationPlace,
+        int $revelationOrder,
+        bool $bismillahPre,
+        string $nameSimple,
+        string $nameComplex,
+        string $nameArabic,
+        int $versesCount,
+        array $pages
+    ) {
         $this->setRevelationPlace($revelationPlace);
         $this->setRevelationOrder($revelationOrder);
         $this->setBismillahPre($bismillahPre);
+        $this->setNameSimple($nameSimple);
         $this->setNameComplex($nameComplex);
         $this->setNameArabic($nameArabic);
         $this->setVersesCount($versesCount);
         $this->setPages($pages);
-        $this->setTranslatedName($translatedName);
     }
 
     public function getId(): int
@@ -74,6 +94,18 @@ class Chapter
     public function setBismillahPre(bool $bismillahPre): Chapter
     {
         $this->bismillahPre = $bismillahPre;
+
+        return $this;
+    }
+
+    public function getNameSimple(): string
+    {
+        return $this->nameSimple;
+    }
+
+    public function setNameSimple(string $nameSimple): Chapter
+    {
+        $this->nameSimple = $nameSimple;
 
         return $this;
     }
@@ -126,15 +158,8 @@ class Chapter
         return $this;
     }
 
-    public function getTranslatedName(): translatedName
+    public function getTranslatedName(): Collection
     {
-        return $this->translatedName;
-    }
-
-    public function setTranslatedName(translatedName $translatedName): Chapter
-    {
-        $this->translatedName = $translatedName;
-
-        return $this;
+        return $this->translatedNames;
     }
 }
