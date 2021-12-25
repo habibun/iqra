@@ -6,5 +6,5 @@ use App\Domain\Model\Language\TranslatedName;
 
 interface TranslatedNameRepositoryInterface
 {
-    public function add(TranslatedName $language);
+    public function add(TranslatedName $translatedName);
 }

@@ -3,9 +3,7 @@
 namespace App\Application\Service;
 
 use App\Domain\Model\Language;
-use App\Domain\Model\Language\TranslatedName;
 use App\Domain\Repository\LanguageRepositoryInterface;
-use Doctrine\Common\Collections\ArrayCollection;
 
 class LanguageService
 {

@@ -3,7 +3,7 @@
 namespace App\Application\Service;
 
 use App\Application\Service\Chapter\TranslatedNameService as ChapterTranslatedNameService;
-use App\Application\Service\Language\TranslatedNameService;
+use App\Application\Service\Language\TranslatedNameService as LanguageTranslatedNameService;
 use App\Domain\Model\Language;
 use App\Domain\Service\FetchQuranInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
@@ -15,21 +15,20 @@ class FetchQuranFromApiQuranInterface implements FetchQuranInterface
     private HttpClientInterface $client;
     private ChapterService $chapterService;
     private LanguageService $languageService;
-    private TranslatedNameService $translatedNameService;
+    private LanguageTranslatedNameService $languageTranslatedNameService;
     private ChapterTranslatedNameService $chapterTranslatedNameService;
 
     public function __construct(
         HttpClientInterface $client,
         ChapterService $chapterService,
         LanguageService $languageService,
-        TranslatedNameService $translatedNameService,
+        LanguageTranslatedNameService $languageTranslatedNameService,
         ChapterTranslatedNameService $chapterTranslatedNameService,
     ) {
         $this->client = $client;
         $this->chapterService = $chapterService;
         $this->languageService = $languageService;
-        $this->translatedNameService = $translatedNameService;
-        $this->c = $translatedNameService;
+        $this->languageTranslatedNameService = $languageTranslatedNameService;
         $this->chapterTranslatedNameService = $chapterTranslatedNameService;
     }
 
@@ -44,7 +43,6 @@ class FetchQuranFromApiQuranInterface implements FetchQuranInterface
 
     private function makeRequest(string $url, array $params): array
     {
-//        dd(sprintf('%s%s?%s', self::baseUrl, $url, http_build_query($params)));
         $response = $this->client->request(
             'GET',
             sprintf('%s/%s?%s', self::baseUrl, $url, http_build_query($params))
@@ -85,7 +83,7 @@ class FetchQuranFromApiQuranInterface implements FetchQuranInterface
                     );
                 }
 
-                $this->translatedNameService->createTranslatedName(
+                $this->languageTranslatedNameService->createTranslatedName(
                     $lang['translated_name']['name'],
                     $lang['translated_name']['language_name'],
                     $language
