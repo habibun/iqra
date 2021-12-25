@@ -17,12 +17,13 @@
             <containerXml>var/cache/dev/App_KernelDevDebugContainer.xml</containerXml>
 <!--            <twigCachePath>/cache/twig</twigCachePath>-->
         </pluginClass>
+        <pluginClass class="Weirdan\DoctrinePsalmPlugin\Plugin"/>
     </plugins>
     <extraFiles>
-        <directory name="var/cache/dev/Symfony/Config" /> <!-- https://github.com/psalm/psalm-plugin-symfony/issues/201 -->
+        <directory name="var/cache/dev/Symfony/Config"/> <!-- https://github.com/psalm/psalm-plugin-symfony/issues/201 -->
     </extraFiles>
     <fileExtensions>
-        <extension name=".php" />
+        <extension name=".php"/>
 <!--        <extension name=".twig" checker="./vendor/psalm/plugin-symfony/src/Twig/TemplateFileAnalyzer.php"/>-->
     </fileExtensions>
 </psalm>

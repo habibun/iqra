@@ -3,7 +3,6 @@
 namespace App\Domain\Model;
 
 use Doctrine\Common\Collections\Collection;
-use http\Exception\RuntimeException;
 
 class Chapter
 {
@@ -64,7 +63,7 @@ class Chapter
     public function setRevelationPlace(string $revelationPlace): Chapter
     {
         if (empty($revelationPlace)) {
-            throw new RuntimeException('Revelation Place cannot be empty');
+            throw new \RuntimeException('Revelation Place cannot be empty');
         }
 
         $this->revelationPlace = $revelationPlace;
