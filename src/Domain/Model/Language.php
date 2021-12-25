@@ -2,7 +2,7 @@
 
 namespace App\Domain\Model;
 
-use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 class Language
 {
@@ -14,7 +14,7 @@ class Language
     private string $nativeName;
     private string $isoCode;
     private string $direction;
-    private ArrayCollection $translatedNames;
+    private Collection $translatedNames;
 
     public static function create(string $name, string $nativeName, string $isoCode, string $direction): static
     {
@@ -82,7 +82,7 @@ class Language
         return $this;
     }
 
-    public function getTranslatedNames(): ArrayCollection
+    public function getTranslatedNames(): Collection
     {
         return $this->translatedNames;
     }

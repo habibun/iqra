@@ -2,8 +2,8 @@
 
 namespace App\Application\Service;
 
-use App\Application\Service\Language\TranslatedNameService;
 use App\Application\Service\Chapter\TranslatedNameService as ChapterTranslatedNameService;
+use App\Application\Service\Language\TranslatedNameService;
 use App\Domain\Model\Language;
 use App\Domain\Service\FetchQuranInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
@@ -35,10 +35,11 @@ class FetchQuranFromApiQuranInterface implements FetchQuranInterface
 
     public function fetch()
     {
-//        $this->fetchLanguage();
-        $this->fetchChapter();
+        echo sprintf('...fetching language.%s', PHP_EOL);
+        $this->fetchLanguage();
 
-        dd('terminating fetch method');
+        echo sprintf('...fetching chapter.%s', PHP_EOL);
+        $this->fetchChapter();
     }
 
     private function makeRequest(string $url, array $params): array
@@ -92,20 +93,16 @@ class FetchQuranFromApiQuranInterface implements FetchQuranInterface
             }
         }
     }
+
     private function fetchChapter(): void
     {
         $predefinedLanguages = Language::getPreDefinedLanguages();
         foreach (array_keys($predefinedLanguages) as $isoCode) {
             $chapters = $this->makeRequest('/chapters', ['language' => $isoCode]);
             foreach ($chapters['chapters'] as $ch) {
-//                unset($ch['id']);
-//                dd($ch);
                 $existingChapter = $this->chapterService->getByNameSimple($ch['name_simple']);
-//                dd($existingChapter);
                 $chapter = $existingChapter;
                 if (!$existingChapter) {
-//                                    dd($existingChapter);
-
                     $chapter = $this->chapterService->createChapter(
                         $ch['revelation_place'],
                         $ch['revelation_order'],

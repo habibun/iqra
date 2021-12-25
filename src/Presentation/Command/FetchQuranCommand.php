@@ -21,16 +21,16 @@ class FetchQuranCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $data = $this->fetchQuran->fetch();
+        try {
+            $this->fetchQuran->fetch();
+        } catch (\Exception $exception) {
+            dump($exception->getMessage());
+
+            return Command::FAILURE;
+        }
+
+        $output->writeln('Quran successfully fetched!');
 
         return Command::SUCCESS;
-
-        // or return this if some error happened during the execution
-        // (it's equivalent to returning int(1))
-        // return Command::FAILURE;
-
-        // or return this to indicate incorrect command usage; e.g. invalid options
-        // or missing arguments (it's equivalent to returning int(2))
-        // return Command::INVALID
     }
 }
