@@ -13,6 +13,6 @@ doctrine:
             App:
                 is_bundle: false
                 type: xml
-                dir: '%kernel.project_dir%/src/Infrastructure/Persistence/Doctrine/Orm'
-                prefix: 'App\Domain\Model'
-                alias: App
+                dir: '%kernel.project_dir%/src/Quran/Infrastructure/Persistence/Doctrine/Orm'
+                prefix: 'App\Quran\Domain\Model'
+                alias: Quran
