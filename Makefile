@@ -40,3 +40,9 @@ ps-check: # execute psalm analyzer
 .PHONY: ps-fix
 ps-fix: # execute psalm analyzer and fix
 	symfony php ./vendor/bin/psalter --issues=all
+
+.PHONY: build-check
+build-check: cs-check ps-check
+
+.PHONY: build-fix
+build-fix: cs-fix ps-fix
