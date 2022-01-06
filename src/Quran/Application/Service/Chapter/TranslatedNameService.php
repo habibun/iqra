@@ -10,7 +10,7 @@ class TranslatedNameService
 {
     private \App\Quran\Domain\Repository\Chapter\TranslatedNameRepositoryInterface $translatedNameRepository;
 
-    public function __construct(\App\Quran\Domain\Repository\Chapter\TranslatedNameRepositoryInterface $translatedNameRepository)
+    public function __construct(TranslatedNameRepositoryInterface $translatedNameRepository)
     {
         $this->translatedNameRepository = $translatedNameRepository;
     }

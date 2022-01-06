@@ -6,5 +6,5 @@ use App\Quran\Domain\Model\Translation\TranslatedName;
 
 interface TranslatedNameRepositoryInterface
 {
-    public function add(\App\Quran\Domain\Model\Translation\TranslatedName $translatedName);
+    public function add(TranslatedName $translatedName);
 }

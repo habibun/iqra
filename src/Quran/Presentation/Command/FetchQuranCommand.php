@@ -6,7 +6,6 @@ use App\Quran\Domain\Service\FetchQuranInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use function dump;
 
 class FetchQuranCommand extends Command
 {

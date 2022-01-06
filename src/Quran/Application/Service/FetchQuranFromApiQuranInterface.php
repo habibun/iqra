@@ -4,13 +4,9 @@ namespace App\Quran\Application\Service;
 
 use App\Quran\Application\Service\Chapter\TranslatedNameService as ChapterTranslatedNameService;
 use App\Quran\Application\Service\Language\TranslatedNameService as LanguageTranslatedNameService;
-use App\Quran\Application\Service\ChapterService;
-use App\Quran\Application\Service\LanguageService;
 use App\Quran\Application\Service\Translation\TranslatedNameService as TranslationTranslatedNameService;
 use App\Quran\Domain\Model\Language;
 use App\Quran\Domain\Model\Translation;
-use App\Quran\Application\Service\TranslationService;
-use App\Quran\Domain\Service\FetchQuranInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class FetchQuranFromApiQuranInterface implements \App\Quran\Domain\Service\FetchQuranInterface

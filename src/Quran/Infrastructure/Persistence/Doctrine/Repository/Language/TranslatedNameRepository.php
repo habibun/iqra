@@ -3,7 +3,6 @@
 namespace App\Quran\Infrastructure\Persistence\Doctrine\Repository\Language;
 
 use App\Quran\Domain\Model\Language\TranslatedName;
-use App\Quran\Domain\Repository\Language\TranslatedNameRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
