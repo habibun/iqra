@@ -1,5 +1,6 @@
 {
     "devDependencies": {
+        "@babel/preset-react": "^7.0.0",
         "@hotwired/stimulus": "^3.0.0",
         "@symfony/stimulus-bridge": "^3.0.0",
         "@symfony/webpack-encore": "^1.7.0",
@@ -7,6 +8,7 @@
         "core-js": "^3.0.0",
         "postcss": "^8.4.5",
         "postcss-loader": "^6.2.1",
+        "redux-devtools": "^3.7.0",
         "regenerator-runtime": "^0.13.2",
         "tailwindcss": "^3.0.11",
         "webpack-notifier": "^1.6.0"
@@ -20,6 +22,13 @@
         "build": "encore production --progress"
     },
     "dependencies": {
-        "postcss-import": "^14.0.2"
+        "@reduxjs/toolkit": "^1.7.1",
+        "axios": "^0.24.0",
+        "postcss-import": "^14.0.2",
+        "prop-types": "^15.8.1",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "react-redux": "^7.2.6",
+        "redux": "^4.1.2"
     }
 }
