@@ -9,9 +9,6 @@
 import './styles/tailwind.css';
 import './styles/app.css';
 
-// start the Stimulus application
-import './bootstrap';
-
 
 import React, {useEffect} from 'react';
 import ReactDOM from 'react-dom';
