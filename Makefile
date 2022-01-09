@@ -41,6 +41,10 @@ ps-check: # execute psalm analyzer
 ps-fix: # execute psalm analyzer and fix
 	symfony php ./vendor/bin/psalter --issues=all
 
+.PHONY: es-check
+es-check: # execute ESLint analyzer
+	./node_modules/.bin/eslint assets
+
 .PHONY: build-check
 build-check: cs-check ps-check
 
