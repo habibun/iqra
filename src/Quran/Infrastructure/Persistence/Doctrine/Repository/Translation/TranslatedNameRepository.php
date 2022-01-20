@@ -11,12 +11,12 @@ class TranslatedNameRepository extends ServiceEntityRepository implements Transl
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, \App\Quran\Domain\Model\Translation\TranslatedName::class);
+        parent::__construct($registry, TranslatedName::class);
     }
 
     public function add(TranslatedName $translatedName)
     {
         $this->getEntityManager()->persist($translatedName);
-        $this->getEntityManager()->flush($translatedName);
+        $this->getEntityManager()->flush();
     }
 }

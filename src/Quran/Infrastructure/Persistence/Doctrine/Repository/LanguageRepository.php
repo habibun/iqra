@@ -17,7 +17,7 @@ class LanguageRepository extends ServiceEntityRepository implements LanguageRepo
     public function add(Language $language)
     {
         $this->getEntityManager()->persist($language);
-        $this->getEntityManager()->flush($language);
+        $this->getEntityManager()->flush();
     }
 
     public function getByIsoCode(string $isoCode)

@@ -5,6 +5,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="https://getpsalm.org/schema/config"
     xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+    cacheDirectory="var/cache/dev/psalm"
 >
     <projectFiles>
         <directory name="src"/>
@@ -20,10 +21,9 @@
         <pluginClass class="Weirdan\DoctrinePsalmPlugin\Plugin"/>
     </plugins>
     <extraFiles>
-        <directory name="var/cache/dev/Symfony/Config"/> <!-- https://github.com/psalm/psalm-plugin-symfony/issues/201 -->
+        <directory name="var/cache/dev/Symfony/Config"/>
     </extraFiles>
     <fileExtensions>
         <extension name=".php"/>
-<!--        <extension name=".twig" checker="./vendor/psalm/plugin-symfony/src/Twig/TemplateFileAnalyzer.php"/>-->
     </fileExtensions>
 </psalm>

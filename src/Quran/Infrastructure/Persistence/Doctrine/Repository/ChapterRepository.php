@@ -3,10 +3,11 @@
 namespace App\Quran\Infrastructure\Persistence\Doctrine\Repository;
 
 use App\Quran\Domain\Model\Chapter;
+use App\Quran\Domain\Repository\ChapterRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-class ChapterRepository extends ServiceEntityRepository implements \App\Quran\Domain\Repository\ChapterRepositoryInterface
+class ChapterRepository extends ServiceEntityRepository implements ChapterRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
@@ -16,7 +17,7 @@ class ChapterRepository extends ServiceEntityRepository implements \App\Quran\Do
     public function add(Chapter $chapter)
     {
         $this->getEntityManager()->persist($chapter);
-        $this->getEntityManager()->flush($chapter);
+        $this->getEntityManager()->flush();
     }
 
     public function getByNameSimple(string $nameSimple)

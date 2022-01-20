@@ -3,10 +3,11 @@
 namespace App\Quran\Infrastructure\Persistence\Doctrine\Repository;
 
 use App\Quran\Domain\Model\Translation;
+use App\Quran\Domain\Repository\TranslationRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-class TranslationRepository extends ServiceEntityRepository implements \App\Quran\Domain\Repository\TranslationRepositoryInterface
+class TranslationRepository extends ServiceEntityRepository implements TranslationRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
@@ -16,7 +17,7 @@ class TranslationRepository extends ServiceEntityRepository implements \App\Qura
     public function add(Translation $translation)
     {
         $this->getEntityManager()->persist($translation);
-        $this->getEntityManager()->flush($translation);
+        $this->getEntityManager()->flush();
     }
 
     public function getBySlug(string $slug)

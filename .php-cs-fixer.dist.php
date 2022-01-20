@@ -10,7 +10,7 @@ $finder = PhpCsFixer\Finder::create()
 return (new PhpCsFixer\Config())
     ->setFinder($finder)
     ->setRiskyAllowed(true)
-    ->setCacheFile(__DIR__.'/var/.php_cs_fixer.cache')
+    ->setCacheFile(__DIR__.'/var/cache/dev/.php_cs_fixer.cache')
     ->setRules([
         '@Symfony' => true,
     ]);
