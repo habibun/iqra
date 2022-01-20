@@ -5,11 +5,12 @@ $finder = PhpCsFixer\Finder::create()
     ->exclude('bin')
     ->exclude('var')
     ->exclude('frontend')
-    ->notPath('public/index.php')
-;
+    ->notPath('public/index.php');
 
 return (new PhpCsFixer\Config())
+    ->setFinder($finder)
     ->setRiskyAllowed(true)
+    ->setCacheFile(__DIR__.'/var/.php_cs_fixer.cache')
     ->setRules([
         '@Symfony' => true,
-    ])->setFinder($finder);
+    ]);
