@@ -1,24 +1,11 @@
-/*
- * Welcome to your app's main JavaScript file!
- *
- * We recommend including the built version of this JavaScript file
- * (and its CSS file) in your base layout (base.html.twig).
- */
 
-// any CSS you import will output into a single css file (app.css in this case)
-import './styles/tailwind.css';
-import './styles/app.css';
-
-
-import React, {useEffect} from 'react';
-import ReactDOM from 'react-dom';
 import {Provider, useDispatch, useSelector} from 'react-redux';
 import store from "./redux/store/store";
 import {decrement, increaseByAmount, increment, fetchPost} from "./redux/slices/counterSlices";
+import React, {useEffect} from 'react';
 
 
-
-export function App()
+export default function App()
 {
     const dispatch = useDispatch();
     const counter = useSelector(state => state?.counter)
@@ -33,7 +20,8 @@ export function App()
     console.log('post', post);
     console.log('postList', postList);
     return (
-        <div className="container text-center">
+        <div className='bg-gray-100'>
+            <div className="md:container md:mx-auto bg-white">
             <h1>Redux toolkit</h1>
 
             <h5>counter: {counter?.value}</h5>
@@ -63,13 +51,6 @@ export function App()
             ))}
 
         </div>
+        </div>
     );
 }
-
-
-ReactDOM.render(
-    <Provider store={store}>
-        <App/>
-    </Provider>
-    , document.getElementById('root')
-);
