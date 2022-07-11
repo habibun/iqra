@@ -4,7 +4,7 @@ $finder = PhpCsFixer\Finder::create()
     ->in(__DIR__)
     ->exclude('bin')
     ->exclude('var')
-    ->exclude('frontend')
+    ->exclude('node_modules')
     ->notPath('public/index.php');
 
 return (new PhpCsFixer\Config())
