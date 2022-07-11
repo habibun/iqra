@@ -7,6 +7,7 @@
 
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
+import './styles/tailwind.css';
 
 // start the Stimulus application
 import './bootstrap';
@@ -19,6 +20,5 @@ class App extends Component {
         return <h2>Lift History! <span> test </span></h2>;
     }
 }
-console.log(App);
 
 ReactDom.render(<App/>, document.getElementById('root'));
