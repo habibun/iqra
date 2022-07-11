@@ -3,7 +3,6 @@
 namespace App\Quran\Domain\Model\Chapter;
 
 use App\Quran\Domain\Repository\VerseRepositoryInterface;
-use function dump;
 
 class VerseService implements VerseServiceInterface
 {

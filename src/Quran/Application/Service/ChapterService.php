@@ -16,12 +16,12 @@ class ChapterService
 
     public function createChapter(
         string $revelationPlace,
-      int $revelationOrder,
-       bool $bismillahPre,
-      string $nameSimple,
-      string $nameComplex,
-      string $nameArabic,
-      int $versesCount,
+        int $revelationOrder,
+        bool $bismillahPre,
+        string $nameSimple,
+        string $nameComplex,
+        string $nameArabic,
+        int $versesCount,
         array $pages
     ) {
         $post = Chapter::create($revelationPlace, $revelationOrder, $bismillahPre, $nameSimple, $nameComplex, $nameArabic, $versesCount, $pages);
