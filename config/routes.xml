@@ -4,11 +4,9 @@
         xsi:schemaLocation="http://symfony.com/schema/routing
         https://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <!-- the controller value has the format 'controller_class::method_name' -->
-    <route id="homepage" path="/"
-           controller="App\Miracle\Presentation\Controller\HomepageController::index"/>
+    <route id="homepage_no_locale" path="/"
+           controller="App\Miracle\Presentation\Controller\HomepageController::indexNoLocale"/>
 
-    <!-- if the action is implemented as the __invoke() method of the
-         controller class, you can skip the '::method_name' part:
-         controller="App\Controller\BlogController"/> -->
+    <route id="homepage" path="/{_locale&lt;%app.supported_locales%&gt;}/"
+           controller="App\Miracle\Presentation\Controller\HomepageController::index"/>
 </routes>

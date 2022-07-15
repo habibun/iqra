@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="bn" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="8yZI2f3" resname="Quran">
+        <source>Quran</source>
+        <target>কুরআন</target>
+      </trans-unit>
+      <trans-unit id="hCipJpl" resname="Miracle">
+        <source>Miracle</source>
+        <target>অলৌকিক</target>
+      </trans-unit>
+      <trans-unit id="puYAoQ." resname="Context">
+        <source>Context</source>
+        <target>প্রসঙ্গ</target>
+      </trans-unit>
+      <trans-unit id="hzDTwgI" resname="Latest">
+        <source>Latest</source>
+        <target>সর্বশেষ</target>
+      </trans-unit>
+      <trans-unit id="XhoOvJO" resname="Trending">
+        <source>Trending</source>
+        <target>চলমান</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
