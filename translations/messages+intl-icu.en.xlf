@@ -25,6 +25,10 @@
         <source>Trending</source>
         <target>Trending</target>
       </trans-unit>
+      <trans-unit id="fAaH7um" resname="Hadith">
+        <source>Hadith</source>
+        <target>Hadith</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
