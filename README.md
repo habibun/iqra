@@ -11,4 +11,4 @@ Use this space to list resources you find helpful and would like to give credit 
 * [Tailwind CSS](https://tailwindcss.com)
 * [Tailwind Elements](https://tailwind-elements.com)
 * [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
-
+* [React](https://reactjs.org/)
