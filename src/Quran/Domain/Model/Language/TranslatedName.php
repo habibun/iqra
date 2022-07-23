@@ -11,7 +11,7 @@ class TranslatedName
     private string $languageName;
     private Language $language;
 
-    public static function create(string $name, string $languageName, Language $language)
+    public static function create(string $name, string $languageName, Language $language): static
     {
         return new static($name, $languageName, $language);
     }

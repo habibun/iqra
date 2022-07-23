@@ -8,18 +8,23 @@ use App\Quran\Domain\Repository\Language\TranslatedNameRepositoryInterface;
 
 class TranslatedNameService
 {
-    private \App\Quran\Domain\Repository\Language\TranslatedNameRepositoryInterface $translatedNameRepository;
+    private TranslatedNameRepositoryInterface $translatedNameRepository;
 
     public function __construct(TranslatedNameRepositoryInterface $translatedNameRepository)
     {
         $this->translatedNameRepository = $translatedNameRepository;
     }
 
-    public function createTranslatedName(string $name, string $languageName, Language $language)
+    public function createTranslatedName(string $name, string $languageName, Language $language): TranslatedName
     {
         $translatedName = TranslatedName::create($name, $languageName, $language);
         $this->translatedNameRepository->add($translatedName);
 
         return $translatedName;
+    }
+
+    public function getByNameAndLanguageName(string $name, string $languageName)
+    {
+        return $this->translatedNameRepository->getByNameAndLanguageName($name, $languageName);
     }
 }

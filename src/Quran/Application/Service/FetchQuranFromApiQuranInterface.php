@@ -7,12 +7,12 @@ use App\Quran\Application\Service\Language\TranslatedNameService as LanguageTran
 use App\Quran\Application\Service\Translation\TranslatedNameService as TranslationTranslatedNameService;
 use App\Quran\Domain\Model\Language;
 use App\Quran\Domain\Model\Translation;
+use App\Quran\Domain\Service\FetchQuranInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
-class FetchQuranFromApiQuranInterface implements \App\Quran\Domain\Service\FetchQuranInterface
+class FetchQuranFromApiQuranInterface implements FetchQuranInterface
 {
     private const baseUrl = 'https://api.quran.com/api/v4';
-
     private HttpClientInterface $client;
     private ChapterService $chapterService;
     private LanguageService $languageService;
@@ -41,13 +41,13 @@ class FetchQuranFromApiQuranInterface implements \App\Quran\Domain\Service\Fetch
 
     public function fetch()
     {
-        echo sprintf('...fetching language.%s', PHP_EOL);
-//        $this->fetchLanguage();
+        echo sprintf('Fetching languages...%s', PHP_EOL);
+        $this->fetchLanguage();
 
-        echo sprintf('...fetching chapter.%s', PHP_EOL);
+        echo sprintf('Fetching chapters...%s', PHP_EOL);
 //        $this->fetchChapter();
 
-        echo sprintf('...fetching translation.%s', PHP_EOL);
+        echo sprintf('Fetching translation...%s', PHP_EOL);
         $this->fetchTranslation();
     }
 
@@ -93,11 +93,22 @@ class FetchQuranFromApiQuranInterface implements \App\Quran\Domain\Service\Fetch
                     );
                 }
 
-                $this->languageTranslatedNameService->createTranslatedName(
-                    $lang['translated_name']['name'],
-                    $lang['translated_name']['language_name'],
-                    $language
-                );
+                // api.quran bug - tweaking translated name for bengali language
+                $bengali = strtolower($predefinedLanguages[Language::ISO_CODE_BENGALI]);
+                if (Language::ISO_CODE_BENGALI === $isoCode && $lang['translated_name']['language_name'] !== $bengali) {
+                    $lang['translated_name']['language_name'] = $bengali;
+                    $lang['translated_name']['name'] = 'ইংরেজি';
+                }
+
+                $existingTranslatedName = $this->languageTranslatedNameService
+                    ->getByNameAndLanguageName($lang['translated_name']['name'], $lang['translated_name']['language_name']);
+                if (!$existingTranslatedName) {
+                    $this->languageTranslatedNameService->createTranslatedName(
+                        $lang['translated_name']['name'],
+                        $lang['translated_name']['language_name'],
+                        $language
+                    );
+                }
             }
         }
     }

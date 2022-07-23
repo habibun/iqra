@@ -19,4 +19,9 @@ class TranslatedNameRepository extends ServiceEntityRepository implements Transl
         $this->getEntityManager()->persist($translatedName);
         $this->getEntityManager()->flush();
     }
+
+    public function getByNameAndLanguageName(string $name, string $languageName)
+    {
+        return $this->findOneBy(['name' => $name, 'languageName' => $languageName]);
+    }
 }
