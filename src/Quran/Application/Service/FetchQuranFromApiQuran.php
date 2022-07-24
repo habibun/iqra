@@ -10,7 +10,7 @@ use App\Quran\Domain\Model\Translation;
 use App\Quran\Domain\Service\FetchQuranInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
-class FetchQuranFromApiQuranInterface implements FetchQuranInterface
+class FetchQuranFromApiQuran implements FetchQuranInterface
 {
     private const baseUrl = 'https://api.quran.com/api/v4';
     private HttpClientInterface $client;
