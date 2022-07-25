@@ -3,9 +3,11 @@
 namespace App\Quran\Infrastructure\Persistence\Doctrine\Repository;
 
 use App\Quran\Domain\Model\Language;
+use App\Quran\Domain\Model\Language\Id;
 use App\Quran\Domain\Repository\LanguageRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Uid\Uuid;
 
 class LanguageRepository extends ServiceEntityRepository implements LanguageRepositoryInterface
 {
@@ -23,5 +25,10 @@ class LanguageRepository extends ServiceEntityRepository implements LanguageRepo
     public function getByIsoCode(string $isoCode)
     {
         return $this->findOneBy(['isoCode' => $isoCode]);
+    }
+
+    public function nextIdentity(): Id
+    {
+        return Id::fromString((string) Uuid::v4());
     }
 }
