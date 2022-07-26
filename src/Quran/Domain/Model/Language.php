@@ -9,27 +9,28 @@ class Language
     public const ISO_CODE_ENGLISH = 'en';
     public const ISO_CODE_BENGALI = 'bn';
 
-    private int $id;
+    private string $id;
     private string $name;
     private string $nativeName;
     private string $isoCode;
     private string $direction;
     private Collection $translatedNames;
 
-    public static function create(string $name, string $nativeName, string $isoCode, string $direction): static
+    public static function create(string $id, string $name, string $nativeName, string $isoCode, string $direction): static
     {
-        return new static($name, $nativeName, $isoCode, $direction);
+        return new static($id, $name, $nativeName, $isoCode, $direction);
     }
 
-    public function __construct(string $name, string $nativeName, string $isoCode, string $direction)
+    public function __construct(string $id, string $name, string $nativeName, string $isoCode, string $direction)
     {
+        $this->id = $id;
         $this->setName($name);
         $this->setNativeName($nativeName);
         $this->setIsoCode($isoCode);
         $this->setDirection($direction);
     }
 
-    public function getId(): int
+    public function getId(): string
     {
         return $this->id;
     }

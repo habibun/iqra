@@ -86,6 +86,7 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
                 $language = $existingLanguage;
                 if (!$existingLanguage) {
                     $language = $this->languageService->createLanguage(
+                        $this->languageService->getNextIdentity(),
                         $lang['name'],
                         $lang['native_name'],
                         $lang['iso_code'],
