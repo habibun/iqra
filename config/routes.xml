@@ -5,8 +5,8 @@
         https://symfony.com/schema/routing/routing-1.0.xsd">
 
     <route id="homepage_no_locale" path="/"
-           controller="App\Miracle\Presentation\Controller\HomepageController::indexNoLocale"/>
+           controller="App\Sign\Presentation\Controller\HomepageController::indexNoLocale"/>
 
     <route id="homepage" path="/{_locale&lt;%app.supported_locales%&gt;}/"
-           controller="App\Miracle\Presentation\Controller\HomepageController::index"/>
+           controller="App\Sign\Presentation\Controller\HomepageController::index"/>
 </routes>

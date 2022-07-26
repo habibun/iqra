@@ -9,9 +9,9 @@
         <source>Quran</source>
         <target>Quran</target>
       </trans-unit>
-      <trans-unit id="hCipJpl" resname="Miracle">
-        <source>Miracle</source>
-        <target>Miracle</target>
+      <trans-unit id="hCipJpl" resname="Sign">
+        <source>Sign</source>
+        <target>Sign</target>
       </trans-unit>
       <trans-unit id="puYAoQ." resname="Context">
         <source>Context</source>
