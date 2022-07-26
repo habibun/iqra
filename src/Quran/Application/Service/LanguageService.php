@@ -14,9 +14,9 @@ class LanguageService
         $this->languageRepository = $languageRepository;
     }
 
-    public function createLanguage(string $name, string $nativeName, string $isoCode, string $direction): Language
+    public function createLanguage(string $id, string $name, string $nativeName, string $isoCode, string $direction): Language
     {
-        $language = Language::create($name, $nativeName, $isoCode, $direction);
+        $language = Language::create($id, $name, $nativeName, $isoCode, $direction);
         $this->languageRepository->add($language);
 
         return $language;
@@ -25,5 +25,10 @@ class LanguageService
     public function getByIsoCode(string $isoCode)
     {
         return $this->languageRepository->getByIsoCode($isoCode);
+    }
+
+    public function getNextIdentity()
+    {
+        return $this->languageRepository->nextIdentity();
     }
 }
