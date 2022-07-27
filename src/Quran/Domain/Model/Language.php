@@ -2,6 +2,7 @@
 
 namespace App\Quran\Domain\Model;
 
+use App\Shared\Domain\ValueObject\Uuid;
 use Doctrine\Common\Collections\Collection;
 
 class Language
@@ -9,19 +10,19 @@ class Language
     public const ISO_CODE_ENGLISH = 'en';
     public const ISO_CODE_BENGALI = 'bn';
 
-    private string $id;
+    private Uuid $id;
     private string $name;
     private string $nativeName;
     private string $isoCode;
     private string $direction;
     private Collection $translatedNames;
 
-    public static function create(string $id, string $name, string $nativeName, string $isoCode, string $direction): static
+    public static function create(Uuid $id, string $name, string $nativeName, string $isoCode, string $direction): static
     {
         return new static($id, $name, $nativeName, $isoCode, $direction);
     }
 
-    public function __construct(string $id, string $name, string $nativeName, string $isoCode, string $direction)
+    public function __construct(Uuid $id, string $name, string $nativeName, string $isoCode, string $direction)
     {
         $this->id = $id;
         $this->setName($name);
@@ -30,7 +31,7 @@ class Language
         $this->setDirection($direction);
     }
 
-    public function getId(): string
+    public function getId(): Uuid
     {
         return $this->id;
     }

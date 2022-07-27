@@ -4,6 +4,7 @@ namespace App\Quran\Application\Service;
 
 use App\Quran\Domain\Model\Language;
 use App\Quran\Domain\Repository\LanguageRepositoryInterface;
+use App\Shared\Domain\ValueObject\Uuid;
 
 class LanguageService
 {
@@ -14,7 +15,7 @@ class LanguageService
         $this->languageRepository = $languageRepository;
     }
 
-    public function createLanguage(string $id, string $name, string $nativeName, string $isoCode, string $direction): Language
+    public function createLanguage(Uuid $id, string $name, string $nativeName, string $isoCode, string $direction): Language
     {
         $language = Language::create($id, $name, $nativeName, $isoCode, $direction);
         $this->languageRepository->add($language);
@@ -27,7 +28,7 @@ class LanguageService
         return $this->languageRepository->getByIsoCode($isoCode);
     }
 
-    public function getNextIdentity()
+    public function getNextIdentity(): Uuid
     {
         return $this->languageRepository->nextIdentity();
     }
