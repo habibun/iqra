@@ -156,6 +156,7 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
                 }
 
                 $translation = $this->translationService->createTranslation(
+                    $this->translationService->getNextIdentity(),
                     $tran['name'],
                     $tran['author_name'],
                     $tran['slug'],

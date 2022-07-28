@@ -4,6 +4,7 @@ namespace App\Quran\Infrastructure\Persistence\Doctrine\Repository;
 
 use App\Quran\Domain\Model\Language;
 use App\Quran\Domain\Repository\LanguageRepositoryInterface;
+use App\Shared\Domain\ValueObject\Uuid as UuidValueObject;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Uid\Uuid;
@@ -26,8 +27,8 @@ class LanguageRepository extends ServiceEntityRepository implements LanguageRepo
         return $this->findOneBy(['isoCode' => $isoCode]);
     }
 
-    public function nextIdentity(): string
+    public function nextIdentity(): UuidValueObject
     {
-        return (string) Uuid::v4();
+        return UuidValueObject::fromString((string) Uuid::v4());
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Quran\Domain\Repository;
 
 use App\Quran\Domain\Model\Language;
+use App\Shared\Domain\ValueObject\Uuid;
 
 interface LanguageRepositoryInterface
 {
@@ -10,5 +11,5 @@ interface LanguageRepositoryInterface
 
     public function getByIsoCode(string $isoCode);
 
-    public function nextIdentity(): string;
+    public function nextIdentity(): Uuid;
 }

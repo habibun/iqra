@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Quran\Domain\Exception;
+namespace App\Shared\Domain\Exception;
 
 class InvalidUuidException extends \InvalidArgumentException
 {
     public function __construct()
     {
-        parent::__construct('aggregator_root.exception.invalid_uuid', 400);
+        parent::__construct('Invalid UUID', 400);
     }
 }
