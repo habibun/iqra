@@ -6,6 +6,6 @@ class InvalidUuidException extends \InvalidArgumentException
 {
     public function __construct()
     {
-        parent::__construct('Invalid UUID', 400);
+        parent::__construct('Invalid UUID', 500);
     }
 }
