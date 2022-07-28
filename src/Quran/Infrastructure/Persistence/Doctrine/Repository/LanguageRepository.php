@@ -4,10 +4,10 @@ namespace App\Quran\Infrastructure\Persistence\Doctrine\Repository;
 
 use App\Quran\Domain\Model\Language;
 use App\Quran\Domain\Repository\LanguageRepositoryInterface;
+use App\Shared\Domain\ValueObject\Uuid as UuidValueObject;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Uid\Uuid;
-use App\Shared\Domain\ValueObject\Uuid as UuidValueObject;
 
 class LanguageRepository extends ServiceEntityRepository implements LanguageRepositoryInterface
 {

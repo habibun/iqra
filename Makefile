@@ -27,7 +27,7 @@ composer-update: # update project dependencies
 
 .PHONY: cs-check
 cs-check: # execute php-cs-fixer analyzer
-	symfony php ./vendor/bin/php-cs-fixer fix --dry-run
+	symfony php ./vendor/bin/php-cs-fixer fix src --dry-run -v
 
 .PHONY: cs-fix
 cs-fix: # execute php-cs-fixer analyzer and fix
