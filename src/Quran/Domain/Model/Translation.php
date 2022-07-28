@@ -2,6 +2,7 @@
 
 namespace App\Quran\Domain\Model;
 
+use App\Shared\Domain\ValueObject\Uuid;
 use Doctrine\Common\Collections\Collection;
 
 class Translation
@@ -9,27 +10,28 @@ class Translation
     public const LANGUAGE_NAME_ENGLISH = 'english';
     public const LANGUAGE_NAME_BENGALI = 'bengali';
 
-    private int $id;
+    private Uuid $id;
     private string $name;
     private string $authorName;
     private ?string $slug;
     private string $languageName;
     private Collection $translatedNames;
 
-    public static function create(string $name, string $authorName, ?string $slug, string $languageName): static
+    public static function create(Uuid $id, string $name, string $authorName, ?string $slug, string $languageName): static
     {
-        return new static($name, $authorName, $slug, $languageName);
+        return new static($id, $name, $authorName, $slug, $languageName);
     }
 
-    public function __construct(string $name, string $authorName, ?string $slug, string $languageName)
+    public function __construct(Uuid $id, string $name, string $authorName, ?string $slug, string $languageName)
     {
+        $this->id = $id;
         $this->setName($name);
         $this->setAuthorName($authorName);
         $this->setSlug($slug);
         $this->setLanguageName($languageName);
     }
 
-    public function getId(): int
+    public function getId(): Uuid
     {
         return $this->id;
     }
