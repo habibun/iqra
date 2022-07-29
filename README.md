@@ -70,7 +70,7 @@ Continue reading to learn more about how you can contribute to [Iqra GitHub Repo
 * [![PHP][php]][php-url]
 * [![Symfony][symfony]][symfony-url]
 * [![MariaDB][mariadb]][mariadb-url]
-* [![React][React.js]][React-url]
+* [![React][react]][react-url]
 * [![Tailwind CSS][tailwindcss]][tailwindcss-url]
 
 
@@ -150,14 +150,14 @@ Distributed under the MIT License. See **[LICENSE][license-url]** for more infor
 [license-shield]: https://img.shields.io/github/license/habibun/iqra.svg?style=for-the-badge
 [license-url]: https://github.com/habibun/iqra/blob/main/LICENSE
 [product-screenshot]: docs/images/screenshot.png
-[symfony]: https://camo.githubusercontent.com/07bf179255d19d79e53d8ffc9ed9fdcad01e35d811757f64af178619d91f0e42/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f7374796c653d666f722d7468652d6261646765266d6573736167653d53796d666f6e7926636f6c6f723d303030303030266c6f676f3d53796d666f6e79266c6f676f436f6c6f723d464646464646266c6162656c3d
+[symfony]: https://img.shields.io/badge/symfony-000000?style=for-the-badge&logo=symfony&logoColor=white
 [symfony-url]: https://symfony.com/
-[php]: https://camo.githubusercontent.com/043cf178670996a77ee676c08ffebc44661909c10e09c07a12a287cab3f8e548/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f7374796c653d666f722d7468652d6261646765266d6573736167653d50485026636f6c6f723d373737424234266c6f676f3d504850266c6f676f436f6c6f723d464646464646266c6162656c3d
+[php]: https://img.shields.io/badge/php-000000?style=for-the-badge&logo=php&logoColor=white
 [php-url]: https://www.php.net/
-[mariadb]: https://camo.githubusercontent.com/4faa47bee254ce34bb9390b2b18d807441130af079a6326e8646d2b1ffc2f3e1/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f7374796c653d666f722d7468652d6261646765266d6573736167653d4d61726961444226636f6c6f723d303033353435266c6f676f3d4d617269614442266c6f676f436f6c6f723d464646464646266c6162656c3d
+[mariadb]: https://img.shields.io/badge/mariadb-000000?style=for-the-badge&logo=mariadb&logoColor=white
 [mariadb-url]: https://mariadb.org/
-[tailwindcss]: https://camo.githubusercontent.com/5d16e7fdd964ebca50ca82d6c8b081045630340427c463f4470050acd4e50ef3/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f7374796c653d666f722d7468652d6261646765266d6573736167653d5461696c77696e642b43535326636f6c6f723d323232323232266c6f676f3d5461696c77696e642b435353266c6f676f436f6c6f723d303642364434266c6162656c3d
+[tailwindcss]: https://img.shields.io/badge/tailwindcss-000000?style=for-the-badge&logo=tailwindcss&logoColor=white
 [tailwindcss-url]: https://tailwindcss.com/
-[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
-[React-url]: https://reactjs.org/
+[react]: https://img.shields.io/badge/react-000000?style=for-the-badge&logo=react&logoColor=white
+[react-url]: https://reactjs.org/
 [repository-url]: https://github.com/habibun/iqra
