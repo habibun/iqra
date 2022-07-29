@@ -66,12 +66,12 @@ The official source code repository for iqra.
 <br />
 Continue reading to learn more about how you can contribute to [Iqra GitHub Repository][repository-url]. Your help will surely go a long way, In Sha'a Allah.
 
-### Built With  
-* [![PHP][php]][php-url]
-* [![Symfony][symfony]][symfony-url]
-* [![MariaDB][mariadb]][mariadb-url]
-* [![React][react]][react-url]
-* [![Tailwind CSS][tailwindcss]][tailwindcss-url]
+**Project is created with:**
+* [PHP][php-url]: `^8.0`
+* [Symfony][symfony-url]: `^5.4`
+* [MariaDB][mariadb-url]: `^10.5`
+* [React][react-url]: `^18.2`
+* [Tailwind CSS][tailwindcss-url]: `^3.1`
 
 
 ---
@@ -150,14 +150,9 @@ Distributed under the MIT License. See **[LICENSE][license-url]** for more infor
 [license-shield]: https://img.shields.io/github/license/habibun/iqra.svg?style=for-the-badge
 [license-url]: https://github.com/habibun/iqra/blob/main/LICENSE
 [product-screenshot]: docs/images/screenshot.png
-[symfony]: https://img.shields.io/badge/symfony-000000?style=for-the-badge&logo=symfony&logoColor=white
 [symfony-url]: https://symfony.com/
-[php]: https://img.shields.io/badge/php-000000?style=for-the-badge&logo=php&logoColor=white
 [php-url]: https://www.php.net/
-[mariadb]: https://img.shields.io/badge/mariadb-000000?style=for-the-badge&logo=mariadb&logoColor=white
 [mariadb-url]: https://mariadb.org/
-[tailwindcss]: https://img.shields.io/badge/tailwindcss-000000?style=for-the-badge&logo=tailwindcss&logoColor=white
 [tailwindcss-url]: https://tailwindcss.com/
-[react]: https://img.shields.io/badge/react-000000?style=for-the-badge&logo=react&logoColor=white
 [react-url]: https://reactjs.org/
 [repository-url]: https://github.com/habibun/iqra
