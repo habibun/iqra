@@ -22,14 +22,14 @@
     ·
     <a href="https://github.com/habibun/iqra/issues">Request Feature</a>
   </p>
-</div>
 
-<!-- PROJECT SHIELDS -->  
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
+  <!-- PROJECT SHIELDS -->  
+  [![Contributors][contributors-shield]][contributors-url]
+  [![Forks][forks-shield]][forks-url]
+  [![Stargazers][stars-shield]][stars-url]
+  [![Issues][issues-shield]][issues-url]
+  [![MIT License][license-shield]][license-url]
+</div>
 
 
 <!-- TABLE OF CONTENTS -->
