@@ -61,9 +61,10 @@
 ---
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `habibun`, `iqra`, `HabibunNoby`, `habibun`, `gmail`, `habibun.noby`, `iqra`, ` Islamic knowledge and information`
-
+<!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
+The official source code repository for iqra.  
+<br />
+Continue reading to learn more about how you can contribute to [Iqra GitHub Repository][repository-url]. Your help will surely go a long way, In Sha'a Allah.
 
 ### Built With  
 * [![Next][Next.js]][Next-url]
@@ -171,3 +172,4 @@ Distributed under the MIT License. See **[LICENSE][license-url]** for more infor
 [Bootstrap-url]: https://getbootstrap.com
 [JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
 [JQuery-url]: https://jquery.com 
+[repository-url]: https://github.com/habibun/iqra
