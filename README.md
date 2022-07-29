@@ -37,9 +37,6 @@
   <ol>
     <li>
       <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
@@ -69,7 +66,8 @@ Continue reading to learn more about how you can contribute to [Iqra GitHub Repo
 **Project is created with:**
 * [PHP][php-url]: `^8.0`
 * [Symfony][symfony-url]: `^5.4`
-* [MariaDB][mariadb-url]: `^10.5`
+* [MariaDB][maria_db-url]: `^10.5`
+* [Node.js][node_js-url]: `^16.16`
 * [React][react-url]: `^18.2`
 * [Tailwind CSS][tailwindcss-url]: `^3.1`
 
@@ -81,11 +79,15 @@ This is an example of how you may give instructions on setting up your project l
 To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+* [PHP][php-url]
+* [Symfony CLI][symfony_cli-url]
+* [Composer][composer-url]
+* [Git][git-url]
+* [Nginx][nginx-url]
+* [MariaDB][maria_db-url]
+* [Node.js][node_js-url]
+* [Setting up the Symfony][symfony_setup-url]
+
 
 ### Installation  
 1. Get a free API Key at [https://example.com](https://example.com)
@@ -152,7 +154,14 @@ Distributed under the MIT License. See **[LICENSE][license-url]** for more infor
 [product-screenshot]: docs/images/screenshot.png
 [symfony-url]: https://symfony.com/
 [php-url]: https://www.php.net/
-[mariadb-url]: https://mariadb.org/
+[maria_db-url]: https://mariadb.org/
 [tailwindcss-url]: https://tailwindcss.com/
 [react-url]: https://reactjs.org/
 [repository-url]: https://github.com/habibun/iqra
+[symfony_cli-url]: https://symfony.com/download
+[composer-url]: https://getcomposer.org/
+[node_js-url]: https://nodejs.org/en/
+[git-url]: https://git-scm.com/
+[nginx-url]: https://www.nginx.com/
+[symfony_setup-url]: https://symfony.com/doc/5.4/setup.html
+
