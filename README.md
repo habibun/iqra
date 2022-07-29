@@ -163,30 +163,15 @@ Don't forget to give the project a star! Thanks again!
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
-
 <!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- CONTACT -->
-## Contact
-
-Your Name - [@HabibunNoby](https://twitter.com/HabibunNoby) - habibun.noby@gmail.com
-
-Project Link: [https://github.com/habibun/iqra](https://github.com/habibun/iqra)
+## License  
+Distributed under the MIT License. See [`LICENSE`][license-url] for more information.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
 
 
 <!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
+## Acknowledgments  
 * []()
 * []()
 * []()
@@ -206,7 +191,7 @@ Project Link: [https://github.com/habibun/iqra](https://github.com/habibun/iqra)
 [issues-shield]: https://img.shields.io/github/issues/habibun/iqra.svg?style=for-the-badge
 [issues-url]: https://github.com/habibun/iqra/issues
 [license-shield]: https://img.shields.io/github/license/habibun/iqra.svg?style=for-the-badge
-[license-url]: https://github.com/habibun/iqra/blob/master/LICENSE.txt
+[license-url]: https://github.com/habibun/iqra/blob/main/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/habibun
 [product-screenshot]: docs/images/screenshot.png
