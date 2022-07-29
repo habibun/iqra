@@ -1,21 +1,14 @@
 <div id="top"></div>
 
-<!-- PROJECT SHIELDS -->  
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
 
-<!-- PROJECT LOGO -->  
+<!-- PROJECT SUMMARY -->
 <br />
 <div align="center">
   <a href="https://github.com/habibun/iqra">
-    <img src="docs/images/logo.png" alt="Logo" width="80" height="80">
+    <img src="docs/images/logo.png" alt="Logo" width="100" height="40">
   </a>
 
-<h3 align="center">iqra</h3>
+  <!-- <h3 align="center">iqra</h3> -->
 
   <p align="center">
      Islamic knowledge and information
@@ -31,6 +24,12 @@
   </p>
 </div>
 
+<!-- PROJECT SHIELDS -->  
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
 
 
 <!-- TABLE OF CONTENTS -->
@@ -63,17 +62,13 @@
 ---
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
-
 Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `habibun`, `iqra`, `HabibunNoby`, `habibun`, `gmail`, `habibun.noby`, `iqra`, ` Islamic knowledge and information`
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
-
-### Built With
-
+### Built With  
 * [![Next][Next.js]][Next-url]
 * [![React][React.js]][React-url]
 * [![Vue][Vue.js]][Vue-url]
