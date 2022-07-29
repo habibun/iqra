@@ -1,6 +1,3 @@
-<div id="top"></div>
-
-
 <!-- PROJECT SUMMARY -->
 <br />
 <div align="center">
@@ -12,12 +9,14 @@
 
   <p align="center">
      Islamic knowledge and information
+    <!-- 
     <br />
     <a href="https://github.com/habibun/iqra"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/habibun/iqra">View Demo</a>
-    ·
+    <a href="https://github.com/habibun/iqra">Visit Iqra</a>
+    · -->
+    <br />
     <a href="https://github.com/habibun/iqra/issues">Report Bug</a>
     ·
     <a href="https://github.com/habibun/iqra/issues">Request Feature</a>
@@ -65,8 +64,6 @@
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `habibun`, `iqra`, `HabibunNoby`, `habibun`, `gmail`, `habibun.noby`, `iqra`, ` Islamic knowledge and information`
 
-<p align="right">(<a href="#top">back to top</a>)</p>
-
 
 ### Built With  
 * [![Next][Next.js]][Next-url]
@@ -77,8 +74,6 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 * [![Laravel][Laravel.com]][Laravel-url]
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
 * [![JQuery][JQuery.com]][JQuery-url]
-
-<p align="right">(<a href="#top">back to top</a>)</p>
 
 
 ---
@@ -109,7 +104,6 @@ This is an example of how to list things you need to use the software and how to
    const API_KEY = 'ENTER YOUR API';
    ```
 
-<p align="right">(<a href="#top">back to top</a>)</p>
 
 ---
 <!-- CONTRIBUTING -->
@@ -126,14 +120,12 @@ Don't forget to give the project a star! Thanks again!
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-<p align="right">(<a href="#top">back to top</a>)</p>
 
 ---
 <!-- LICENSE -->
 ## License  
 Distributed under the MIT License. See **[LICENSE][license-url]** for more information.
 
-<p align="right">(<a href="#top">back to top</a>)</p>
 
 ---
 <!-- ACKNOWLEDGMENTS -->
@@ -146,8 +138,6 @@ Distributed under the MIT License. See **[LICENSE][license-url]** for more infor
 * [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
 * [React](https://reactjs.org/)
 * [Ubuntu](https://ubuntu.com/)
-
-<p align="right">(<a href="#top">back to top</a>)</p>
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
