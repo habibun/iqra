@@ -21,6 +21,7 @@ db-reset: ## Database reset
 	${console} d:d:d --force --if-exists
 	${console} d:d:c --if-not-exists
 	${console} d:s:c --dump-sql
+	${console} d:s:c
 
 ##--------------✨ Composer ✨--------------
 .PHONY: composer-install
