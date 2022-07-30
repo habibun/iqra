@@ -35,7 +35,7 @@ composer-update: ## Composer update
 ##--------------✨ Coding standards ✨--------------
 .PHONY: cs-check
 cs-check: ## PHP CS Fixer analyzer
-	symfony php ./vendor/bin/php-cs-fixer fix src --dry-run -v
+	symfony php ./vendor/bin/php-cs-fixer fix --dry-run -v
 
 .PHONY: ps-check
 ps-check: ## Psalm analyzer
