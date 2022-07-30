@@ -54,9 +54,7 @@ ps-fix: ## Execute Psalm
 	symfony php ./vendor/bin/psalter --issues=all
 
 .PHONY: lint-all
-lint-all: ## Lint project
-	cs-check ps-check
+lint-all: cs-check ps-check ## Lint project
 
 .PHONY: fix-all
-fix-all: ## Fix project
-	cs-fix ps-fix
+fix-all: cs-fix ps-fix ## Fix project
