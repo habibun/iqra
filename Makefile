@@ -1,52 +1,61 @@
 console = symfony console
 compose = composer
 
+##--------------✨ Project ✨--------------
+.PHONY: help
+help: ## help
+	@grep -E '(^[a-zA-Z0-9_-]+:.*?##.*$$)|(^##)' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}{printf "\033[32m%-30s\033[0m %s\n", $$1, $$2}' | sed -e 's/\[32m##/[33m/'
+
 .PHONY: init
-init: # Create env.local
+init: ## Install project
 	@echo '\033[1;42m The .env.local was just created. Feel free to put your config in it.\033[0m';
 	@cp -n ./.env ./.env.local;
 
+##--------------✨ Database ✨--------------
 .PHONY: db-diff
-db-diff:
+db-diff: ## Database diff
 	${console} doctrine:schema:update --dump-sql
 
 .PHONY: db-reset
-db-reset: # reset database
+db-reset: ## Database reset
 	${console} d:d:d --force --if-exists
 	${console} d:d:c --if-not-exists
-	${console} d:s:c
-	#${console} d:m:m -n
+	${console} d:s:c --dump-sql
 
+##--------------✨ Composer ✨--------------
 .PHONY: composer-install
-composer-install: # install project dependencies
+composer-install: ## Composer install
 	symfony composer install
 
 .PHONY: composer-update
-composer-update: # update project dependencies
+composer-update: ## Composer update
 	symfony composer update
 
+##--------------✨ Coding standards ✨--------------
 .PHONY: cs-check
-cs-check: # execute php-cs-fixer analyzer
+cs-check: ## PHP CS Fixer analyzer
 	symfony php ./vendor/bin/php-cs-fixer fix src --dry-run -v
 
-.PHONY: cs-fix
-cs-fix: # execute php-cs-fixer analyzer and fix
-	symfony php ./vendor/bin/php-cs-fixer fix
-
 .PHONY: ps-check
-ps-check: # execute psalm analyzer
+ps-check: ## Psalm analyzer
 	symfony php ./vendor/bin/psalm
 
-.PHONY: ps-fix
-ps-fix: # execute psalm analyzer and fix
-	symfony php ./vendor/bin/psalter --issues=all
-
 .PHONY: es-check
-es-check: # execute ESLint analyzer
+es-check: ## ESLint analyzer
 	./node_modules/.bin/eslint assets
 
-.PHONY: build-check
-build-check: cs-check ps-check
+.PHONY: cs-fix
+cs-fix: ## Execute PHP CS Fixer
+	symfony php ./vendor/bin/php-cs-fixer fix
 
-.PHONY: build-fix
-build-fix: cs-fix ps-fix
+.PHONY: ps-fix
+ps-fix: ## Execute Psalm
+	symfony php ./vendor/bin/psalter --issues=all
+
+.PHONY: lint-all
+lint-all: ## Lint project
+	cs-check ps-check
+
+.PHONY: fix-all
+fix-all: ## Fix project
+	cs-fix ps-fix

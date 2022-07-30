@@ -66,7 +66,7 @@ Continue reading to learn more about how you can contribute to [Iqra GitHub Repo
 **Project is created with:**
 * [PHP][php-url]: `^8.0`
 * [Symfony][symfony-url]: `^5.4`
-* [MariaDB][maria_db-url]: `^10.5`
+* [MariaDB][maria_db-url]: `^10.8`
 * [Node.js][node_js-url]: `^16.16`
 * [React][react-url]: `^18.2`
 * [Tailwind CSS][tailwindcss-url]: `^3.1`
