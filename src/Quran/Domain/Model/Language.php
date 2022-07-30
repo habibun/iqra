@@ -2,7 +2,9 @@
 
 namespace App\Quran\Domain\Model;
 
+use App\Quran\Domain\Model\Language\TranslatedName;
 use App\Shared\Domain\ValueObject\Uuid;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
 class Language
@@ -29,6 +31,7 @@ class Language
         $this->setNativeName($nativeName);
         $this->setIsoCode($isoCode);
         $this->setDirection($direction);
+        $this->translatedNames = new ArrayCollection();
     }
 
     public function getId(): Uuid
@@ -82,6 +85,17 @@ class Language
         $this->direction = $direction;
 
         return $this;
+    }
+
+    public function addTranslatedName(Language $targetLanguage, string $name): void
+    {
+        $exists = $this->translatedNames->exists(function ($key, $value) use ($targetLanguage, $name) {
+            return $value->getTargetLanguage() === $targetLanguage && $value->getName() === $name;
+        });
+
+        if (!$exists) {
+            $this->translatedNames[] = new TranslatedName($this, $targetLanguage, $name);
+        }
     }
 
     public function getTranslatedNames(): Collection

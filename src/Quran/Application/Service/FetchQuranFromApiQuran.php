@@ -3,7 +3,6 @@
 namespace App\Quran\Application\Service;
 
 use App\Quran\Application\Service\Chapter\TranslatedNameService as ChapterTranslatedNameService;
-use App\Quran\Application\Service\Language\TranslatedNameService as LanguageTranslatedNameService;
 use App\Quran\Application\Service\Translation\TranslatedNameService as TranslationTranslatedNameService;
 use App\Quran\Domain\Model\Language;
 use App\Quran\Domain\Model\Translation;
@@ -17,7 +16,6 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
     private ChapterService $chapterService;
     private LanguageService $languageService;
     private TranslationService $translationService;
-    private LanguageTranslatedNameService $languageTranslatedNameService;
     private ChapterTranslatedNameService $chapterTranslatedNameService;
     private TranslationTranslatedNameService $translationTranslatedNameService;
 
@@ -26,14 +24,12 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
         ChapterService $chapterService,
         LanguageService $languageService,
         TranslationService $translationService,
-        LanguageTranslatedNameService $languageTranslatedNameService,
         ChapterTranslatedNameService $chapterTranslatedNameService,
         TranslationTranslatedNameService $translationTranslatedNameService,
     ) {
         $this->client = $client;
         $this->chapterService = $chapterService;
         $this->languageService = $languageService;
-        $this->languageTranslatedNameService = $languageTranslatedNameService;
         $this->chapterTranslatedNameService = $chapterTranslatedNameService;
         $this->translationService = $translationService;
         $this->translationTranslatedNameService = $translationTranslatedNameService;
@@ -82,9 +78,8 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
                     continue;
                 }
 
-                $existingLanguage = $this->languageService->getByIsoCode($lang['iso_code']);
-                $language = $existingLanguage;
-                if (!$existingLanguage) {
+                $language = $this->languageService->getByIsoCode($lang['iso_code']);
+                if (!$language) {
                     $language = $this->languageService->createLanguage(
                         $this->languageService->getNextIdentity(),
                         $lang['name'],
@@ -94,20 +89,19 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
                     );
                 }
 
+                $translatedName = $lang['translated_name'];
                 // api.quran bug - tweaking translated name for bengali language
                 $bengali = strtolower($predefinedLanguages[Language::ISO_CODE_BENGALI]);
-                if (Language::ISO_CODE_BENGALI === $isoCode && $lang['translated_name']['language_name'] !== $bengali) {
-                    $lang['translated_name']['language_name'] = $bengali;
-                    $lang['translated_name']['name'] = 'ইংরেজি';
+                if (Language::ISO_CODE_BENGALI === $isoCode && $translatedName['language_name'] !== $bengali) {
+                    $translatedName['language_name'] = $bengali;
+                    $translatedName['name'] = 'ইংরেজি';
                 }
 
-                $existingTranslatedName = $this->languageTranslatedNameService
-                    ->getByNameAndLanguageName($lang['translated_name']['name'], $lang['translated_name']['language_name']);
-                if (!$existingTranslatedName) {
-                    $this->languageTranslatedNameService->createTranslatedName(
-                        $lang['translated_name']['name'],
-                        $lang['translated_name']['language_name'],
-                        $language
+                $targetLanguage = $this->languageService->getByName(ucfirst($translatedName['language_name']));
+                if ($targetLanguage) {
+                    $language->addTranslatedName(
+                        $targetLanguage,
+                        $translatedName['name']
                     );
                 }
             }

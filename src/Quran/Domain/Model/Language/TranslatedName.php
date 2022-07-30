@@ -7,20 +7,20 @@ use App\Quran\Domain\Model\Language;
 class TranslatedName
 {
     private int $id;
-    private string $name;
-    private string $languageName;
     private Language $language;
+    private Language $targetLanguage;
+    private string $name;
 
-    public static function create(string $name, string $languageName, Language $language): static
+    public static function create(Language $language, Language $targetLanguage, string $name): static
     {
-        return new static($name, $languageName, $language);
+        return new static($language, $targetLanguage, $name);
     }
 
-    public function __construct(string $name, string $languageName, Language $language)
+    public function __construct(Language $language, Language $targetLanguage, string $name)
     {
-        $this->setName($name);
-        $this->setLanguageName($languageName);
         $this->setLanguage($language);
+        $this->setTargetLanguage($targetLanguage);
+        $this->setName($name);
     }
 
     public function getId(): int
@@ -40,14 +40,14 @@ class TranslatedName
         return $this;
     }
 
-    public function getLanguageName(): string
+    public function getTargetLanguage(): Language
     {
-        return $this->languageName;
+        return $this->targetLanguage;
     }
 
-    public function setLanguageName(string $languageName): TranslatedName
+    public function setTargetLanguage(Language $languageName): TranslatedName
     {
-        $this->languageName = $languageName;
+        $this->targetLanguage = $languageName;
 
         return $this;
     }

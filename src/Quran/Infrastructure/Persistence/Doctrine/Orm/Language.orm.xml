@@ -10,7 +10,11 @@
     <field name="nativeName" type="string" length="50"/>
     <field name="isoCode" type="string" length="50"/>
     <field name="direction" type="string" length="50"/>
-    <one-to-many field="translatedNames" target-entity="App\Quran\Domain\Model\Language\TranslatedName" mapped-by="language"/>
+    <one-to-many field="translatedNames" target-entity="App\Quran\Domain\Model\Language\TranslatedName" mapped-by="language">
+        <cascade>
+            <cascade-persist/>
+        </cascade>
+    </one-to-many>
 </entity>
 
 </doctrine-mapping>

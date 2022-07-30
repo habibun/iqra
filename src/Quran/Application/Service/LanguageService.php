@@ -28,6 +28,11 @@ class LanguageService
         return $this->languageRepository->getByIsoCode($isoCode);
     }
 
+    public function getByName(string $name)
+    {
+        return $this->languageRepository->getByName($name);
+    }
+
     public function getNextIdentity(): Uuid
     {
         return $this->languageRepository->nextIdentity();

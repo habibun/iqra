@@ -27,8 +27,18 @@ class LanguageRepository extends ServiceEntityRepository implements LanguageRepo
         return $this->findOneBy(['isoCode' => $isoCode]);
     }
 
+    public function getByName(string $name)
+    {
+        return $this->findOneBy(['name' => $name]);
+    }
+
     public function nextIdentity(): UuidValueObject
     {
         return UuidValueObject::fromString((string) Uuid::v4());
+    }
+
+    public function getTranslatedName(Language $targetLanguage, string $name)
+    {
+        return $this->findOneBy(['targetLanguage' => $targetLanguage, 'name' => $name]);
     }
 }

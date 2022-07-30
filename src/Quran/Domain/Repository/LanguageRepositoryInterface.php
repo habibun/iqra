@@ -11,5 +11,7 @@ interface LanguageRepositoryInterface
 
     public function getByIsoCode(string $isoCode);
 
+    public function getByName(string $name);
+
     public function nextIdentity(): Uuid;
 }
