@@ -135,12 +135,15 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
 
     private function fetchTranslation(): void
     {
-        $predefinedLanguages = [Language::ENGLISH['slug'], Language::BENGALI['slug']];
+        $predefinedLanguages = [
+             Language::ENGLISH['slug'] => Language::ENGLISH['iso_code'],
+             Language::BENGALI['slug'] => Language::BENGALI['iso_code'],
+        ];
         foreach ($predefinedLanguages as $isoCode) {
             $translations = $this->makeRequest('/resources/translations', ['language' => $isoCode]);
 
             foreach ($translations['translations'] as $tran) {
-                if (!in_array($tran['language_name'], $predefinedLanguages)) {
+                if (!array_key_exists($tran['language_name'], $predefinedLanguages)) {
                     continue;
                 }
 
