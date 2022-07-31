@@ -3,9 +3,7 @@
 namespace App\Quran\Application\Service;
 
 use App\Quran\Application\Service\Chapter\TranslatedNameService as ChapterTranslatedNameService;
-use App\Quran\Application\Service\Translation\TranslatedNameService as TranslationTranslatedNameService;
 use App\Quran\Domain\Model\Language;
-use App\Quran\Domain\Model\Translation;
 use App\Quran\Domain\Service\FetchQuranInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
@@ -17,7 +15,6 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
     private LanguageService $languageService;
     private TranslationService $translationService;
     private ChapterTranslatedNameService $chapterTranslatedNameService;
-    private TranslationTranslatedNameService $translationTranslatedNameService;
 
     public function __construct(
         HttpClientInterface $client,
@@ -25,14 +22,12 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
         LanguageService $languageService,
         TranslationService $translationService,
         ChapterTranslatedNameService $chapterTranslatedNameService,
-        TranslationTranslatedNameService $translationTranslatedNameService,
     ) {
         $this->client = $client;
         $this->chapterService = $chapterService;
         $this->languageService = $languageService;
         $this->chapterTranslatedNameService = $chapterTranslatedNameService;
         $this->translationService = $translationService;
-        $this->translationTranslatedNameService = $translationTranslatedNameService;
     }
 
     public function fetch()
@@ -69,12 +64,12 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
 
     private function fetchLanguage(): void
     {
-        $predefinedLanguages = Language::getPreDefinedLanguages();
-        foreach (array_keys($predefinedLanguages) as $isoCode) {
+        $predefinedLanguages = [Language::ENGLISH['iso_code'], Language::BENGALI['iso_code']];
+        foreach ($predefinedLanguages as $isoCode) {
             $languages = $this->makeRequest('/resources/languages', ['language' => $isoCode]);
 
             foreach ($languages['languages'] as $lang) {
-                if (!array_key_exists($lang['iso_code'], $predefinedLanguages)) {
+                if (!in_array($lang['iso_code'], $predefinedLanguages)) {
                     continue;
                 }
 
@@ -91,8 +86,8 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
 
                 $translatedName = $lang['translated_name'];
                 // api.quran bug - tweaking translated name for bengali language
-                $bengali = strtolower($predefinedLanguages[Language::ISO_CODE_BENGALI]);
-                if (Language::ISO_CODE_BENGALI === $isoCode && $translatedName['language_name'] !== $bengali) {
+                $bengali = Language::BENGALI['slug'];
+                if (Language::BENGALI['iso_code'] === $isoCode && $translatedName['language_name'] !== $bengali) {
                     $translatedName['language_name'] = $bengali;
                     $translatedName['name'] = 'ইংরেজি';
                 }
@@ -110,8 +105,8 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
 
     private function fetchChapter(): void
     {
-        $predefinedLanguages = Language::getPreDefinedLanguages();
-        foreach (array_keys($predefinedLanguages) as $isoCode) {
+        $predefinedLanguages = [Language::ENGLISH['iso_code'], Language::BENGALI['iso_code']];
+        foreach ($predefinedLanguages as $isoCode) {
             $chapters = $this->makeRequest('/chapters', ['language' => $isoCode]);
             foreach ($chapters['chapters'] as $ch) {
                 $existingChapter = $this->chapterService->getByNameSimple($ch['name_simple']);
@@ -140,27 +135,28 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
 
     private function fetchTranslation(): void
     {
-        $predefinedTranslations = Translation::getPredefinedTranslations();
-        foreach (array_keys($predefinedTranslations) as $languageName) {
-            $languages = $this->makeRequest('/resources/translations', ['language' => $predefinedTranslations[$languageName]]);
+        $predefinedLanguages = [Language::ENGLISH['slug'], Language::BENGALI['slug']];
+        foreach ($predefinedLanguages as $isoCode) {
+            $translations = $this->makeRequest('/resources/translations', ['language' => $isoCode]);
 
-            foreach ($languages['translations'] as $tran) {
-                if (!array_key_exists($tran['language_name'], $predefinedTranslations)) {
+            foreach ($translations['translations'] as $tran) {
+                if (!in_array($tran['language_name'], $predefinedLanguages)) {
                     continue;
                 }
 
+                $language = $this->languageService->getByName(ucfirst($tran['language_name']));
                 $translation = $this->translationService->createTranslation(
                     $this->translationService->getNextIdentity(),
                     $tran['name'],
                     $tran['author_name'],
                     $tran['slug'],
-                    $tran['language_name']
+                    $language
                 );
 
-                $this->translationTranslatedNameService->createTranslatedName(
+                $targetLanguage = $this->languageService->getByName(ucfirst($tran['language_name']));
+                $translation->addTranslatedName(
+                    $targetLanguage,
                     $tran['translated_name']['name'],
-                    $tran['translated_name']['language_name'],
-                    $translation
                 );
             }
         }

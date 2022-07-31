@@ -9,8 +9,8 @@ use Doctrine\Common\Collections\Collection;
 
 class Language
 {
-    public const ISO_CODE_ENGLISH = 'en';
-    public const ISO_CODE_BENGALI = 'bn';
+    public const ENGLISH = ['iso_code' => 'en', 'slug' => 'english', 'name' => 'English'];
+    public const BENGALI = ['iso_code' => 'bn', 'slug' => 'bengali', 'name' => 'Bengali'];
 
     private Uuid $id;
     private string $name;
@@ -101,13 +101,5 @@ class Language
     public function getTranslatedNames(): Collection
     {
         return $this->translatedNames;
-    }
-
-    public static function getPredefinedLanguages()
-    {
-        return [
-             Language::ISO_CODE_ENGLISH => 'English',
-             Language::ISO_CODE_BENGALI => 'Bengali',
-        ];
     }
 }

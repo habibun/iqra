@@ -9,7 +9,9 @@
         <generator strategy="AUTO"/>
     </id>
     <field name="name" type="string" length="50"/>
-    <field name="languageName" type="string" length="50"/>
+    <many-to-one field="targetLanguage" target-entity="App\Quran\Domain\Model\Language" >
+        <join-column name="target_language_id" referenced-column-name="id" />
+    </many-to-one>
     <many-to-one field="translation" target-entity="App\Quran\Domain\Model\Translation" inversed-by="translatedNames">
         <join-column name="translation_id" referenced-column-name="id" />
     </many-to-one>

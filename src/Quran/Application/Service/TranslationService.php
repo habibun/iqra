@@ -2,6 +2,7 @@
 
 namespace App\Quran\Application\Service;
 
+use App\Quran\Domain\Model\Language;
 use App\Quran\Domain\Model\Translation;
 use App\Quran\Domain\Repository\TranslationRepositoryInterface;
 use App\Shared\Domain\ValueObject\Uuid;
@@ -15,9 +16,9 @@ class TranslationService
         $this->translationRepository = $translationRepository;
     }
 
-    public function createTranslation(Uuid $id, string $name, string $authorName, ?string $slug, string $languageName): Translation
+    public function createTranslation(Uuid $id, string $name, string $authorName, ?string $slug, Language $language): Translation
     {
-        $translation = Translation::create($id, $name, $authorName, $slug, $languageName);
+        $translation = Translation::create($id, $name, $authorName, $slug, $language);
         $this->translationRepository->add($translation);
 
         return $translation;
