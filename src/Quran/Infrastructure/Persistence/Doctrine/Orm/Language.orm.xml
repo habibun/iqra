@@ -6,7 +6,7 @@
 
 <entity name="App\Quran\Domain\Model\Language" table="language">
     <id name="id" type="app_uuid" column="id" length="36"/>
-    <field name="name" type="string" length="50"/>
+    <field name="name" type="string" length="50" unique="true"/>
     <field name="nativeName" type="string" length="50"/>
     <field name="isoCode" type="string" length="50"/>
     <field name="direction" type="string" length="50"/>
