@@ -22,7 +22,6 @@ class TranslatedName
         $this->setTranslation($translation);
         $this->setTargetLanguage($targetLanguage);
         $this->setName($name);
-
     }
 
     public function getId(): int
