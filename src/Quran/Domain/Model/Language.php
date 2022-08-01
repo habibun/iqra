@@ -2,13 +2,15 @@
 
 namespace App\Quran\Domain\Model;
 
+use App\Quran\Domain\Model\Language\TranslatedName;
 use App\Shared\Domain\ValueObject\Uuid;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
 class Language
 {
-    public const ISO_CODE_ENGLISH = 'en';
-    public const ISO_CODE_BENGALI = 'bn';
+    public const ENGLISH = ['iso_code' => 'en', 'slug' => 'english', 'name' => 'English'];
+    public const BENGALI = ['iso_code' => 'bn', 'slug' => 'bengali', 'name' => 'Bengali'];
 
     private Uuid $id;
     private string $name;
@@ -29,6 +31,7 @@ class Language
         $this->setNativeName($nativeName);
         $this->setIsoCode($isoCode);
         $this->setDirection($direction);
+        $this->translatedNames = new ArrayCollection();
     }
 
     public function getId(): Uuid
@@ -84,16 +87,19 @@ class Language
         return $this;
     }
 
+    public function addTranslatedName(Language $targetLanguage, string $name): void
+    {
+        $exists = $this->translatedNames->exists(function ($key, $value) use ($targetLanguage, $name) {
+            return $value->getTargetLanguage() === $targetLanguage && $value->getName() === $name;
+        });
+
+        if (!$exists) {
+            $this->translatedNames[] = new TranslatedName($this, $targetLanguage, $name);
+        }
+    }
+
     public function getTranslatedNames(): Collection
     {
         return $this->translatedNames;
-    }
-
-    public static function getPredefinedLanguages()
-    {
-        return [
-             Language::ISO_CODE_ENGLISH => 'English',
-             Language::ISO_CODE_BENGALI => 'Bengali',
-        ];
     }
 }

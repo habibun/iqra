@@ -2,11 +2,12 @@
 
 namespace App\Quran\Domain\Model;
 
+use App\Shared\Domain\ValueObject\Uuid;
 use Doctrine\Common\Collections\Collection;
 
 class Chapter
 {
-    private int $id;
+    private Uuid $id;
     private string $revelationPlace;
     private int $revelationOrder;
     private bool $bismillahPre;
@@ -18,6 +19,7 @@ class Chapter
     private Collection $translatedNames;
 
     public static function create(
+        Uuid $id,
         string $revelationPlace,
         int $revelationOrder,
         bool $bismillahPre,
@@ -26,11 +28,12 @@ class Chapter
         string $nameArabic,
         int $versesCount,
         array $pages,
-    ) {
-        return new static($revelationPlace, $revelationOrder, $bismillahPre, $nameSimple, $nameComplex, $nameArabic , $versesCount, $pages);
+    ): static {
+        return new static($id, $revelationPlace, $revelationOrder, $bismillahPre, $nameSimple, $nameComplex, $nameArabic , $versesCount, $pages);
     }
 
     private function __construct(
+        Uuid $id,
         string $revelationPlace,
         int $revelationOrder,
         bool $bismillahPre,
@@ -40,6 +43,7 @@ class Chapter
         int $versesCount,
         array $pages
     ) {
+        $this->id = $id;
         $this->setRevelationPlace($revelationPlace);
         $this->setRevelationOrder($revelationOrder);
         $this->setBismillahPre($bismillahPre);
@@ -50,7 +54,7 @@ class Chapter
         $this->setPages($pages);
     }
 
-    public function getId(): int
+    public function getId(): Uuid
     {
         return $this->id;
     }

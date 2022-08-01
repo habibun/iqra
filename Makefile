@@ -21,6 +21,7 @@ db-reset: ## Database reset
 	${console} d:d:d --force --if-exists
 	${console} d:d:c --if-not-exists
 	${console} d:s:c --dump-sql
+	${console} d:s:c
 
 ##--------------✨ Composer ✨--------------
 .PHONY: composer-install
@@ -34,7 +35,7 @@ composer-update: ## Composer update
 ##--------------✨ Coding standards ✨--------------
 .PHONY: cs-check
 cs-check: ## PHP CS Fixer analyzer
-	symfony php ./vendor/bin/php-cs-fixer fix src --dry-run -v
+	symfony php ./vendor/bin/php-cs-fixer fix --dry-run -v
 
 .PHONY: ps-check
 ps-check: ## Psalm analyzer
@@ -53,9 +54,7 @@ ps-fix: ## Execute Psalm
 	symfony php ./vendor/bin/psalter --issues=all
 
 .PHONY: lint-all
-lint-all: ## Lint project
-	cs-check ps-check
+lint-all: cs-check ps-check ## Lint project
 
 .PHONY: fix-all
-fix-all: ## Fix project
-	cs-fix ps-fix
+fix-all: cs-fix ps-fix ## Fix project
