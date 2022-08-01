@@ -35,11 +35,11 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
         echo sprintf('Fetching languages...%s', PHP_EOL);
         $this->fetchLanguage();
 
-        echo sprintf('Fetching chapters...%s', PHP_EOL);
-//        $this->fetchChapter();
-
         echo sprintf('Fetching translation...%s', PHP_EOL);
         $this->fetchTranslation();
+
+        echo sprintf('Fetching chapters...%s', PHP_EOL);
+        $this->fetchChapter();
     }
 
     private function makeRequest(string $url, array $params): array
@@ -113,6 +113,7 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
                 $chapter = $existingChapter;
                 if (!$existingChapter) {
                     $chapter = $this->chapterService->createChapter(
+                        $this->chapterService->getNextIdentity(),
                         $ch['revelation_place'],
                         $ch['revelation_order'],
                         $ch['bismillah_pre'],

@@ -4,8 +4,10 @@ namespace App\Quran\Infrastructure\Persistence\Doctrine\Repository;
 
 use App\Quran\Domain\Model\Chapter;
 use App\Quran\Domain\Repository\ChapterRepositoryInterface;
+use App\Shared\Domain\ValueObject\Uuid;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Uid\Uuid as SymfonyUuid;
 
 class ChapterRepository extends ServiceEntityRepository implements ChapterRepositoryInterface
 {
@@ -23,5 +25,10 @@ class ChapterRepository extends ServiceEntityRepository implements ChapterReposi
     public function getByNameSimple(string $nameSimple)
     {
         return $this->findOneBy(['nameSimple' => $nameSimple]);
+    }
+
+    public function nextIdentity(): Uuid
+    {
+        return Uuid::fromString((string) SymfonyUuid::v4());
     }
 }
