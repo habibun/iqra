@@ -36,9 +36,4 @@ class LanguageRepository extends ServiceEntityRepository implements LanguageRepo
     {
         return UuidValueObject::fromString((string) Uuid::v4());
     }
-
-    public function getTranslatedName(Language $targetLanguage, string $name)
-    {
-        return $this->findOneBy(['targetLanguage' => $targetLanguage, 'name' => $name]);
-    }
 }
