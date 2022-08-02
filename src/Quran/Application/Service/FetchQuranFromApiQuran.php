@@ -80,7 +80,8 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
                         $lang['name'],
                         $lang['native_name'],
                         $lang['iso_code'],
-                        $lang['direction']
+                        $lang['direction'],
+                        $lang['translations_count']
                     );
                 }
 

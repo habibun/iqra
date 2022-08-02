@@ -17,20 +17,22 @@ class Language
     private string $nativeName;
     private string $isoCode;
     private string $direction;
+    private int $translationsCount;
     private Collection $translatedNames;
 
-    public static function create(Uuid $id, string $name, string $nativeName, string $isoCode, string $direction): static
+    public static function create(Uuid $id, string $name, string $nativeName, string $isoCode, string $direction, int $translationsCount): static
     {
-        return new static($id, $name, $nativeName, $isoCode, $direction);
+        return new static($id, $name, $nativeName, $isoCode, $direction, $translationsCount);
     }
 
-    public function __construct(Uuid $id, string $name, string $nativeName, string $isoCode, string $direction)
+    public function __construct(Uuid $id, string $name, string $nativeName, string $isoCode, string $direction, int $translationsCount)
     {
         $this->id = $id;
         $this->setName($name);
         $this->setNativeName($nativeName);
         $this->setIsoCode($isoCode);
         $this->setDirection($direction);
+        $this->setTranslationsCount($translationsCount);
         $this->translatedNames = new ArrayCollection();
     }
 
@@ -101,5 +103,17 @@ class Language
     public function getTranslatedNames(): Collection
     {
         return $this->translatedNames;
+    }
+
+    public function getTranslationsCount(): int
+    {
+        return $this->translationsCount;
+    }
+
+    public function setTranslationsCount(int $translationsCount): Language
+    {
+        $this->translationsCount = $translationsCount;
+
+        return $this;
     }
 }
