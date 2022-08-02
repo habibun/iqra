@@ -105,9 +105,9 @@ class Language
         return $this->translatedNames;
     }
 
-    public function getTranslationsCount(): ?int
+    public function getTranslationsCount(): int
     {
-        return $this->translationsCount ?? null;
+        return $this->translationsCount;
     }
 
     public function setTranslationsCount(int $translationsCount): Language
