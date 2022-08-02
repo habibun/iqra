@@ -2,6 +2,7 @@
 
 namespace App\Quran\Domain\Model;
 
+use App\Quran\Domain\Model\Chapter\Info;
 use App\Shared\Domain\ValueObject\Uuid;
 use Doctrine\Common\Collections\Collection;
 
@@ -17,6 +18,7 @@ class Chapter
     private int $versesCount;
     private array $pages;
     private Collection $translatedNames;
+    private info $info;
 
     public static function create(
         Uuid $id,
@@ -29,7 +31,17 @@ class Chapter
         int $versesCount,
         array $pages,
     ): static {
-        return new static($id, $revelationPlace, $revelationOrder, $bismillahPre, $nameSimple, $nameComplex, $nameArabic , $versesCount, $pages);
+        return new static(
+            $id,
+            $revelationPlace,
+            $revelationOrder,
+            $bismillahPre,
+            $nameSimple,
+            $nameComplex,
+            $nameArabic,
+            $versesCount,
+            $pages
+        );
     }
 
     private function __construct(

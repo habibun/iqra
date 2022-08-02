@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="https://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="https://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+<entity name="App\Quran\Domain\Model\Chapter\Info" table="chapter_info">
+    <id name="id" type="integer">
+        <generator strategy="AUTO"/>
+    </id>
+    <field name="text" type="string" length="50"/>
+    <field name="shortText" type="string" length="50"/>
+    <field name="source" type="string" length="50"/>
+    <many-to-one field="language" target-entity="App\Quran\Domain\Model\Language" inversed-by="translatedNames">
+        <join-column name="language_id" referenced-column-name="id" />
+    </many-to-one>
+    <one-to-one field="chapter" target-entity="App\Quran\Domain\Model\Chapter" inversed-by="info">
+        <join-column name="chapter_id" referenced-column-name="id" />
+    </one-to-one>
+</entity>
+
+</doctrine-mapping>
