@@ -14,9 +14,6 @@ class Info
     private Language $language;
     private Chapter $chapter;
 
-    /**
-     * Info constructor.
-     */
     public function __construct(string $text, string $shortText, string $source, Language $language, Chapter $chapter)
     {
         $this->text = $text;
@@ -24,6 +21,11 @@ class Info
         $this->source = $source;
         $this->language = $language;
         $this->chapter = $chapter;
+    }
+
+    public static function create(string $text, string $shortText, string $source, Language $language, Chapter $chapter)
+    {
+        return new static($text, $shortText, $source, $language, $chapter);
     }
 
     public function getId(): ?int

@@ -2,6 +2,7 @@
 
 namespace App\Quran\Application\Service;
 
+use App\Quran\Domain\Model\Chapter\Info;
 use App\Quran\Domain\Model\Language;
 use App\Quran\Domain\Service\FetchQuranInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
@@ -109,6 +110,10 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
                 $existingChapter = $this->chapterService->getByNameSimple($ch['name_simple']);
                 $chapter = $existingChapter;
                 if (!$existingChapter) {
+                    $chapterInfo = $this->makeRequest('/chapters/'.$ch['id'].'/info', ['language' => $isoCode]);
+                    $chapterInfo = $chapterInfo['chapter_info'];
+                    $language = $this->languageService->getByIsoCode($isoCode);
+                    $info = Info::create($chapterInfo['text'], $chapterInfo['short_text'], $chapterInfo['source'], $language, $chapter);
                     $chapter = $this->chapterService->createChapter(
                         $this->chapterService->getNextIdentity(),
                         $ch['revelation_place'],
@@ -118,7 +123,8 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
                         $ch['name_complex'],
                         $ch['name_arabic'],
                         $ch['verses_count'],
-                        $ch['pages']
+                        $ch['pages'],
+                        $info,
                     );
                 }
 
