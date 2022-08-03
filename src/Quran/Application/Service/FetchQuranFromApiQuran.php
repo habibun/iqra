@@ -2,7 +2,6 @@
 
 namespace App\Quran\Application\Service;
 
-use App\Quran\Application\Service\Chapter\TranslatedNameService as ChapterTranslatedNameService;
 use App\Quran\Domain\Model\Language;
 use App\Quran\Domain\Service\FetchQuranInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
@@ -14,19 +13,16 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
     private ChapterService $chapterService;
     private LanguageService $languageService;
     private TranslationService $translationService;
-    private ChapterTranslatedNameService $chapterTranslatedNameService;
 
     public function __construct(
         HttpClientInterface $client,
         ChapterService $chapterService,
         LanguageService $languageService,
         TranslationService $translationService,
-        ChapterTranslatedNameService $chapterTranslatedNameService,
     ) {
         $this->client = $client;
         $this->chapterService = $chapterService;
         $this->languageService = $languageService;
-        $this->chapterTranslatedNameService = $chapterTranslatedNameService;
         $this->translationService = $translationService;
     }
 
@@ -126,10 +122,10 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
                     );
                 }
 
-                $this->chapterTranslatedNameService->createTranslatedName(
+                $targetLanguage = $this->languageService->getByName(ucfirst($ch['translated_name']['language_name']));
+                $chapter->addTranslatedName(
                     $ch['translated_name']['name'],
-                    $ch['translated_name']['language_name'],
-                    $chapter
+                    $targetLanguage,
                 );
             }
         }

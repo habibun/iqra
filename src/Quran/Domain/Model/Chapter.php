@@ -3,6 +3,7 @@
 namespace App\Quran\Domain\Model;
 
 use App\Quran\Domain\Model\Chapter\Info;
+use App\Quran\Domain\Model\Chapter\TranslatedName;
 use App\Shared\Domain\ValueObject\Uuid;
 use Doctrine\Common\Collections\Collection;
 
@@ -30,6 +31,7 @@ class Chapter
         string $nameArabic,
         int $versesCount,
         array $pages,
+        Info $info
     ): static {
         return new static(
             $id,
@@ -40,7 +42,8 @@ class Chapter
             $nameComplex,
             $nameArabic,
             $versesCount,
-            $pages
+            $pages,
+            $info
         );
     }
 
@@ -53,7 +56,8 @@ class Chapter
         string $nameComplex,
         string $nameArabic,
         int $versesCount,
-        array $pages
+        array $pages,
+        $info
     ) {
         $this->id = $id;
         $this->setRevelationPlace($revelationPlace);
@@ -64,6 +68,7 @@ class Chapter
         $this->setNameArabic($nameArabic);
         $this->setVersesCount($versesCount);
         $this->setPages($pages);
+        $this->setInfo($info);
     }
 
     public function getId(): Uuid
@@ -171,7 +176,29 @@ class Chapter
         return $this;
     }
 
-    public function getTranslatedName(): Collection
+    public function getInfo(): ?Info
+    {
+        return $this->info ?? null;
+    }
+
+    public function setInfo(Info $info): Chapter
+    {
+        $this->info = $info;
+
+        return $this;
+    }
+    public function addTranslatedName(string $name, Language $targetLanguage): void
+    {
+        $exists = $this->translatedNames->exists(function ($key, $value) use ($targetLanguage, $name) {
+            return $value->getTargetLanguage() === $targetLanguage && $value->getName() === $name;
+        });
+
+        if (!$exists) {
+            $this->translatedNames[] = new TranslatedName($name, $targetLanguage, $this);
+        }
+    }
+
+    public function getTranslatedNames(): Collection
     {
         return $this->translatedNames;
     }
