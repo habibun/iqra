@@ -187,6 +187,7 @@ class Chapter
 
         return $this;
     }
+
     public function addTranslatedName(string $name, Language $targetLanguage): void
     {
         $exists = $this->translatedNames->exists(function ($key, $value) use ($targetLanguage, $name) {

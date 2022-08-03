@@ -15,13 +15,7 @@ class Info
     private Chapter $chapter;
 
     /**
-     * Info constructor
-     *
-     * @param string $text
-     * @param string $shortText
-     * @param Language $language
-     * @param string $source
-     * @param Chapter $chapter
+     * Info constructor.
      */
     public function __construct(string $text, string $shortText, string $source, Language $language, Chapter $chapter)
     {
@@ -96,5 +90,4 @@ class Info
 
         return $this;
     }
-
 }
