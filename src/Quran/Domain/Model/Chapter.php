@@ -56,8 +56,7 @@ class Chapter
         string $nameComplex,
         string $nameArabic,
         int $versesCount,
-        array $pages,
-        $info
+        array $pages
     ) {
         $this->id = $id;
         $this->setRevelationPlace($revelationPlace);
@@ -68,7 +67,6 @@ class Chapter
         $this->setNameArabic($nameArabic);
         $this->setVersesCount($versesCount);
         $this->setPages($pages);
-        $this->setInfo($info);
     }
 
     public function getId(): Uuid

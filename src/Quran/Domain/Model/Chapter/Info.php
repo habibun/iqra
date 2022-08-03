@@ -28,12 +28,12 @@ class Info
 
     public function getId(): ?int
     {
-        return $this->id ?? null;
+        return $this->id;
     }
 
     public function getText(): ?string
     {
-        return $this->text ?? null;
+        return $this->text;
     }
 
     public function setText(string $text): Info
@@ -45,7 +45,7 @@ class Info
 
     public function getShortText(): ?string
     {
-        return $this->shortText ?? null;
+        return $this->shortText;
     }
 
     public function setShortText(string $shortText): Info
@@ -57,7 +57,7 @@ class Info
 
     public function getLanguage(): ?Language
     {
-        return $this->language ?? null;
+        return $this->language;
     }
 
     public function setLanguage(Language $language): Info
@@ -69,7 +69,7 @@ class Info
 
     public function getSource(): ?string
     {
-        return $this->source ?? null;
+        return $this->source;
     }
 
     public function setSource(string $source): Info
@@ -81,7 +81,7 @@ class Info
 
     public function getChapter(): ?Chapter
     {
-        return $this->chapter ?? null;
+        return $this->chapter;
     }
 
     public function setChapter(Chapter $chapter): Info

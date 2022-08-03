@@ -43,7 +43,7 @@ class TranslatedName
 
     public function getTargetLanguage(): ?Language
     {
-        return $this->targetLanguage ?? null;
+        return $this->targetLanguage;
     }
 
     public function setTargetLanguage(Language $targetLanguage): TranslatedName
