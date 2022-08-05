@@ -16,16 +16,25 @@ class LanguageRepository extends ServiceEntityRepository implements LanguageRepo
         parent::__construct($registry, Language::class);
     }
 
+    /**
+     * @return void
+     */
     public function add(Language $language)
     {
         $this->getEntityManager()->persist($language);
     }
 
+    /**
+     * @return object|null
+     */
     public function getByIsoCode(string $isoCode)
     {
         return $this->findOneBy(['isoCode' => $isoCode]);
     }
 
+    /**
+     * @return object|null
+     */
     public function getByName(string $name)
     {
         return $this->findOneBy(['name' => $name]);

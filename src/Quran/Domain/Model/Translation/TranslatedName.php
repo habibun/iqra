@@ -12,11 +12,6 @@ class TranslatedName
     private Language $targetLanguage;
     private Translation $translation;
 
-    public static function create(Translation $translation, Language $targetLanguage, string $name): static
-    {
-        return new static($translation, $targetLanguage, $name);
-    }
-
     public function __construct(Translation $translation, Language $targetLanguage, string $name)
     {
         $this->setTranslation($translation);
@@ -24,17 +19,12 @@ class TranslatedName
         $this->setName($name);
     }
 
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
     public function getName(): string
     {
         return $this->name;
     }
 
-    public function setName(string $name): TranslatedName
+    public function setName(string $name): static
     {
         $this->name = $name;
 
@@ -46,19 +36,14 @@ class TranslatedName
         return $this->targetLanguage;
     }
 
-    public function setTargetLanguage(Language $targetLanguage): TranslatedName
+    public function setTargetLanguage(Language $targetLanguage): static
     {
         $this->targetLanguage = $targetLanguage;
 
         return $this;
     }
 
-    public function getTranslation(): Translation
-    {
-        return $this->translation;
-    }
-
-    public function setTranslation(Translation $translation): TranslatedName
+    public function setTranslation(Translation $translation): static
     {
         $this->translation = $translation;
 

@@ -12,5 +12,4 @@ class Word
     private int $page_number;
     private int $line_number;
     private string $text;
-
 }

@@ -16,11 +16,17 @@ class TranslationRepository extends ServiceEntityRepository implements Translati
         parent::__construct($registry, Translation::class);
     }
 
+    /**
+     * @return void
+     */
     public function add(Translation $translation)
     {
         $this->getEntityManager()->persist($translation);
     }
 
+    /**
+     * @return object|null
+     */
     public function getBySlug(string $slug)
     {
         return $this->findOneBy(['slug' => $slug]);

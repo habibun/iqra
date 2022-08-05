@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class HomepageController extends AbstractController
 {
-    public function indexNoLocale(): Response
+    public function indexNoLocale(): \Symfony\Component\HttpFoundation\RedirectResponse
     {
         return $this->redirectToRoute('homepage', ['_locale' => 'en']);
     }

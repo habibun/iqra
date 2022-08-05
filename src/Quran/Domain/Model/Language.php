@@ -36,53 +36,33 @@ class Language
         $this->translatedNames = new ArrayCollection();
     }
 
-    public function getId(): Uuid
-    {
-        return $this->id;
-    }
-
     public function getName(): string
     {
         return $this->name;
     }
 
-    public function setName(string $name): Language
+    public function setName(string $name): static
     {
         $this->name = $name;
 
         return $this;
     }
 
-    public function getNativeName(): string
-    {
-        return $this->nativeName;
-    }
-
-    public function setNativeName(string $nativeName): Language
+    public function setNativeName(string $nativeName): static
     {
         $this->nativeName = $nativeName;
 
         return $this;
     }
 
-    public function getIsoCode(): string
-    {
-        return $this->isoCode;
-    }
-
-    public function setIsoCode(string $isoCode): Language
+    public function setIsoCode(string $isoCode): static
     {
         $this->isoCode = $isoCode;
 
         return $this;
     }
 
-    public function getDirection(): string
-    {
-        return $this->direction;
-    }
-
-    public function setDirection(string $direction): Language
+    public function setDirection(string $direction): static
     {
         $this->direction = $direction;
 
@@ -100,17 +80,7 @@ class Language
         }
     }
 
-    public function getTranslatedNames(): Collection
-    {
-        return $this->translatedNames;
-    }
-
-    public function getTranslationsCount(): int
-    {
-        return $this->translationsCount;
-    }
-
-    public function setTranslationsCount(int $translationsCount): Language
+    public function setTranslationsCount(int $translationsCount): static
     {
         $this->translationsCount = $translationsCount;
 

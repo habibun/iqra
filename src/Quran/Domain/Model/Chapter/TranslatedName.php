@@ -12,11 +12,6 @@ class TranslatedName
     private Language $targetLanguage;
     private Chapter $chapter;
 
-    public static function create(string $name, Language $targetLanguage, Chapter $chapter): static
-    {
-        return new static($name, $targetLanguage, $chapter);
-    }
-
     public function __construct(string $name, Language $targetLanguage, Chapter $chapter)
     {
         $this->setName($name);
@@ -24,41 +19,31 @@ class TranslatedName
         $this->setChapter($chapter);
     }
 
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
     public function getName(): string
     {
         return $this->name;
     }
 
-    public function setName(string $name): TranslatedName
+    public function setName(string $name): static
     {
         $this->name = $name;
 
         return $this;
     }
 
-    public function getTargetLanguage(): ?Language
+    public function getTargetLanguage(): Language
     {
         return $this->targetLanguage;
     }
 
-    public function setTargetLanguage(Language $targetLanguage): TranslatedName
+    public function setTargetLanguage(Language $targetLanguage): static
     {
         $this->targetLanguage = $targetLanguage;
 
         return $this;
     }
 
-    public function getChapter(): Chapter
-    {
-        return $this->chapter;
-    }
-
-    public function setChapter(Chapter $chapter): TranslatedName
+    public function setChapter(Chapter $chapter): static
     {
         $this->chapter = $chapter;
 

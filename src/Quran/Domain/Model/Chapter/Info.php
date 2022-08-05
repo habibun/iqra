@@ -20,61 +20,8 @@ class Info
         $this->language = $language;
     }
 
-    public static function create(string $text, string $shortText, string $source, Language $language)
+    public static function create(string $text, string $shortText, string $source, Language $language): static
     {
         return new static($text, $shortText, $source, $language);
-    }
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    public function getText(): ?string
-    {
-        return $this->text;
-    }
-
-    public function setText(string $text): Info
-    {
-        $this->text = $text;
-
-        return $this;
-    }
-
-    public function getShortText(): ?string
-    {
-        return $this->shortText;
-    }
-
-    public function setShortText(string $shortText): Info
-    {
-        $this->shortText = $shortText;
-
-        return $this;
-    }
-
-    public function getLanguage(): ?Language
-    {
-        return $this->language;
-    }
-
-    public function setLanguage(Language $language): Info
-    {
-        $this->language = $language;
-
-        return $this;
-    }
-
-    public function getSource(): ?string
-    {
-        return $this->source;
-    }
-
-    public function setSource(string $source): Info
-    {
-        $this->source = $source;
-
-        return $this;
     }
 }

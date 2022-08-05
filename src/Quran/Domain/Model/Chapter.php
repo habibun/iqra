@@ -4,6 +4,7 @@ namespace App\Quran\Domain\Model;
 
 use App\Quran\Domain\Model\Chapter\Info;
 use App\Quran\Domain\Model\Chapter\TranslatedName;
+use App\Quran\Domain\Model\Chapter\Verse;
 use App\Shared\Domain\ValueObject\Uuid;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -20,9 +21,38 @@ class Chapter
     private string $nameArabic;
     private int $versesCount;
     private array $pages;
-    private Collection $translatedNames;
-    private Language $language;
     private info $info;
+    private Collection $translatedNames;
+    private Collection $verses;
+
+    private function __construct(
+        Uuid $id,
+        int $chapterNumber,
+        string $revelationPlace,
+        int $revelationOrder,
+        bool $bismillahPre,
+        string $nameSimple,
+        string $nameComplex,
+        string $nameArabic,
+        int $versesCount,
+        array $pages,
+        Info $info
+    ) {
+        $this->id = $id;
+        $this->setChapterNumber($chapterNumber);
+        $this->setRevelationPlace($revelationPlace);
+        $this->setRevelationOrder($revelationOrder);
+        $this->setBismillahPre($bismillahPre);
+        $this->setNameSimple($nameSimple);
+        $this->setNameComplex($nameComplex);
+        $this->setNameArabic($nameArabic);
+        $this->setVersesCount($versesCount);
+        $this->setPages($pages);
+        $this->setInfo($info);
+
+        $this->translatedNames = new ArrayCollection();
+        $this->verses = new ArrayCollection();
+    }
 
     public static function create(
         Uuid $id,
@@ -35,7 +65,6 @@ class Chapter
         string $nameArabic,
         int $versesCount,
         array $pages,
-        Language $language,
         Info $info
     ): static {
         return new static(
@@ -49,52 +78,11 @@ class Chapter
             $nameArabic,
             $versesCount,
             $pages,
-            $language,
             $info
         );
     }
 
-    private function __construct(
-        Uuid $id,
-        int $chapterNumber,
-        string $revelationPlace,
-        int $revelationOrder,
-        bool $bismillahPre,
-        string $nameSimple,
-        string $nameComplex,
-        string $nameArabic,
-        int $versesCount,
-        array $pages,
-        Language $language,
-        Info $info
-    ) {
-        $this->id = $id;
-        $this->setChapterNumber($chapterNumber);
-        $this->setRevelationPlace($revelationPlace);
-        $this->setRevelationOrder($revelationOrder);
-        $this->setBismillahPre($bismillahPre);
-        $this->setNameSimple($nameSimple);
-        $this->setNameComplex($nameComplex);
-        $this->setNameArabic($nameArabic);
-        $this->setVersesCount($versesCount);
-        $this->setPages($pages);
-        $this->setLanguage($language);
-        $this->setInfo($info);
-
-        $this->translatedNames = new ArrayCollection();
-    }
-
-    public function getId(): Uuid
-    {
-        return $this->id;
-    }
-
-    public function getRevelationPlace(): string
-    {
-        return $this->revelationPlace;
-    }
-
-    public function setRevelationPlace(string $revelationPlace): Chapter
+    public function setRevelationPlace(string $revelationPlace): static
     {
         if (empty($revelationPlace)) {
             throw new \RuntimeException('Revelation Place cannot be empty');
@@ -105,96 +93,56 @@ class Chapter
         return $this;
     }
 
-    public function getRevelationOrder(): int
-    {
-        return $this->revelationOrder;
-    }
-
-    public function setRevelationOrder(int $revelationOrder): Chapter
+    public function setRevelationOrder(int $revelationOrder): static
     {
         $this->revelationOrder = $revelationOrder;
 
         return $this;
     }
 
-    public function isBismillahPre(): bool
-    {
-        return $this->bismillahPre;
-    }
-
-    public function setBismillahPre(bool $bismillahPre): Chapter
+    public function setBismillahPre(bool $bismillahPre): static
     {
         $this->bismillahPre = $bismillahPre;
 
         return $this;
     }
 
-    public function getNameSimple(): string
-    {
-        return $this->nameSimple;
-    }
-
-    public function setNameSimple(string $nameSimple): Chapter
+    public function setNameSimple(string $nameSimple): static
     {
         $this->nameSimple = $nameSimple;
 
         return $this;
     }
 
-    public function getNameComplex(): string
-    {
-        return $this->nameComplex;
-    }
-
-    public function setNameComplex(string $nameComplex): Chapter
+    public function setNameComplex(string $nameComplex): static
     {
         $this->nameComplex = $nameComplex;
 
         return $this;
     }
 
-    public function getNameArabic(): string
-    {
-        return $this->nameArabic;
-    }
-
-    public function setNameArabic(string $nameArabic): Chapter
+    public function setNameArabic(string $nameArabic): static
     {
         $this->nameArabic = $nameArabic;
 
         return $this;
     }
 
-    public function getVersesCount(): int
-    {
-        return $this->versesCount;
-    }
-
-    public function setVersesCount(int $versesCount): Chapter
+    public function setVersesCount(int $versesCount): static
     {
         $this->versesCount = $versesCount;
 
         return $this;
     }
 
-    public function getPages(): array
-    {
-        return $this->pages;
-    }
-
-    public function setPages(array $pages): Chapter
+    public function setPages(array $pages): static
     {
         $this->pages = $pages;
 
         return $this;
     }
 
-    public function getInfo(): Info
-    {
-        return $this->info;
-    }
-
-    public function setInfo(Info $info): Chapter
+    public function setInfo(Info $info): static
     {
         $this->info = $info;
 
@@ -212,24 +160,34 @@ class Chapter
         }
     }
 
-    public function getTranslatedNames(): Collection
-    {
-        return $this->translatedNames;
-    }
+    public function addVerse(
+        int $verseNumber,
+        string $verseKey,
+        int $juzNumber,
+        int $hizbNumber,
+        int $rubElHizbNumber,
+        int $rukuNumber,
+        int $manzilNumber,
+        ?bool $sajdaNumber,
+        int $pageNumber
+    ): void {
+//        $exists = $this->verses->exists(function ($key, $value) use ($targetLanguage, $name) {
+//            return $value->getTargetLanguage() === $targetLanguage && $value->getName() === $name;
+//        });
 
-    public function getLanguage(): Language
-    {
-        return $this->language;
-    }
-
-    public function setLanguage(Language $language): void
-    {
-        $this->language = $language;
-    }
-
-    public function getChapterNumber(): int
-    {
-        return $this->chapterNumber;
+//        if (!$exists) {
+        $this->verses[] = Verse::create($verseNumber,
+            $verseKey,
+            $juzNumber,
+            $hizbNumber,
+            $rubElHizbNumber,
+            $rukuNumber,
+            $manzilNumber,
+            $sajdaNumber,
+            $pageNumber,
+            $this
+        );
+//        }
     }
 
     public function setChapterNumber(int $chapterNumber): void
