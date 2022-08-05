@@ -16,7 +16,7 @@
     <plugins>
         <pluginClass class="Psalm\SymfonyPsalmPlugin\Plugin">
             <containerXml>var/cache/dev/App_KernelDevDebugContainer.xml</containerXml>
-<!--            <twigCachePath>/cache/twig</twigCachePath>-->
+            <twigCachePath>var/cache/dev/twig</twigCachePath>
         </pluginClass>
         <pluginClass class="Weirdan\DoctrinePsalmPlugin\Plugin"/>
     </plugins>

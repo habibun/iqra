@@ -16,18 +16,12 @@ class ChapterRepository extends ServiceEntityRepository implements ChapterReposi
         parent::__construct($registry, Chapter::class);
     }
 
-    /**
-     * @return void
-     */
-    public function add(Chapter $chapter)
+    public function add(Chapter $chapter): void
     {
         $this->getEntityManager()->persist($chapter);
     }
 
-    /**
-     * @return object|null
-     */
-    public function getByNameSimple(string $nameSimple)
+    public function getByNameSimple(string $nameSimple): null|object
     {
         return $this->findOneBy(['nameSimple' => $nameSimple]);
     }
