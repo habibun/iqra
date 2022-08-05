@@ -5,11 +5,13 @@ namespace App\Quran\Domain\Model;
 use App\Quran\Domain\Model\Chapter\Info;
 use App\Quran\Domain\Model\Chapter\TranslatedName;
 use App\Shared\Domain\ValueObject\Uuid;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
 class Chapter
 {
     private Uuid $id;
+    private int $chapterNumber;
     private string $revelationPlace;
     private int $revelationOrder;
     private bool $bismillahPre;
@@ -19,10 +21,12 @@ class Chapter
     private int $versesCount;
     private array $pages;
     private Collection $translatedNames;
+    private Language $language;
     private info $info;
 
     public static function create(
         Uuid $id,
+        int $chapterNumber,
         string $revelationPlace,
         int $revelationOrder,
         bool $bismillahPre,
@@ -31,10 +35,12 @@ class Chapter
         string $nameArabic,
         int $versesCount,
         array $pages,
+        Language $language,
         Info $info
     ): static {
         return new static(
             $id,
+            $chapterNumber,
             $revelationPlace,
             $revelationOrder,
             $bismillahPre,
@@ -43,12 +49,14 @@ class Chapter
             $nameArabic,
             $versesCount,
             $pages,
+            $language,
             $info
         );
     }
 
     private function __construct(
         Uuid $id,
+        int $chapterNumber,
         string $revelationPlace,
         int $revelationOrder,
         bool $bismillahPre,
@@ -57,9 +65,11 @@ class Chapter
         string $nameArabic,
         int $versesCount,
         array $pages,
+        Language $language,
         Info $info
     ) {
         $this->id = $id;
+        $this->setChapterNumber($chapterNumber);
         $this->setRevelationPlace($revelationPlace);
         $this->setRevelationOrder($revelationOrder);
         $this->setBismillahPre($bismillahPre);
@@ -68,7 +78,10 @@ class Chapter
         $this->setNameArabic($nameArabic);
         $this->setVersesCount($versesCount);
         $this->setPages($pages);
+        $this->setLanguage($language);
         $this->setInfo($info);
+
+        $this->translatedNames = new ArrayCollection();
     }
 
     public function getId(): Uuid
@@ -202,5 +215,25 @@ class Chapter
     public function getTranslatedNames(): Collection
     {
         return $this->translatedNames;
+    }
+
+    public function getLanguage(): Language
+    {
+        return $this->language;
+    }
+
+    public function setLanguage(Language $language): void
+    {
+        $this->language = $language;
+    }
+
+    public function getChapterNumber(): int
+    {
+        return $this->chapterNumber;
+    }
+
+    public function setChapterNumber(int $chapterNumber): void
+    {
+        $this->chapterNumber = $chapterNumber;
     }
 }

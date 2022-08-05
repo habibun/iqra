@@ -3,19 +3,21 @@
 namespace App\Quran\Domain\Model\Chapter;
 
 use App\Quran\Domain\Model\Chapter;
+use Doctrine\Common\Collections\Collection;
 
 class Verse
 {
     private int $id;
-    private int $number;
-    private string $text;
-    private int $numberInChapter;
-    private int $juz;
-    private int $manzil;
-    private int $page;
-    private int $ruku;
-    private int $hizbQuarter;
-    private bool $sajda;
+    private int $verseNumber;
+    private string $verseKey;
+    private int $juzNumber;
+    private int $hizbNumber;
+    private int $rubElHizbNumber;
+    private int $rukuNumber;
+    private int $manzilNumber;
+    private bool $sajdaNumber;
+    private int $pageNumber;
+    private Collection $words;
     private Chapter $chapter;
 
     public function getId(): int
@@ -23,112 +25,104 @@ class Verse
         return $this->id;
     }
 
-    public function getNumber(): int
+    public function getVerseNumber(): int
     {
-        return $this->number;
+        return $this->verseNumber;
     }
 
-    public function setNumber(int $number): Verse
+    public function setVerseNumber(int $verseNumber): void
     {
-        $this->number = $number;
-
-        return $this;
+        $this->verseNumber = $verseNumber;
     }
 
-    public function getText(): string
+    public function getVerseKey(): string
     {
-        return $this->text;
+        return $this->verseKey;
     }
 
-    public function setText(string $text): Verse
+    public function setVerseKey(string $verseKey): void
     {
-        $this->text = $text;
-
-        return $this;
+        $this->verseKey = $verseKey;
     }
 
-    public function getNumberInChapter(): int
+    public function getJuzNumber(): int
     {
-        return $this->numberInChapter;
+        return $this->juzNumber;
     }
 
-    public function setNumberInChapter(int $numberInChapter): Verse
+    public function setJuzNumber(int $juzNumber): void
     {
-        $this->numberInChapter = $numberInChapter;
-
-        return $this;
+        $this->juzNumber = $juzNumber;
     }
 
-    public function getJuz(): int
+    public function getHizbNumber(): int
     {
-        return $this->juz;
+        return $this->hizbNumber;
     }
 
-    public function setJuz(int $juz): Verse
+    public function setHizbNumber(int $hizbNumber): void
     {
-        $this->juz = $juz;
-
-        return $this;
+        $this->hizbNumber = $hizbNumber;
     }
 
-    public function getManzil(): int
+    public function getRubElHizbNumber(): int
     {
-        return $this->manzil;
+        return $this->rubElHizbNumber;
     }
 
-    public function setManzil(int $manzil): Verse
+    public function setRubElHizbNumber(int $rubElHizbNumber): void
     {
-        $this->manzil = $manzil;
-
-        return $this;
+        $this->rubElHizbNumber = $rubElHizbNumber;
     }
 
-    public function getPage(): int
+    public function getRukuNumber(): int
     {
-        return $this->page;
+        return $this->rukuNumber;
     }
 
-    public function setPage(int $page): Verse
+    public function setRukuNumber(int $rukuNumber): void
     {
-        $this->page = $page;
-
-        return $this;
+        $this->rukuNumber = $rukuNumber;
     }
 
-    public function getRuku(): int
+    public function getManzilNumber(): int
     {
-        return $this->ruku;
+        return $this->manzilNumber;
     }
 
-    public function setRuku(int $ruku): Verse
+    public function setManzilNumber(int $manzilNumber): void
     {
-        $this->ruku = $ruku;
-
-        return $this;
+        $this->manzilNumber = $manzilNumber;
     }
 
-    public function getHizbQuarter(): int
+    public function isSajdaNumber(): bool
     {
-        return $this->hizbQuarter;
+        return $this->sajdaNumber;
     }
 
-    public function setHizbQuarter(int $hizbQuarter): Verse
+    public function setSajdaNumber(bool $sajdaNumber): void
     {
-        $this->hizbQuarter = $hizbQuarter;
-
-        return $this;
+        $this->sajdaNumber = $sajdaNumber;
     }
 
-    public function getSajda(): bool
+    public function getPageNumber(): int
     {
-        return $this->sajda;
+        return $this->pageNumber;
     }
 
-    public function setSajda(bool $sajda): Verse
+    public function setPageNumber(int $pageNumber): void
     {
-        $this->sajda = $sajda;
+        $this->pageNumber = $pageNumber;
+    }
 
-        return $this;
+    public function getWords(): Collection
+    {
+        return $this->words;
+    }
+
+    public function setWords(Collection $words): void
+    {
+        $this->words = $words;
     }
 
     public function getChapter(): Chapter
@@ -136,10 +130,8 @@ class Verse
         return $this->chapter;
     }
 
-    public function setChapter(Chapter $chapter): Verse
+    public function setChapter(Chapter $chapter): void
     {
         $this->chapter = $chapter;
-
-        return $this;
     }
 }

@@ -6,6 +6,7 @@
 
 <entity name="App\Quran\Domain\Model\Chapter" table="chapter">
     <id name="id" type="app_uuid" column="id" length="36"/>
+    <field name="chapterNumber" type="smallint"/>
     <field name="revelationPlace" type="string"/>
     <field name="revelationOrder" type="integer"/>
     <field name="bismillahPre" type="boolean"/>
@@ -14,9 +15,19 @@
     <field name="nameArabic" type="string" length="50"/>
     <field name="versesCount" type="integer"/>
     <field name="pages" type="simple_array"/>
-    <one-to-many field="translatedNames" target-entity="App\Quran\Domain\Model\Chapter\TranslatedName" mapped-by="language"/>
-    <one-to-one field="info" target-entity="App\Quran\Domain\Model\Chapter\Info" mapped-by="chapter">
+    <many-to-one field="language" target-entity="App\Quran\Domain\Model\Language">
+        <join-column name="language_id" referenced-column-name="id" />
+    </many-to-one>
+    <one-to-many field="translatedNames" target-entity="App\Quran\Domain\Model\Chapter\TranslatedName" mapped-by="language">
+        <cascade>
+            <cascade-persist/>
+        </cascade>
+    </one-to-many>
+    <one-to-one field="info" target-entity="App\Quran\Domain\Model\Chapter\Info">
         <join-column name="info_id" referenced-column-name="id" />
+        <cascade>
+            <cascade-persist/>
+        </cascade>
     </one-to-one>
 </entity>
 

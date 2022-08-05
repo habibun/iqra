@@ -3,6 +3,7 @@
 namespace App\Quran\Infrastructure\Persistence\Doctrine\Repository;
 
 use App\Quran\Domain\Model\Chapter;
+use App\Quran\Domain\Model\Language;
 use App\Quran\Domain\Repository\ChapterRepositoryInterface;
 use App\Shared\Domain\ValueObject\Uuid;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -19,12 +20,11 @@ class ChapterRepository extends ServiceEntityRepository implements ChapterReposi
     public function add(Chapter $chapter)
     {
         $this->getEntityManager()->persist($chapter);
-        $this->getEntityManager()->flush();
     }
 
-    public function getByNameSimple(string $nameSimple)
+    public function getByNameSimpleAndLanguage(string $nameSimple, Language $language)
     {
-        return $this->findOneBy(['nameSimple' => $nameSimple]);
+        return $this->findOneBy(['nameSimple' => $nameSimple, 'language' => $language]);
     }
 
     public function nextIdentity(): Uuid

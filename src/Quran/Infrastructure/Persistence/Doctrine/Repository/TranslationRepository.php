@@ -19,7 +19,6 @@ class TranslationRepository extends ServiceEntityRepository implements Translati
     public function add(Translation $translation)
     {
         $this->getEntityManager()->persist($translation);
-        $this->getEntityManager()->flush();
     }
 
     public function getBySlug(string $slug)

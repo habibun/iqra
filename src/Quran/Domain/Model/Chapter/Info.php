@@ -2,7 +2,6 @@
 
 namespace App\Quran\Domain\Model\Chapter;
 
-use App\Quran\Domain\Model\Chapter;
 use App\Quran\Domain\Model\Language;
 
 class Info
@@ -12,20 +11,18 @@ class Info
     private string $shortText;
     private string $source;
     private Language $language;
-    private Chapter $chapter;
 
-    public function __construct(string $text, string $shortText, string $source, Language $language, Chapter $chapter)
+    public function __construct(string $text, string $shortText, string $source, Language $language)
     {
         $this->text = $text;
         $this->shortText = $shortText;
         $this->source = $source;
         $this->language = $language;
-        $this->chapter = $chapter;
     }
 
-    public static function create(string $text, string $shortText, string $source, Language $language, Chapter $chapter)
+    public static function create(string $text, string $shortText, string $source, Language $language)
     {
-        return new static($text, $shortText, $source, $language, $chapter);
+        return new static($text, $shortText, $source, $language);
     }
 
     public function getId(): ?int
@@ -77,18 +74,6 @@ class Info
     public function setSource(string $source): Info
     {
         $this->source = $source;
-
-        return $this;
-    }
-
-    public function getChapter(): ?Chapter
-    {
-        return $this->chapter;
-    }
-
-    public function setChapter(Chapter $chapter): Info
-    {
-        $this->chapter = $chapter;
 
         return $this;
     }

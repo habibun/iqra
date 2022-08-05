@@ -24,7 +24,7 @@ class FetchQuranCommand extends Command
         try {
             $this->fetchQuran->fetch();
         } catch (\Exception $exception) {
-            dump($exception->getMessage());
+            dump($exception);
 
             return Command::FAILURE;
         }

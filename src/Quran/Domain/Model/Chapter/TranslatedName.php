@@ -12,7 +12,7 @@ class TranslatedName
     private Language $targetLanguage;
     private Chapter $chapter;
 
-    public static function create(string $name, Language $targetLanguage, Chapter $chapter)
+    public static function create(string $name, Language $targetLanguage, Chapter $chapter): static
     {
         return new static($name, $targetLanguage, $chapter);
     }

@@ -5,6 +5,7 @@ namespace App\Quran\Application\Service;
 use App\Quran\Domain\Model\Chapter\Info;
 use App\Quran\Domain\Model\Language;
 use App\Quran\Domain\Service\FetchQuranInterface;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class FetchQuranFromApiQuran implements FetchQuranInterface
@@ -14,17 +15,20 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
     private ChapterService $chapterService;
     private LanguageService $languageService;
     private TranslationService $translationService;
+    private EntityManagerInterface $em;
 
     public function __construct(
         HttpClientInterface $client,
         ChapterService $chapterService,
         LanguageService $languageService,
         TranslationService $translationService,
+        EntityManagerInterface $em,
     ) {
         $this->client = $client;
         $this->chapterService = $chapterService;
         $this->languageService = $languageService;
         $this->translationService = $translationService;
+        $this->em = $em;
     }
 
     public function fetch()
@@ -82,6 +86,8 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
                     );
                 }
 
+                $this->em->flush();
+
                 $translatedName = $lang['translated_name'];
                 // api.quran bug - tweaking translated name for bengali language
                 $bengali = Language::BENGALI['slug'];
@@ -97,6 +103,8 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
                         $translatedName['name']
                     );
                 }
+
+                $this->em->flush();
             }
         }
     }
@@ -107,15 +115,16 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
         foreach ($predefinedLanguages as $isoCode) {
             $chapters = $this->makeRequest('/chapters', ['language' => $isoCode]);
             foreach ($chapters['chapters'] as $ch) {
-                $existingChapter = $this->chapterService->getByNameSimple($ch['name_simple']);
-                $chapter = $existingChapter;
-                if (!$existingChapter) {
+                echo sprintf('Fetching chapter: %d...%s', $ch['id'], PHP_EOL);
+                $language = $this->languageService->getByIsoCode($isoCode);
+                $chapter = $this->chapterService->getByNameSimpleAndLanguage($ch['name_simple'], $language);
+                if (!$chapter) {
                     $chapterInfo = $this->makeRequest('/chapters/'.$ch['id'].'/info', ['language' => $isoCode]);
                     $chapterInfo = $chapterInfo['chapter_info'];
-                    $language = $this->languageService->getByIsoCode($isoCode);
-                    $info = Info::create($chapterInfo['text'], $chapterInfo['short_text'], $chapterInfo['source'], $language, $chapter);
+                    $info = Info::create($chapterInfo['text'], $chapterInfo['short_text'], $chapterInfo['source'], $language);
                     $chapter = $this->chapterService->createChapter(
                         $this->chapterService->getNextIdentity(),
+                        $ch['id'],
                         $ch['revelation_place'],
                         $ch['revelation_order'],
                         $ch['bismillah_pre'],
@@ -124,15 +133,19 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
                         $ch['name_arabic'],
                         $ch['verses_count'],
                         $ch['pages'],
+                        $language,
                         $info,
                     );
                 }
+                $this->em->flush();
 
                 $targetLanguage = $this->languageService->getByName(ucfirst($ch['translated_name']['language_name']));
                 $chapter->addTranslatedName(
                     $ch['translated_name']['name'],
                     $targetLanguage,
                 );
+
+                $this->em->flush();
             }
         }
     }
@@ -160,11 +173,15 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
                     $language
                 );
 
+                $this->em->flush();
+
                 $targetLanguage = $this->languageService->getByName(ucfirst($tran['language_name']));
                 $translation->addTranslatedName(
                     $targetLanguage,
                     $tran['translated_name']['name'],
                 );
+
+                $this->em->flush();
             }
         }
     }
