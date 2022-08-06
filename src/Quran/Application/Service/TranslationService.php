@@ -11,6 +11,11 @@ class TranslationService
 {
     private TranslationRepositoryInterface $translationRepository;
 
+    public function __construct(TranslationRepositoryInterface $translationRepository)
+    {
+        $this->translationRepository = $translationRepository;
+    }
+
     public function createTranslation(Uuid $id, string $name, string $authorName, ?string $slug, Language $language): Translation
     {
         $translation = Translation::create($id, $name, $authorName, $slug, $language);

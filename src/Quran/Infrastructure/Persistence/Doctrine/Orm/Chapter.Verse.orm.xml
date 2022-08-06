@@ -9,6 +9,7 @@
         <generator strategy="AUTO"/>
     </id>
     <field name="verseNumber" type="smallint"/>
+    <field name="chapterVerseNumber" type="smallint"/>
     <field name="verseKey" type="string"/>
     <field name="juzNumber" type="integer"/>
     <field name="hizbNumber" type="integer"/>

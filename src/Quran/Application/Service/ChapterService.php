@@ -11,6 +11,11 @@ class ChapterService
 {
     private ChapterRepositoryInterface $chapterRepository;
 
+    public function __construct(ChapterRepositoryInterface $chapterRepository)
+    {
+        $this->chapterRepository = $chapterRepository;
+    }
+
     public function createChapter(
         Uuid $id,
         int $chapterNumber,
@@ -50,5 +55,15 @@ class ChapterService
     public function getNextIdentity(): Uuid
     {
         return $this->chapterRepository->nextIdentity();
+    }
+
+    public function getVerseByVerseNumber(int $verseNumber)
+    {
+        return $this->chapterRepository->getVerseByVerseNumber($verseNumber);
+    }
+
+    public function getWordByVerseNumberAndWordPosition(int $verseNumber, int $wordPosition)
+    {
+        return $this->chapterRepository->getWordByVerseNumberAndWordPosition($verseNumber, $wordPosition);
     }
 }

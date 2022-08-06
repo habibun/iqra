@@ -10,6 +10,11 @@ class LanguageService
 {
     private LanguageRepositoryInterface $languageRepository;
 
+    public function __construct(LanguageRepositoryInterface $languageRepository)
+    {
+        $this->languageRepository = $languageRepository;
+    }
+
     public function createLanguage(Uuid $id, string $name, string $nativeName, string $isoCode, string $direction, int $translationsCount): Language
     {
         $language = Language::create($id, $name, $nativeName, $isoCode, $direction, $translationsCount);

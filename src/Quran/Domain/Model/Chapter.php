@@ -162,6 +162,7 @@ class Chapter
 
     public function addVerse(
         int $verseNumber,
+        int $chapterVerseNumber,
         string $verseKey,
         int $juzNumber,
         int $hizbNumber,
@@ -170,13 +171,10 @@ class Chapter
         int $manzilNumber,
         ?bool $sajdaNumber,
         int $pageNumber
-    ): void {
-//        $exists = $this->verses->exists(function ($key, $value) use ($targetLanguage, $name) {
-//            return $value->getTargetLanguage() === $targetLanguage && $value->getName() === $name;
-//        });
-
-//        if (!$exists) {
-        $this->verses[] = Verse::create($verseNumber,
+    ): Verse {
+        $verse = Verse::create(
+            $verseNumber,
+            $chapterVerseNumber,
             $verseKey,
             $juzNumber,
             $hizbNumber,
@@ -187,7 +185,9 @@ class Chapter
             $pageNumber,
             $this
         );
-//        }
+        $this->verses[] = $verse;
+
+        return $verse;
     }
 
     public function setChapterNumber(int $chapterNumber): void

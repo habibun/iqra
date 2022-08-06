@@ -63,7 +63,7 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
             throw new \Exception('Content type is not valid');
         }
 
-        return $response->toArray(true);
+        return $response->toArray();
     }
 
     private function fetchLanguage(): void
@@ -100,16 +100,54 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
                 }
 
                 $targetLanguage = $this->languageService->getByName(ucfirst($translatedName['language_name']));
-                if ($targetLanguage) {
-                    $language->addTranslatedName(
-                        $targetLanguage,
-                        $translatedName['name']
-                    );
-                }
+                $language->addTranslatedName(
+                    $targetLanguage,
+                    $translatedName['name']
+                );
 
                 $this->em->flush();
             }
         }
+
+        $this->em->clear();
+    }
+
+    private function fetchTranslation(): void
+    {
+        $predefinedLanguages = [
+            Language::ENGLISH['slug'] => Language::ENGLISH['iso_code'],
+            Language::BENGALI['slug'] => Language::BENGALI['iso_code'],
+        ];
+        foreach ($predefinedLanguages as $isoCode) {
+            $translations = $this->makeRequest('/resources/translations', ['language' => $isoCode]);
+
+            foreach ($translations['translations'] as $tran) {
+                if (!array_key_exists($tran['language_name'], $predefinedLanguages)) {
+                    continue;
+                }
+
+                $language = $this->languageService->getByName(ucfirst($tran['language_name']));
+                $translation = $this->translationService->createTranslation(
+                    $this->translationService->getNextIdentity(),
+                    $tran['name'],
+                    $tran['author_name'],
+                    $tran['slug'],
+                    $language
+                );
+
+                $this->em->flush();
+
+                $targetLanguage = $this->languageService->getByName(ucfirst($tran['language_name']));
+                $translation->addTranslatedName(
+                    $targetLanguage,
+                    $tran['translated_name']['name'],
+                );
+
+                $this->em->flush();
+            }
+        }
+
+        $this->em->clear();
     }
 
     private function fetchChapter(): void
@@ -154,19 +192,47 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
 
                 $totalPages = $verses['pagination']['total_pages'];
                 while ($totalPages >= $page) {
-                    foreach ($verses['verses'] as $verse) {
-                        echo sprintf('Fetching chapter: %d, verse: %d...%s', $ch['id'], $verse['id'], PHP_EOL);
-                        $chapter->addVerse(
-                            $verse['verse_number'],
-                            $verse['verse_key'],
-                            $verse['juz_number'],
-                            $verse['hizb_number'],
-                            $verse['rub_el_hizb_number'],
-                            $verse['ruku_number'],
-                            $verse['manzil_number'],
-                            $verse['sajdah_number'],
-                            $verse['page_number'],
-                        );
+                    foreach ($verses['verses'] as $v) {
+                        echo sprintf('Fetching chapter: %d, verse: %d...%s', $ch['id'], $v['id'], PHP_EOL);
+                        $verse = $this->chapterService->getVerseByVerseNumber($v['id']);
+                        if (!$verse) {
+                            $verse = $chapter->addVerse(
+                                $v['id'],
+                                $v['verse_number'],
+                                $v['verse_key'],
+                                $v['juz_number'],
+                                $v['hizb_number'],
+                                $v['rub_el_hizb_number'],
+                                $v['ruku_number'],
+                                $v['manzil_number'],
+                                $v['sajdah_number'],
+                                $v['page_number'],
+                            );
+                        }
+
+                        foreach ($v['words'] as $w) {
+                            $word = $this->chapterService
+                                ->getWordByVerseNumberAndWordPosition($verse->getVerseNumber(), $w['position']);
+                            if (!$word) {
+                                $word = $verse->addWord(
+                                    $w['position'],
+                                    $w['audio_url'],
+                                    $w['char_type_name'],
+                                    $w['code_v1'],
+                                    $w['page_number'],
+                                    $w['line_number'],
+                                    $w['text'],
+                                );
+                            }
+
+                            $translation = $w['translation'];
+                            $lng = $this->languageService->getByName(ucfirst($translation['language_name']));
+                            $word->addTranslation($translation['text'], $lng);
+
+                            $transliteration = $w['transliteration'];
+                            $lng = $this->languageService->getByName(ucfirst($transliteration['language_name']));
+                            $word->addTransliteration($transliteration['text'], $lng);
+                        }
                     }
 
                     ++$page;
@@ -178,42 +244,7 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
                 }
 
                 $this->em->flush();
-            }
-        }
-    }
-
-    private function fetchTranslation(): void
-    {
-        $predefinedLanguages = [
-             Language::ENGLISH['slug'] => Language::ENGLISH['iso_code'],
-             Language::BENGALI['slug'] => Language::BENGALI['iso_code'],
-        ];
-        foreach ($predefinedLanguages as $isoCode) {
-            $translations = $this->makeRequest('/resources/translations', ['language' => $isoCode]);
-
-            foreach ($translations['translations'] as $tran) {
-                if (!array_key_exists($tran['language_name'], $predefinedLanguages)) {
-                    continue;
-                }
-
-                $language = $this->languageService->getByName(ucfirst($tran['language_name']));
-                $translation = $this->translationService->createTranslation(
-                    $this->translationService->getNextIdentity(),
-                    $tran['name'],
-                    $tran['author_name'],
-                    $tran['slug'],
-                    $language
-                );
-
-                $this->em->flush();
-
-                $targetLanguage = $this->languageService->getByName(ucfirst($tran['language_name']));
-                $translation->addTranslatedName(
-                    $targetLanguage,
-                    $tran['translated_name']['name'],
-                );
-
-                $this->em->flush();
+                $this->em->clear();
             }
         }
     }

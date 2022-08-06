@@ -12,4 +12,8 @@ interface ChapterRepositoryInterface
     public function getByNameSimple(string $nameSimple): null|object;
 
     public function nextIdentity(): Uuid;
+
+    public function getVerseByVerseNumber(int $verseNumber);
+
+    public function getWordByVerseNumberAndWordPosition(int $verseNumber, int $wordPosition);
 }

@@ -4,10 +4,10 @@ namespace App\Quran\Infrastructure\Persistence\Doctrine\Repository;
 
 use App\Quran\Domain\Model\Language;
 use App\Quran\Domain\Repository\LanguageRepositoryInterface;
-use App\Shared\Domain\ValueObject\Uuid as UuidValueObject;
+use App\Shared\Domain\ValueObject\Uuid;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\Uid\Uuid;
+use Symfony\Component\Uid\Uuid as SymfonyUuid;
 
 class LanguageRepository extends ServiceEntityRepository implements LanguageRepositoryInterface
 {
@@ -16,32 +16,23 @@ class LanguageRepository extends ServiceEntityRepository implements LanguageRepo
         parent::__construct($registry, Language::class);
     }
 
-    /**
-     * @return void
-     */
-    public function add(Language $language)
+    public function add(Language $language): void
     {
         $this->getEntityManager()->persist($language);
     }
 
-    /**
-     * @return object|null
-     */
     public function getByIsoCode(string $isoCode)
     {
         return $this->findOneBy(['isoCode' => $isoCode]);
     }
 
-    /**
-     * @return object|null
-     */
     public function getByName(string $name)
     {
         return $this->findOneBy(['name' => $name]);
     }
 
-    public function nextIdentity(): UuidValueObject
+    public function nextIdentity(): Uuid
     {
-        return UuidValueObject::fromString((string) Uuid::v4());
+        return Uuid::fromString((string) SymfonyUuid::v4());
     }
 }
