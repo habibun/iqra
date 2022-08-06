@@ -31,53 +31,33 @@ class Translation
         $this->translatedNames = new ArrayCollection();
     }
 
-    public function getId(): Uuid
-    {
-        return $this->id;
-    }
-
     public function getName(): string
     {
         return $this->name;
     }
 
-    public function setName(string $name): Translation
+    public function setName(string $name): static
     {
         $this->name = $name;
 
         return $this;
     }
 
-    public function getAuthorName(): string
-    {
-        return $this->authorName;
-    }
-
-    public function setAuthorName(string $authorName): Translation
+    public function setAuthorName(string $authorName): static
     {
         $this->authorName = $authorName;
 
         return $this;
     }
 
-    public function getSlug(): ?string
-    {
-        return $this->slug;
-    }
-
-    public function setSlug(?string $slug): Translation
+    public function setSlug(?string $slug): static
     {
         $this->slug = $slug;
 
         return $this;
     }
 
-    public function getLanguage(): Language
-    {
-        return $this->language;
-    }
-
-    public function setLanguage(Language $language): Translation
+    public function setLanguage(Language $language): static
     {
         $this->language = $language;
 
@@ -93,10 +73,5 @@ class Translation
         if (!$exists) {
             $this->translatedNames[] = new TranslatedName($this, $targetLanguage, $name);
         }
-    }
-
-    public function getTranslatedNames(): Collection
-    {
-        return $this->translatedNames;
     }
 }

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="https://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="https://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+<entity name="App\Quran\Domain\Model\Chapter\Verse\Word" table="chapter_verse_word">
+    <id name="id" type="integer">
+        <generator strategy="AUTO"/>
+    </id>
+    <field name="position" type="integer"/>
+    <field name="audioUrl" type="string" nullable="true"/>
+    <field name="charTypeName" type="string"/>
+    <field name="codeV1" type="string"/>
+    <field name="pageNumber" type="integer"/>
+    <field name="lineNumber" type="integer"/>
+    <field name="text" type="string"/>
+    <many-to-one field="verse" target-entity="App\Quran\Domain\Model\Chapter\Verse" inversed-by="words">
+        <join-column name="verse_id" referenced-column-name="id" />
+    </many-to-one>
+    <one-to-many field="translations" target-entity="App\Quran\Domain\Model\Chapter\Verse\Word\Translation" mapped-by="word">
+        <cascade>
+            <cascade-persist/>
+        </cascade>
+    </one-to-many>
+    <one-to-many field="transliterations" target-entity="App\Quran\Domain\Model\Chapter\Verse\Word\Transliteration" mapped-by="word">
+        <cascade>
+            <cascade-persist/>
+        </cascade>
+    </one-to-many>
+</entity>
+
+</doctrine-mapping>

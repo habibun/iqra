@@ -21,15 +21,18 @@ class FetchQuranCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        $time_start = microtime(true);
+
         try {
             $this->fetchQuran->fetch();
         } catch (\Exception $exception) {
-            dump($exception->getMessage());
+            dump($exception);
 
             return Command::FAILURE;
         }
 
         $output->writeln('Quran successfully fetched!');
+        $output->writeln('Total execution time in seconds: '.(microtime(true) - $time_start));
 
         return Command::SUCCESS;
     }

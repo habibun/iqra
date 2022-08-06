@@ -16,15 +16,12 @@ class Uuid implements \Stringable
         return new self($uuid);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function __toString(): string
     {
         return $this->uuid;
     }
 
-    public function getUuid()
+    public function getUuid(): string
     {
         return $this->uuid;
     }

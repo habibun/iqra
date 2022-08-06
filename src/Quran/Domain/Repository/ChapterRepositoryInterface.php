@@ -7,9 +7,13 @@ use App\Shared\Domain\ValueObject\Uuid;
 
 interface ChapterRepositoryInterface
 {
-    public function add(Chapter $chapter);
+    public function add(Chapter $chapter): void;
 
-    public function getByNameSimple(string $nameSimple);
+    public function getByNameSimple(string $nameSimple): null|object;
 
     public function nextIdentity(): Uuid;
+
+    public function getVerseByVerseNumber(int $verseNumber);
+
+    public function getWordByVerseNumberAndWordPosition(int $verseNumber, int $wordPosition);
 }

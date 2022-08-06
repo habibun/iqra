@@ -24,11 +24,6 @@ class TranslationService
         return $translation;
     }
 
-    public function getBySlug(string $slug)
-    {
-        return $this->translationRepository->getBySlug($slug);
-    }
-
     public function getNextIdentity(): Uuid
     {
         return $this->translationRepository->nextIdentity();
