@@ -4,7 +4,7 @@ namespace App\Quran\Domain\Model\Language;
 
 use App\Quran\Domain\Model\Language;
 
-class TranslatedName
+class Translation
 {
     private int $id;
     private Language $language;

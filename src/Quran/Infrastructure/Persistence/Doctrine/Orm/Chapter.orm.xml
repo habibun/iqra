@@ -15,7 +15,7 @@
     <field name="nameArabic" type="string" length="50"/>
     <field name="versesCount" type="integer"/>
     <field name="pages" type="simple_array"/>
-    <one-to-many field="translatedNames" target-entity="App\Quran\Domain\Model\Chapter\TranslatedName" mapped-by="chapter">
+    <one-to-many field="translations" target-entity="App\Quran\Domain\Model\Chapter\Translation" mapped-by="chapter">
         <cascade>
             <cascade-persist/>
         </cascade>

@@ -33,28 +33,28 @@ composer-update: ## Composer update
 	symfony composer update
 
 ##--------------✨ Coding standards ✨--------------
-.PHONY: cs-check
-cs-check: ## PHP CS Fixer analyzer
+.PHONY: lint-cs
+lint-cs: ## PHP CS Fixer analyzer
 	symfony php ./vendor/bin/php-cs-fixer fix --dry-run -v
 
-.PHONY: ps-check
-ps-check: ## Psalm analyzer
+.PHONY: lint-ps
+lint-ps: ## Psalm analyzer
 	symfony php ./vendor/bin/psalm
 
-.PHONY: es-check
-es-check: ## ESLint analyzer
+.PHONY: lint-es
+lint-es: ## ESLint analyzer
 	./node_modules/.bin/eslint assets
 
-.PHONY: cs-fix
-cs-fix: ## Execute PHP CS Fixer
+.PHONY: fix-cs
+fix-cs: ## Execute PHP CS Fixer
 	symfony php ./vendor/bin/php-cs-fixer fix
 
-.PHONY: ps-fix
-ps-fix: ## Execute Psalm
+.PHONY: fix-ps
+fix-ps: ## Execute Psalm
 	symfony php ./vendor/bin/psalter --issues=all
 
 .PHONY: lint-all
-lint-all: cs-check ps-check ## Lint project
+lint-all: lint-cs lint-ps ## Lint project
 
 .PHONY: fix-all
-fix-all: cs-fix ps-fix ## Fix project
+fix-all: fix-cs fix-ps ## Fix project

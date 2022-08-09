@@ -2,6 +2,8 @@
 
 namespace App\Quran\Application\Service;
 
+use App\Quran\Application\Service\Chapter\Verse\Translation\TranslatorService;
+use App\Quran\Domain\Model\Chapter;
 use App\Quran\Domain\Model\Chapter\Info;
 use App\Quran\Domain\Model\Language;
 use App\Quran\Domain\Service\FetchQuranInterface;
@@ -14,33 +16,30 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
     private HttpClientInterface $client;
     private ChapterService $chapterService;
     private LanguageService $languageService;
-    private TranslationService $translationService;
+    private TranslatorService $translationService;
     private EntityManagerInterface $em;
 
     public function __construct(
         HttpClientInterface $client,
         ChapterService $chapterService,
         LanguageService $languageService,
-        TranslationService $translationService,
+        TranslatorService $translatorService,
         EntityManagerInterface $em,
     ) {
         $this->client = $client;
         $this->chapterService = $chapterService;
         $this->languageService = $languageService;
-        $this->translationService = $translationService;
+        $this->translationService = $translatorService;
         $this->em = $em;
     }
 
-    /**
-     * @return void
-     */
-    public function fetch()
+    public function fetch(): void
     {
         echo sprintf('Fetching languages...%s', PHP_EOL);
         $this->fetchLanguage();
 
-        echo sprintf('Fetching translation...%s', PHP_EOL);
-        $this->fetchTranslation();
+        echo sprintf('Fetching verse translator...%s', PHP_EOL);
+        $this->fetchVerseTranslator();
 
         echo sprintf('Fetching chapters...%s', PHP_EOL);
         $this->fetchChapter();
@@ -84,12 +83,10 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
                         $lang['name'],
                         $lang['native_name'],
                         $lang['iso_code'],
-                        $lang['direction'],
-                        $lang['translations_count']
+                        $lang['direction']
                     );
+                    $this->em->flush();
                 }
-
-                $this->em->flush();
 
                 $translatedName = $lang['translated_name'];
                 // api.quran bug - tweaking translated name for bengali language
@@ -100,19 +97,17 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
                 }
 
                 $targetLanguage = $this->languageService->getByName(ucfirst($translatedName['language_name']));
-                $language->addTranslatedName(
+                $language->addTranslation(
                     $targetLanguage,
                     $translatedName['name']
                 );
-
-                $this->em->flush();
             }
+            $this->em->flush();
         }
-
         $this->em->clear();
     }
 
-    private function fetchTranslation(): void
+    private function fetchVerseTranslator(): void
     {
         $predefinedLanguages = [
             Language::ENGLISH['slug'] => Language::ENGLISH['iso_code'],
@@ -127,26 +122,23 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
                 }
 
                 $language = $this->languageService->getByName(ucfirst($tran['language_name']));
-                $translation = $this->translationService->createTranslation(
+                $translator = $this->translationService->createTranslator(
                     $this->translationService->getNextIdentity(),
+                    $tran['id'],
                     $tran['name'],
                     $tran['author_name'],
                     $tran['slug'],
                     $language
                 );
 
-                $this->em->flush();
-
-                $targetLanguage = $this->languageService->getByName(ucfirst($tran['language_name']));
-                $translation->addTranslatedName(
-                    $targetLanguage,
+                $language = $this->languageService->getByName(ucfirst($tran['language_name']));
+                $translator->addTranslation(
+                    $language,
                     $tran['translated_name']['name'],
                 );
-
-                $this->em->flush();
             }
         }
-
+        $this->em->flush();
         $this->em->clear();
     }
 
@@ -176,76 +168,81 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
                         $ch['pages'],
                         $info,
                     );
+                    $this->fetchVerse($chapter);
                 }
 
-                $targetLanguage = $this->languageService->getByName(ucfirst($ch['translated_name']['language_name']));
-                $chapter->addTranslatedName(
+                $language = $this->languageService->getByName(ucfirst($ch['translated_name']['language_name']));
+                $chapter->addTranslation(
                     $ch['translated_name']['name'],
-                    $targetLanguage,
+                    $language,
                 );
-
-                $page = 1;
-                $verses = $this->makeRequest(
-                    sprintf('/verses/by_chapter/%d', $ch['id']),
-                    ['language' => $isoCode, 'words' => true, 'page' => $page, 'per_page' => 10]
-                );
-
-                $totalPages = $verses['pagination']['total_pages'];
-                while ($totalPages >= $page) {
-                    foreach ($verses['verses'] as $v) {
-                        echo sprintf('Fetching chapter: %d, verse: %d...%s', $ch['id'], $v['id'], PHP_EOL);
-                        $verse = $this->chapterService->getVerseByVerseNumber($v['id']);
-                        if (!$verse) {
-                            $verse = $chapter->addVerse(
-                                $v['id'],
-                                $v['verse_number'],
-                                $v['verse_key'],
-                                $v['juz_number'],
-                                $v['hizb_number'],
-                                $v['rub_el_hizb_number'],
-                                $v['ruku_number'],
-                                $v['manzil_number'],
-                                $v['sajdah_number'],
-                                $v['page_number'],
-                            );
-                        }
-
-                        foreach ($v['words'] as $w) {
-                            $word = $this->chapterService
-                                ->getWordByVerseNumberAndWordPosition($verse->getVerseNumber(), $w['position']);
-                            if (!$word) {
-                                $word = $verse->addWord(
-                                    $w['position'],
-                                    $w['audio_url'],
-                                    $w['char_type_name'],
-                                    $w['code_v1'],
-                                    $w['page_number'],
-                                    $w['line_number'],
-                                    $w['text'],
-                                );
-                            }
-
-                            $translation = $w['translation'];
-                            $lng = $this->languageService->getByName(ucfirst($translation['language_name']));
-                            $word->addTranslation($translation['text'], $lng);
-
-                            $transliteration = $w['transliteration'];
-                            $lng = $this->languageService->getByName(ucfirst($transliteration['language_name']));
-                            $word->addTransliteration($transliteration['text'], $lng);
-                        }
-                    }
-
-                    ++$page;
-
-                    $verses = $this->makeRequest(
-                        sprintf('/verses/by_chapter/%d', $ch['id']),
-                        ['language' => $isoCode, 'words' => true, 'page' => $page, 'per_page' => 10]
-                    );
-                }
 
                 $this->em->flush();
                 $this->em->clear();
             }
+        }
+    }
+
+    private function fetchVerse(Chapter $chapter): void
+    {
+        $translatorList = $this->translationService->getAll();
+
+        $translators = [];
+        /** @var Chapter\Verse\Translation\Translator $translator */
+        foreach ($translatorList as $translator) {
+            $translators[] = $translator->getTranslatorNumber();
+        }
+
+        $page = 1;
+        $verses = $this->makeRequest(
+            sprintf('/verses/by_chapter/%d', $chapter->getChapterNumber()),
+            [
+                'words' => false,
+                'page' => $page,
+                'per_page' => 10,
+                'translations' => implode(',', $translators),
+                'fields' => 'text_indopak',
+            ]
+        );
+
+        $totalPages = $verses['pagination']['total_pages'];
+        while ($totalPages >= $page) {
+            foreach ($verses['verses'] as $v) {
+                echo sprintf('Fetching chapter: %d, verse: %d...%s', $chapter->getChapterNumber(), $v['id'], PHP_EOL);
+                $verse = $this->chapterService->getVerseByVerseNumber($v['id']);
+                if (!$verse) {
+                    $verse = $chapter->addVerse(
+                        $v['id'],
+                        $v['verse_number'],
+                        $v['verse_key'],
+                        $v['juz_number'],
+                        $v['hizb_number'],
+                        $v['rub_el_hizb_number'],
+                        $v['ruku_number'],
+                        $v['manzil_number'],
+                        $v['sajdah_number'],
+                        $v['page_number'],
+                    );
+
+                    foreach ($v['translations'] as $translation) {
+                        $translator = $this->translationService->getByTranslatorNumber($translation['resource_id']);
+                        $verse->addTranslation($translation['text'], $translator);
+                    }
+                }
+            }
+
+            ++$page;
+
+            $verses = $this->makeRequest(
+                sprintf('/verses/by_chapter/%d', $chapter->getChapterNumber()),
+                [
+                    'words' => false,
+                    'page' => $page,
+                    'per_page' => 10,
+                    'translations' => implode(',', $translators),
+                    'fields' => 'text_indopak',
+                ]
+            );
         }
     }
 }

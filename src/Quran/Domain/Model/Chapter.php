@@ -3,7 +3,7 @@
 namespace App\Quran\Domain\Model;
 
 use App\Quran\Domain\Model\Chapter\Info;
-use App\Quran\Domain\Model\Chapter\TranslatedName;
+use App\Quran\Domain\Model\Chapter\Translation;
 use App\Quran\Domain\Model\Chapter\Verse;
 use App\Shared\Domain\ValueObject\Uuid;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -22,7 +22,7 @@ class Chapter
     private int $versesCount;
     private array $pages;
     private info $info;
-    private Collection $translatedNames;
+    private Collection $translations;
     private Collection $verses;
 
     private function __construct(
@@ -50,7 +50,7 @@ class Chapter
         $this->setPages($pages);
         $this->setInfo($info);
 
-        $this->translatedNames = new ArrayCollection();
+        $this->translations = new ArrayCollection();
         $this->verses = new ArrayCollection();
     }
 
@@ -149,15 +149,9 @@ class Chapter
         return $this;
     }
 
-    public function addTranslatedName(string $name, Language $targetLanguage): void
+    public function addTranslation(string $name, Language $language): void
     {
-        $exists = $this->translatedNames->exists(function ($key, $value) use ($targetLanguage, $name) {
-            return $value->getTargetLanguage() === $targetLanguage && $value->getName() === $name;
-        });
-
-        if (!$exists) {
-            $this->translatedNames[] = new TranslatedName($name, $targetLanguage, $this);
-        }
+        $this->translations[] = new Translation($name, $language, $this);
     }
 
     public function addVerse(
@@ -193,5 +187,10 @@ class Chapter
     public function setChapterNumber(int $chapterNumber): void
     {
         $this->chapterNumber = $chapterNumber;
+    }
+
+    public function getChapterNumber(): int
+    {
+        return $this->chapterNumber;
     }
 }

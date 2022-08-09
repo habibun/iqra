@@ -4,7 +4,6 @@ namespace App\Quran\Infrastructure\Persistence\Doctrine\Repository;
 
 use App\Quran\Domain\Model\Chapter;
 use App\Quran\Domain\Model\Chapter\Verse;
-use App\Quran\Domain\Model\Chapter\Verse\Word;
 use App\Quran\Domain\Repository\ChapterRepositoryInterface;
 use App\Shared\Domain\ValueObject\Uuid;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -37,11 +36,5 @@ class ChapterRepository extends ServiceEntityRepository implements ChapterReposi
     {
         return $this->_em->getRepository(Verse::class)
             ->findOneBy(['verseNumber' => $verseNumber]);
-    }
-
-    public function getWordByVerseNumberAndWordPosition(int $verseNumber, int $wordPosition)
-    {
-        return $this->_em->getRepository(Word::class)
-            ->findOneBy(['verse' => $verseNumber, 'position' => $wordPosition]);
     }
 }

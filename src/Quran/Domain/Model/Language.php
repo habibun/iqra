@@ -2,7 +2,7 @@
 
 namespace App\Quran\Domain\Model;
 
-use App\Quran\Domain\Model\Language\TranslatedName;
+use App\Quran\Domain\Model\Language\Translation;
 use App\Shared\Domain\ValueObject\Uuid;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -17,23 +17,21 @@ class Language
     private string $nativeName;
     private string $isoCode;
     private string $direction;
-    private int $translationsCount;
-    private Collection $translatedNames;
+    private Collection $translations;
 
-    public static function create(Uuid $id, string $name, string $nativeName, string $isoCode, string $direction, int $translationsCount): static
-    {
-        return new static($id, $name, $nativeName, $isoCode, $direction, $translationsCount);
-    }
-
-    public function __construct(Uuid $id, string $name, string $nativeName, string $isoCode, string $direction, int $translationsCount)
+    public function __construct(Uuid $id, string $name, string $nativeName, string $isoCode, string $direction)
     {
         $this->id = $id;
         $this->setName($name);
         $this->setNativeName($nativeName);
         $this->setIsoCode($isoCode);
         $this->setDirection($direction);
-        $this->setTranslationsCount($translationsCount);
-        $this->translatedNames = new ArrayCollection();
+        $this->translations = new ArrayCollection();
+    }
+
+    public static function create(Uuid $id, string $name, string $nativeName, string $isoCode, string $direction): static
+    {
+        return new static($id, $name, $nativeName, $isoCode, $direction);
     }
 
     public function getName(): string
@@ -69,21 +67,14 @@ class Language
         return $this;
     }
 
-    public function addTranslatedName(Language $targetLanguage, string $name): void
+    public function addTranslation(Language $targetLanguage, string $name): void
     {
-        $exists = $this->translatedNames->exists(function ($key, $value) use ($targetLanguage, $name) {
+        $exists = $this->translations->exists(function ($key, $value) use ($targetLanguage, $name) {
             return $value->getTargetLanguage() === $targetLanguage && $value->getName() === $name;
         });
 
         if (!$exists) {
-            $this->translatedNames[] = new TranslatedName($this, $targetLanguage, $name);
+            $this->translations[] = new Translation($this, $targetLanguage, $name);
         }
-    }
-
-    public function setTranslationsCount(int $translationsCount): static
-    {
-        $this->translationsCount = $translationsCount;
-
-        return $this;
     }
 }

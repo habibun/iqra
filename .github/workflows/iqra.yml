@@ -44,6 +44,6 @@ jobs:
       - name: Check Symfony Requirements
         run: symfony check:requirements
       - name: PHP CS Fixer - Coding Standards Checks
-        run: make cs-check
+        run: make lint-cs
       - name: Psalm - Static Analysis Of PHP Code
-        run: make ps-check
+        run: make lint-ps
