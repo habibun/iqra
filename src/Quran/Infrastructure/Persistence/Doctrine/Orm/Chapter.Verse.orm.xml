@@ -18,7 +18,7 @@
     <field name="manzilNumber" type="integer"/>
     <field name="sajdaNumber" type="boolean" nullable="true"/>
     <field name="pageNumber" type="integer"/>
-    <one-to-many field="words" target-entity="App\Quran\Domain\Model\Chapter\Verse\Word" mapped-by="verse">
+    <one-to-many field="translations" target-entity="App\Quran\Domain\Model\Chapter\Verse\Translation" mapped-by="verse">
         <cascade>
             <cascade-persist/>
         </cascade>

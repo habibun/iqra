@@ -61,9 +61,4 @@ class ChapterService
     {
         return $this->chapterRepository->getVerseByVerseNumber($verseNumber);
     }
-
-    public function getWordByVerseNumberAndWordPosition(int $verseNumber, int $wordPosition)
-    {
-        return $this->chapterRepository->getWordByVerseNumberAndWordPosition($verseNumber, $wordPosition);
-    }
 }

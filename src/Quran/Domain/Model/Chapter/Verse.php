@@ -3,7 +3,8 @@
 namespace App\Quran\Domain\Model\Chapter;
 
 use App\Quran\Domain\Model\Chapter;
-use App\Quran\Domain\Model\Chapter\Verse\Word;
+use App\Quran\Domain\Model\Chapter\Verse\Translation;
+use App\Quran\Domain\Model\Chapter\Verse\Translation\Translator;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
@@ -21,7 +22,7 @@ class Verse
     private ?bool $sajdaNumber;
     private int $pageNumber;
     private Chapter $chapter;
-    private Collection $words;
+    private Collection $translations;
 
     public function __construct(
         int $verseNumber,
@@ -48,7 +49,7 @@ class Verse
         $this->pageNumber = $pageNumber;
         $this->chapter = $chapter;
 
-        $this->words = new ArrayCollection();
+        $this->translations = new ArrayCollection();
     }
 
     public static function create(
@@ -77,31 +78,6 @@ class Verse
             $pageNumber,
             $chapter
         );
-    }
-
-    public function addWord(
-        int $position,
-        ?string $audio_url,
-        string $char_type_name,
-        string $code_v1,
-        int $page_number,
-        int $line_number,
-        string $text
-    ): Word {
-        $word = Word::create(
-            $position,
-            $audio_url,
-            $char_type_name,
-            $code_v1,
-            $page_number,
-            $line_number,
-            $text,
-            $this
-        );
-
-        $this->words[] = $word;
-
-        return $word;
     }
 
     public function getId(): int
@@ -224,13 +200,8 @@ class Verse
         $this->chapter = $chapter;
     }
 
-    public function getWords(): Collection
+    public function addTranslation(string $text, Translator $translator): void
     {
-        return $this->words;
-    }
-
-    public function setWords(Collection $words): void
-    {
-        $this->words = $words;
+        $this->translations[] = Translation::create($text, $translator, $this);
     }
 }

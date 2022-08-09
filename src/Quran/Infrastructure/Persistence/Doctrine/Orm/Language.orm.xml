@@ -10,8 +10,7 @@
     <field name="nativeName" type="string" length="50"/>
     <field name="isoCode" type="string" length="50"/>
     <field name="direction" type="string" length="50"/>
-    <field name="translationsCount" type="smallint"/>
-    <one-to-many field="translatedNames" target-entity="App\Quran\Domain\Model\Language\TranslatedName" mapped-by="language">
+    <one-to-many field="translations" target-entity="App\Quran\Domain\Model\Language\Translation" mapped-by="language">
         <cascade>
             <cascade-persist/>
         </cascade>

@@ -4,16 +4,16 @@
                   xsi:schemaLocation="https://doctrine-project.org/schemas/orm/doctrine-mapping
                           https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-<entity name="App\Quran\Domain\Model\Chapter\Verse\Word\Transliteration" table="chapter_verse_word_transliteration">
+<entity name="App\Quran\Domain\Model\Chapter\Verse\Translation" table="chapter_verse_translation">
     <id name="id" type="integer">
         <generator strategy="AUTO"/>
     </id>
-    <field name="text" type="string" nullable="true"/>
-    <many-to-one field="language" target-entity="App\Quran\Domain\Model\Language" >
-        <join-column name="language_id" referenced-column-name="id" />
+    <field name="text" type="string" length="3000"/>
+    <many-to-one field="translator" target-entity="App\Quran\Domain\Model\Chapter\Verse\Translation\Translator" >
+        <join-column name="translator_id" referenced-column-name="id" />
     </many-to-one>
-    <many-to-one field="word" target-entity="App\Quran\Domain\Model\Chapter\Verse\Word" inversed-by="transliterations">
-        <join-column name="word_id" referenced-column-name="id" />
+    <many-to-one field="verse" target-entity="App\Quran\Domain\Model\Chapter\Verse" inversed-by="translations">
+        <join-column name="verse_id" referenced-column-name="id" />
     </many-to-one>
 </entity>
 

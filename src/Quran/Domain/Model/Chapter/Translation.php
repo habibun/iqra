@@ -5,17 +5,17 @@ namespace App\Quran\Domain\Model\Chapter;
 use App\Quran\Domain\Model\Chapter;
 use App\Quran\Domain\Model\Language;
 
-class TranslatedName
+class Translation
 {
     private int $id;
     private string $name;
-    private Language $targetLanguage;
+    private Language $language;
     private Chapter $chapter;
 
-    public function __construct(string $name, Language $targetLanguage, Chapter $chapter)
+    public function __construct(string $name, Language $language, Chapter $chapter)
     {
         $this->setName($name);
-        $this->setTargetLanguage($targetLanguage);
+        $this->setLanguage($language);
         $this->setChapter($chapter);
     }
 
@@ -31,14 +31,14 @@ class TranslatedName
         return $this;
     }
 
-    public function getTargetLanguage(): Language
+    public function getLanguage(): Language
     {
-        return $this->targetLanguage;
+        return $this->language;
     }
 
-    public function setTargetLanguage(Language $targetLanguage): static
+    public function setLanguage(Language $language): static
     {
-        $this->targetLanguage = $targetLanguage;
+        $this->language = $language;
 
         return $this;
     }
