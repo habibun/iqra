@@ -1,19 +1,20 @@
 <?php
 
-namespace App\Sign\Presentation\Controller;
+namespace App\Shared\Presentation\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 
 class HomepageController extends AbstractController
 {
-    public function indexNoLocale(): \Symfony\Component\HttpFoundation\RedirectResponse
+    public function indexNoLocale(): RedirectResponse
     {
         return $this->redirectToRoute('homepage', ['_locale' => 'en']);
     }
 
     public function index(): Response
     {
-        return $this->render('@sign/homepage/index.html.twig');
+        return $this->render('@shared/homepage/index.html.twig');
     }
 }
