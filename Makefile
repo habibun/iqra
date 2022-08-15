@@ -45,6 +45,10 @@ lint-ps: ## Psalm analyzer
 lint-es: ## ESLint analyzer
 	./node_modules/.bin/eslint assets
 
+.PHONY: lint-twig
+lint-twig: ## Linting Twig Templates
+	symfony console lint:twig
+
 .PHONY: fix-cs
 fix-cs: ## Execute PHP CS Fixer
 	symfony php ./vendor/bin/php-cs-fixer fix
@@ -54,7 +58,7 @@ fix-ps: ## Execute Psalm
 	symfony php ./vendor/bin/psalter --issues=all
 
 .PHONY: lint-all
-lint-all: lint-cs lint-ps ## Lint project
+lint-all: lint-cs lint-ps lint-twig ## Lint project
 
 .PHONY: fix-all
 fix-all: fix-cs fix-ps ## Fix project
