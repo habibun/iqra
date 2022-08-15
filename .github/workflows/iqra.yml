@@ -47,3 +47,5 @@ jobs:
         run: make lint-cs
       - name: Psalm - Static Analysis Of PHP Code
         run: make lint-ps
+      - name: Twig - Linting Twig Templates
+        run: make lint-twig
