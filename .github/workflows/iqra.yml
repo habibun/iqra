@@ -40,7 +40,7 @@ jobs:
       - name:  Install Symfony CLI
         run: |
           wget https://get.symfony.com/cli/installer -O - | bash
-          export PATH="$HOME/.symfony5/bin:$PATH"
+          mv /home/runner/.symfony5/bin/symfony /usr/local/bin/symfony
       - name: Check Symfony Requirements
         run: symfony check:requirements
       - name: PHP CS Fixer - Coding Standards Checks
