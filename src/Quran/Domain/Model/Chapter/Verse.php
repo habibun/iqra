@@ -204,4 +204,9 @@ class Verse
     {
         $this->translations[] = Translation::create($text, $translator, $this);
     }
+
+    public function getTranslations(): Collection
+    {
+        return $this->translations;
+    }
 }
