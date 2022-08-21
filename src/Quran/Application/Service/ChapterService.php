@@ -8,21 +8,29 @@ use App\Quran\Domain\Repository\ChapterRepositoryInterface;
 use App\Shared\Domain\ValueObject\Uuid;
 use Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface;
 use Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory;
-use Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactoryInterface;
 use Symfony\Component\Serializer\Mapping\Loader\XmlFileLoader;
+use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\SerializerInterface;
 
 class ChapterService
 {
     private ChapterRepositoryInterface $chapterRepository;
     private ContainerBagInterface $containerBag;
+    private SerializerInterface $serializer;
+    private NormalizerInterface $normalizer;
 
     public function __construct(
         ChapterRepositoryInterface $chapterRepository,
         ContainerBagInterface $containerBag,
-    ){
+        SerializerInterface $serializer,
+        NormalizerInterface $normalizer
+    ) {
         $this->chapterRepository = $chapterRepository;
         $this->containerBag = $containerBag;
+        $this->serializer = $serializer;
+        $this->normalizer = $normalizer;
     }
 
     public function createChapter(
@@ -73,14 +81,13 @@ class ChapterService
 
     public function getRandomVerse()
     {
-        $projectDir = $this->containerBag->get('kernel.project_dir');
-        $classMetadataFactory = new ClassMetadataFactory(new XmlFileLoader($projectDir.'/src/Quran/Infrastructure/Symfony/Serializer/Verse.xml'));
+        $defaultContext = [
+            'groups' => 'verse_details',
+        ];
 
-        $normalizer = new ObjectNormalizer($classMetadataFactory);
         $verse = $this->getVerseByVerseNumber(rand(1, 6666));
-        $data = $normalizer->normalize($verse, null, ['groups' => 'verse_details']);
-        dd($data);
+        $verse = $this->normalizer->normalize($verse, 'json', $defaultContext);
 
-        return $data;
+        return $verse;
     }
 }
