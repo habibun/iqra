@@ -10,6 +10,8 @@ use Doctrine\Common\Collections\Collection;
 
 class Translator
 {
+    public const DEFAULT = ['en' => ['number' => '20'], 'bn' => ['number' => '161']];
+
     private Uuid $id;
     private int $translatorNumber;
     private string $name;

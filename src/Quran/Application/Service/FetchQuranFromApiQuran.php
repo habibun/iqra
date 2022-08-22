@@ -122,14 +122,17 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
                 }
 
                 $language = $this->languageService->getByName(ucfirst($tran['language_name']));
-                $translator = $this->translationService->createTranslator(
-                    $this->translationService->getNextIdentity(),
-                    $tran['id'],
-                    $tran['name'],
-                    $tran['author_name'],
-                    $tran['slug'],
-                    $language
-                );
+                $translator = $this->translationService->getByTranslatorNumber($tran['id']);
+                if (!$translator) {
+                    $translator = $this->translationService->createTranslator(
+                        $this->translationService->getNextIdentity(),
+                        $tran['id'],
+                        $tran['name'],
+                        $tran['author_name'],
+                        $tran['slug'],
+                        $language
+                    );
+                }
 
                 $language = $this->languageService->getByName(ucfirst($tran['language_name']));
                 $translator->addTranslation(
@@ -137,8 +140,9 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
                     $tran['translated_name']['name'],
                 );
             }
+            $this->em->flush();
         }
-        $this->em->flush();
+
         $this->em->clear();
     }
 

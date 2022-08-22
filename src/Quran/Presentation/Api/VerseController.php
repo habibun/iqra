@@ -5,6 +5,7 @@ namespace App\Quran\Presentation\Api;
 use App\Quran\Application\Service\ChapterService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 class VerseController extends AbstractController
 {
@@ -15,10 +16,10 @@ class VerseController extends AbstractController
         $this->chapterService = $chapterService;
     }
 
-    public function random(): JsonResponse
+    public function random(Request $request): JsonResponse
     {
         return new JsonResponse(
-            $this->chapterService->getRandomVerse()
+            $this->chapterService->getRandomVerse($request->getLocale())
         );
     }
 }

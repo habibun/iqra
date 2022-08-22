@@ -37,4 +37,19 @@ class ChapterRepository extends ServiceEntityRepository implements ChapterReposi
         return $this->_em->getRepository(Verse::class)
             ->findOneBy(['verseNumber' => $verseNumber]);
     }
+
+    public function getVerseByVerseNumberAndTranslatorNumber(int $verseNumber, int $translatorNumber)
+    {
+        return $this->_em->createQueryBuilder()
+            ->select('v')
+            ->from(Verse::class, 'v')
+            ->leftJoin('v.translations', 't')
+            ->leftJoin('t.translator', 'tl')
+            ->where('v.verseNumber = :verseNumber')
+            ->andWhere('tl.translatorNumber = :translatorNumber')
+            ->setParameter('verseNumber', $verseNumber)
+            ->setParameter('translatorNumber', $translatorNumber)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }

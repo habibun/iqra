@@ -4,14 +4,11 @@ namespace App\Quran\Application\Service;
 
 use App\Quran\Domain\Model\Chapter;
 use App\Quran\Domain\Model\Chapter\Info;
+use App\Quran\Domain\Model\Chapter\Verse\Translation\Translator;
 use App\Quran\Domain\Repository\ChapterRepositoryInterface;
 use App\Shared\Domain\ValueObject\Uuid;
 use Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface;
-use Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory;
-use Symfony\Component\Serializer\Mapping\Loader\XmlFileLoader;
-use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
 
 class ChapterService
@@ -79,15 +76,15 @@ class ChapterService
         return $this->chapterRepository->getVerseByVerseNumber($verseNumber);
     }
 
-    public function getRandomVerse()
+    public function getRandomVerse(string $locale)
     {
         $defaultContext = [
             'groups' => 'verse_details',
         ];
 
-        $verse = $this->getVerseByVerseNumber(rand(1, 6666));
-        $verse = $this->normalizer->normalize($verse, 'json', $defaultContext);
+        $verse = $this->chapterRepository
+            ->getVerseByVerseNumberAndTranslatorNumber(rand(1, 6236), Translator::DEFAULT[$locale]['number']);
 
-        return $verse;
+        return $this->normalizer->normalize($verse, 'json', $defaultContext);
     }
 }
