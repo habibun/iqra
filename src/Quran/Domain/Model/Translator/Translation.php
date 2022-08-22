@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Quran\Domain\Model\Chapter\Verse\Translation\Translator;
+namespace App\Quran\Domain\Model\Translator;
 
-use App\Quran\Domain\Model\Chapter\Verse\Translation\Translator;
 use App\Quran\Domain\Model\Language;
+use App\Quran\Domain\Model\Translator;
 
 class Translation
 {
     private int $id;
     private string $name;
-    private Language $targetLanguage;
+    private Language $language;
     private Translator $translator;
 
     public function __construct(Translator $translator, Language $language, string $name)
@@ -31,14 +31,14 @@ class Translation
         return $this;
     }
 
-    public function getTargetLanguage(): Language
+    public function getLanguage(): Language
     {
-        return $this->targetLanguage;
+        return $this->language;
     }
 
-    public function setLanguage(Language $targetLanguage): static
+    public function setLanguage(Language $language): static
     {
-        $this->targetLanguage = $targetLanguage;
+        $this->language = $language;
 
         return $this;
     }

@@ -4,6 +4,7 @@ namespace App\Quran\Infrastructure\Persistence\Doctrine\Repository;
 
 use App\Quran\Domain\Model\Chapter;
 use App\Quran\Domain\Model\Chapter\Verse;
+use App\Quran\Domain\Model\Chapter\Verse\Translation as VerseTranslation;
 use App\Quran\Domain\Repository\ChapterRepositoryInterface;
 use App\Shared\Domain\ValueObject\Uuid;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -35,20 +36,31 @@ class ChapterRepository extends ServiceEntityRepository implements ChapterReposi
     public function getVerseByVerseNumber(int $verseNumber)
     {
         return $this->_em->getRepository(Verse::class)
-            ->findOneBy(['verseNumber' => $verseNumber]);
+            ->findOneBy(['identifier' => $verseNumber]);
     }
 
-    public function getVerseByVerseNumberAndTranslatorNumber(int $verseNumber, int $translatorNumber)
+    public function getVerseByIdentifier(int $identifier)
     {
         return $this->_em->createQueryBuilder()
             ->select('v')
             ->from(Verse::class, 'v')
-            ->leftJoin('v.translations', 't')
-            ->leftJoin('t.translator', 'tl')
-            ->where('v.verseNumber = :verseNumber')
-            ->andWhere('tl.translatorNumber = :translatorNumber')
-            ->setParameter('verseNumber', $verseNumber)
-            ->setParameter('translatorNumber', $translatorNumber)
+            ->where('v.identifier = :identifier')
+            ->setParameter('identifier', $identifier)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+    public function getVerseTranslationByVerseIdentifierAndTranslatorIdentifier(int $verseIdentifier, int $translatorIdentifier)
+    {
+        return $this->_em->createQueryBuilder()
+            ->select('vt')
+            ->from(VerseTranslation::class, 'vt')
+            ->join('vt.verse', 'v')
+            ->join('vt.translator', 't')
+            ->where('v.identifier = :v_identifier')
+            ->andWhere('t.identifier = :t_identifier')
+            ->setParameter('v_identifier', $verseIdentifier)
+            ->setParameter('t_identifier', $translatorIdentifier)
             ->getQuery()
             ->getOneOrNullResult();
     }

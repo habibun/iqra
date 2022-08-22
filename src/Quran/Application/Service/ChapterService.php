@@ -4,7 +4,7 @@ namespace App\Quran\Application\Service;
 
 use App\Quran\Domain\Model\Chapter;
 use App\Quran\Domain\Model\Chapter\Info;
-use App\Quran\Domain\Model\Chapter\Verse\Translation\Translator;
+use App\Quran\Domain\Model\Translator;
 use App\Quran\Domain\Repository\ChapterRepositoryInterface;
 use App\Shared\Domain\ValueObject\Uuid;
 use Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface;
@@ -32,7 +32,7 @@ class ChapterService
 
     public function createChapter(
         Uuid $id,
-        int $chapterNumber,
+        int $identifier,
         string $revelationPlace,
         int $revelationOrder,
         bool $bismillahPre,
@@ -45,7 +45,7 @@ class ChapterService
     ): Chapter {
         $chapter = Chapter::create(
             $id,
-            $chapterNumber,
+            $identifier,
             $revelationPlace,
             $revelationOrder,
             $bismillahPre,
@@ -83,7 +83,10 @@ class ChapterService
         ];
 
         $verse = $this->chapterRepository
-            ->getVerseByVerseNumberAndTranslatorNumber(rand(1, 6236), Translator::DEFAULT[$locale]['number']);
+            ->getVerseTranslationByVerseIdentifierAndTranslatorIdentifier(
+                rand(1, 6236),
+                (int) Translator::DEFAULT[$locale]['identifier']
+            );
 
         return $this->normalizer->normalize($verse, 'json', $defaultContext);
     }

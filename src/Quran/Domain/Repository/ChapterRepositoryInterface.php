@@ -15,5 +15,7 @@ interface ChapterRepositoryInterface
 
     public function getVerseByVerseNumber(int $verseNumber);
 
-    public function getVerseByVerseNumberAndTranslatorNumber(int $verseNumber, int $translatorNumber);
+    public function getVerseByIdentifier(int $identifier);
+
+    public function getVerseTranslationByVerseIdentifierAndTranslatorIdentifier(int $verseIdentifier, int $translatorIdentifier);
 }

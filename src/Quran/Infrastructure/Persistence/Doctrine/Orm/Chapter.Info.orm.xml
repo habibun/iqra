@@ -4,16 +4,16 @@
                   xsi:schemaLocation="https://doctrine-project.org/schemas/orm/doctrine-mapping
                           https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-<entity name="App\Quran\Domain\Model\Chapter\Info" table="chapter_info">
-    <id name="id" type="integer">
-        <generator strategy="AUTO"/>
-    </id>
-    <field name="text" type="text"/>
-    <field name="shortText" type="string" length="1000"/>
-    <field name="source" type="string" length="255"/>
-    <many-to-one field="language" target-entity="App\Quran\Domain\Model\Language" inversed-by="translatedNames">
-        <join-column name="language_id" referenced-column-name="id" />
-    </many-to-one>
-</entity>
+    <entity name="App\Quran\Domain\Model\Chapter\Info" table="chapter_info">
+        <id name="id" type="integer">
+            <generator strategy="AUTO"/>
+        </id>
+        <field name="text" type="text"/>
+        <field name="shortText" type="string" length="1000"/>
+        <field name="source" type="string" length="255"/>
+        <many-to-one field="language" target-entity="App\Quran\Domain\Model\Language" inversed-by="translatedNames">
+            <join-column name="language_id" referenced-column-name="id" />
+        </many-to-one>
+    </entity>
 
 </doctrine-mapping>

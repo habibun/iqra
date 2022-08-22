@@ -3,7 +3,7 @@
 namespace App\Quran\Domain\Model\Chapter\Verse;
 
 use App\Quran\Domain\Model\Chapter\Verse;
-use App\Quran\Domain\Model\Chapter\Verse\Translation\Translator;
+use App\Quran\Domain\Model\Translator;
 
 class Translation
 {
@@ -60,8 +60,8 @@ class Translation
         return $this;
     }
 
-    public function getId(): ?int
+    public function getId(): int
     {
-        return $this->id ?? null;
+        return $this->id;
     }
 }

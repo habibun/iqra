@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Quran\Application\Service\Chapter\Verse\Translation;
+namespace App\Quran\Application\Service;
 
-use App\Quran\Domain\Model\Chapter\Verse\Translation\Translator;
 use App\Quran\Domain\Model\Language;
+use App\Quran\Domain\Model\Translator;
 use App\Quran\Domain\Repository\Chapter\Verse\Translation\TranslatorRepositoryInterface;
 use App\Shared\Domain\ValueObject\Uuid;
 
@@ -16,9 +16,9 @@ class TranslatorService
         $this->translationRepository = $translationRepository;
     }
 
-    public function createTranslator(Uuid $id, int $translatorNumber, string $name, string $authorName, ?string $slug, Language $language): Translator
+    public function createTranslator(Uuid $id, int $identifier, string $name, string $authorName, ?string $slug, Language $language): Translator
     {
-        $translator = Translator::create($id, $translatorNumber, $name, $authorName, $slug, $language);
+        $translator = Translator::create($id, $identifier, $name, $authorName, $slug, $language);
         $this->translationRepository->add($translator);
 
         return $translator;
@@ -34,8 +34,8 @@ class TranslatorService
         return $this->translationRepository->getAll();
     }
 
-    public function getByTranslatorNumber(int $translatorNumber)
+    public function getByIdentifier(int $identifier)
     {
-        return $this->translationRepository->getByTranslatorNumber($translatorNumber);
+        return $this->translationRepository->getByIdentifier($identifier);
     }
 }
