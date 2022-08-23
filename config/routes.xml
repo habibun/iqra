@@ -4,9 +4,25 @@
         xsi:schemaLocation="http://symfony.com/schema/routing
         https://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <route id="homepage_no_locale" path="/"
+    <!--Shared-->
+    <route id="shared_homepage_no_locale"
+           path="/"
            controller="App\Shared\Presentation\Controller\HomepageController::indexNoLocale"/>
 
-    <route id="homepage" path="/{_locale&lt;%app.supported_locales%&gt;}/"
-           controller="App\Shared\Presentation\Controller\HomepageController::index"/>
+    <import resource="routes/shared.xml"
+            prefix="/{_locale&lt;%app.supported_locales%&gt;}"
+            trailing-slash-on-root="false">
+    </import>
+
+    <!--Quran-->
+    <import resource="routes/quran.xml"
+            prefix="/{_locale&lt;%app.supported_locales%&gt;}/quran"
+            trailing-slash-on-root="false">
+    </import>
+
+    <import resource="routes/quran_api.xml"
+            prefix="/{_locale&lt;%app.supported_locales%&gt;}/api/quran"
+            trailing-slash-on-root="false">
+    </import>
+
 </routes>

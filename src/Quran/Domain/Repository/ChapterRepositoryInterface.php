@@ -14,4 +14,8 @@ interface ChapterRepositoryInterface
     public function nextIdentity(): Uuid;
 
     public function getVerseByVerseNumber(int $verseNumber);
+
+    public function getVerseByIdentifier(int $identifier);
+
+    public function getVerseTranslationByVerseIdentifierAndTranslatorIdentifier(int $verseIdentifier, int $translatorIdentifier);
 }

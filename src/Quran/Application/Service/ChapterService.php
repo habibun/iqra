@@ -4,21 +4,35 @@ namespace App\Quran\Application\Service;
 
 use App\Quran\Domain\Model\Chapter;
 use App\Quran\Domain\Model\Chapter\Info;
+use App\Quran\Domain\Model\Translator;
 use App\Quran\Domain\Repository\ChapterRepositoryInterface;
 use App\Shared\Domain\ValueObject\Uuid;
+use Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Symfony\Component\Serializer\SerializerInterface;
 
 class ChapterService
 {
     private ChapterRepositoryInterface $chapterRepository;
+    private ContainerBagInterface $containerBag;
+    private SerializerInterface $serializer;
+    private NormalizerInterface $normalizer;
 
-    public function __construct(ChapterRepositoryInterface $chapterRepository)
-    {
+    public function __construct(
+        ChapterRepositoryInterface $chapterRepository,
+        ContainerBagInterface $containerBag,
+        SerializerInterface $serializer,
+        NormalizerInterface $normalizer
+    ) {
         $this->chapterRepository = $chapterRepository;
+        $this->containerBag = $containerBag;
+        $this->serializer = $serializer;
+        $this->normalizer = $normalizer;
     }
 
     public function createChapter(
         Uuid $id,
-        int $chapterNumber,
+        int $identifier,
         string $revelationPlace,
         int $revelationOrder,
         bool $bismillahPre,
@@ -31,7 +45,7 @@ class ChapterService
     ): Chapter {
         $chapter = Chapter::create(
             $id,
-            $chapterNumber,
+            $identifier,
             $revelationPlace,
             $revelationOrder,
             $bismillahPre,
@@ -60,5 +74,20 @@ class ChapterService
     public function getVerseByVerseNumber(int $verseNumber)
     {
         return $this->chapterRepository->getVerseByVerseNumber($verseNumber);
+    }
+
+    public function getRandomVerse(string $locale)
+    {
+        $defaultContext = [
+            'groups' => 'verse_details',
+        ];
+
+        $verse = $this->chapterRepository
+            ->getVerseTranslationByVerseIdentifierAndTranslatorIdentifier(
+                rand(1, 6236),
+                (int) Translator::DEFAULT[$locale]['identifier']
+            );
+
+        return $this->normalizer->normalize($verse, 'json', $defaultContext);
     }
 }

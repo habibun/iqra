@@ -2,7 +2,7 @@
 
 namespace App\Quran\Domain\Repository\Chapter\Verse\Translation;
 
-use App\Quran\Domain\Model\Chapter\Verse\Translation\Translator;
+use App\Quran\Domain\Model\Translator;
 use App\Shared\Domain\ValueObject\Uuid;
 
 interface TranslatorRepositoryInterface
@@ -15,5 +15,5 @@ interface TranslatorRepositoryInterface
 
     public function getAll();
 
-    public function getByTranslatorNumber(int $translatorNumber);
+    public function getByIdentifier(int $identifier);
 }

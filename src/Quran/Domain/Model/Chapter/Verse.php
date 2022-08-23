@@ -4,15 +4,15 @@ namespace App\Quran\Domain\Model\Chapter;
 
 use App\Quran\Domain\Model\Chapter;
 use App\Quran\Domain\Model\Chapter\Verse\Translation;
-use App\Quran\Domain\Model\Chapter\Verse\Translation\Translator;
+use App\Quran\Domain\Model\Translator;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
 class Verse
 {
     private int $id;
+    private int $identifier;
     private int $verseNumber;
-    private int $chapterVerseNumber;
     private string $verseKey;
     private int $juzNumber;
     private int $hizbNumber;
@@ -37,8 +37,8 @@ class Verse
         int $pageNumber,
         Chapter $chapter
     ) {
-        $this->verseNumber = $verseNumber;
-        $this->chapterVerseNumber = $chapterVerseNumber;
+        $this->identifier = $verseNumber;
+        $this->verseNumber = $chapterVerseNumber;
         $this->verseKey = $verseKey;
         $this->juzNumber = $juzNumber;
         $this->hizbNumber = $hizbNumber;
@@ -92,22 +92,22 @@ class Verse
 
     public function getVerseNumber(): int
     {
-        return $this->verseNumber;
+        return $this->identifier;
     }
 
     public function setVerseNumber(int $verseNumber): void
     {
-        $this->verseNumber = $verseNumber;
+        $this->identifier = $verseNumber;
     }
 
     public function getChapterVerseNumber(): int
     {
-        return $this->chapterVerseNumber;
+        return $this->verseNumber;
     }
 
     public function setChapterVerseNumber(int $chapterVerseNumber): void
     {
-        $this->chapterVerseNumber = $chapterVerseNumber;
+        $this->verseNumber = $chapterVerseNumber;
     }
 
     public function getVerseKey(): string
@@ -203,5 +203,10 @@ class Verse
     public function addTranslation(string $text, Translator $translator): void
     {
         $this->translations[] = Translation::create($text, $translator, $this);
+    }
+
+    public function getTranslations(): Collection
+    {
+        return $this->translations;
     }
 }

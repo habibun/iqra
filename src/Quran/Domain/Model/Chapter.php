@@ -12,7 +12,7 @@ use Doctrine\Common\Collections\Collection;
 class Chapter
 {
     private Uuid $id;
-    private int $chapterNumber;
+    private int $identifier;
     private string $revelationPlace;
     private int $revelationOrder;
     private bool $bismillahPre;
@@ -27,7 +27,7 @@ class Chapter
 
     private function __construct(
         Uuid $id,
-        int $chapterNumber,
+        int $identifier,
         string $revelationPlace,
         int $revelationOrder,
         bool $bismillahPre,
@@ -39,7 +39,7 @@ class Chapter
         Info $info
     ) {
         $this->id = $id;
-        $this->setChapterNumber($chapterNumber);
+        $this->setIdentifier($identifier);
         $this->setRevelationPlace($revelationPlace);
         $this->setRevelationOrder($revelationOrder);
         $this->setBismillahPre($bismillahPre);
@@ -56,7 +56,7 @@ class Chapter
 
     public static function create(
         Uuid $id,
-        int $chapterNumber,
+        int $identifier,
         string $revelationPlace,
         int $revelationOrder,
         bool $bismillahPre,
@@ -69,7 +69,7 @@ class Chapter
     ): static {
         return new static(
             $id,
-            $chapterNumber,
+            $identifier,
             $revelationPlace,
             $revelationOrder,
             $bismillahPre,
@@ -184,13 +184,13 @@ class Chapter
         return $verse;
     }
 
-    public function setChapterNumber(int $chapterNumber): void
+    public function setIdentifier(int $identifier): void
     {
-        $this->chapterNumber = $chapterNumber;
+        $this->identifier = $identifier;
     }
 
-    public function getChapterNumber(): int
+    public function getIdentifier(): int
     {
-        return $this->chapterNumber;
+        return $this->identifier;
     }
 }

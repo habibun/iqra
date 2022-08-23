@@ -10,7 +10,7 @@ class HomepageController extends AbstractController
 {
     public function indexNoLocale(): RedirectResponse
     {
-        return $this->redirectToRoute('homepage', ['_locale' => 'en']);
+        return $this->redirectToRoute('shared_homepage', ['_locale' => 'en']);
     }
 
     public function index(): Response

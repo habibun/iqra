@@ -1,32 +1,33 @@
 <?php
 
-namespace App\Quran\Domain\Model\Chapter\Verse\Translation;
+namespace App\Quran\Domain\Model;
 
-use App\Quran\Domain\Model\Chapter\Verse\Translation\Translator\Translation;
-use App\Quran\Domain\Model\Language;
+use App\Quran\Domain\Model\Translator\Translation;
 use App\Shared\Domain\ValueObject\Uuid;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
 class Translator
 {
+    public const DEFAULT = ['en' => ['identifier' => '20'], 'bn' => ['identifier' => '161']];
+
     private Uuid $id;
-    private int $translatorNumber;
+    private int $identifier;
     private string $name;
     private string $authorName;
     private ?string $slug;
     private Language $language;
     private Collection $translations;
 
-    public static function create(Uuid $id, int $translatorNumber, string $name, string $authorName, ?string $slug, Language $language): static
+    public static function create(Uuid $id, int $identifier, string $name, string $authorName, ?string $slug, Language $language): static
     {
-        return new static($id, $translatorNumber, $name, $authorName, $slug, $language);
+        return new static($id, $identifier, $name, $authorName, $slug, $language);
     }
 
-    public function __construct(Uuid $id, int $translatorNumber, string $name, string $authorName, ?string $slug, Language $language)
+    public function __construct(Uuid $id, int $identifier, string $name, string $authorName, ?string $slug, Language $language)
     {
         $this->id = $id;
-        $this->setTranslatorNumber($translatorNumber);
+        $this->setIdentifier($identifier);
         $this->setName($name);
         $this->setAuthorName($authorName);
         $this->setSlug($slug);
@@ -72,14 +73,14 @@ class Translator
         return $this;
     }
 
-    public function getTranslatorNumber(): int
+    public function getIdentifier(): int
     {
-        return $this->translatorNumber;
+        return $this->identifier;
     }
 
-    public function setTranslatorNumber(int $translatorNumber): void
+    public function setIdentifier(int $identifier): void
     {
-        $this->translatorNumber = $translatorNumber;
+        $this->identifier = $identifier;
     }
 
     public function getTranslations(): Collection
@@ -90,7 +91,7 @@ class Translator
     public function addTranslation(Language $targetLanguage, string $name): void
     {
         $exists = $this->translations->exists(function ($key, $value) use ($targetLanguage, $name) {
-            return $value->getTargetLanguage() === $targetLanguage && $value->getName() === $name;
+            return $value->getLanguage() === $targetLanguage && $value->getName() === $name;
         });
 
         if (!$exists) {

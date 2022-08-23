@@ -2,7 +2,6 @@
 
 namespace App\Quran\Application\Service;
 
-use App\Quran\Application\Service\Chapter\Verse\Translation\TranslatorService;
 use App\Quran\Domain\Model\Chapter;
 use App\Quran\Domain\Model\Chapter\Info;
 use App\Quran\Domain\Model\Language;
@@ -122,14 +121,17 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
                 }
 
                 $language = $this->languageService->getByName(ucfirst($tran['language_name']));
-                $translator = $this->translationService->createTranslator(
-                    $this->translationService->getNextIdentity(),
-                    $tran['id'],
-                    $tran['name'],
-                    $tran['author_name'],
-                    $tran['slug'],
-                    $language
-                );
+                $translator = $this->translationService->getByIdentifier($tran['id']);
+                if (!$translator) {
+                    $translator = $this->translationService->createTranslator(
+                        $this->translationService->getNextIdentity(),
+                        $tran['id'],
+                        $tran['name'],
+                        $tran['author_name'],
+                        $tran['slug'],
+                        $language
+                    );
+                }
 
                 $language = $this->languageService->getByName(ucfirst($tran['language_name']));
                 $translator->addTranslation(
@@ -137,8 +139,9 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
                     $tran['translated_name']['name'],
                 );
             }
+            $this->em->flush();
         }
-        $this->em->flush();
+
         $this->em->clear();
     }
 
@@ -188,14 +191,14 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
         $translatorList = $this->translationService->getAll();
 
         $translators = [];
-        /** @var Chapter\Verse\Translation\Translator $translator */
+        /** @var \App\Quran\Domain\Model\Translator $translator */
         foreach ($translatorList as $translator) {
-            $translators[] = $translator->getTranslatorNumber();
+            $translators[] = $translator->getIdentifier();
         }
 
         $page = 1;
         $verses = $this->makeRequest(
-            sprintf('/verses/by_chapter/%d', $chapter->getChapterNumber()),
+            sprintf('/verses/by_chapter/%d', $chapter->getIdentifier()),
             [
                 'words' => false,
                 'page' => $page,
@@ -208,7 +211,7 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
         $totalPages = $verses['pagination']['total_pages'];
         while ($totalPages >= $page) {
             foreach ($verses['verses'] as $v) {
-                echo sprintf('Fetching chapter: %d, verse: %d...%s', $chapter->getChapterNumber(), $v['id'], PHP_EOL);
+                echo sprintf('Fetching chapter: %d, verse: %d...%s', $chapter->getIdentifier(), $v['id'], PHP_EOL);
                 $verse = $this->chapterService->getVerseByVerseNumber($v['id']);
                 if (!$verse) {
                     $verse = $chapter->addVerse(
@@ -225,7 +228,7 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
                     );
 
                     foreach ($v['translations'] as $translation) {
-                        $translator = $this->translationService->getByTranslatorNumber($translation['resource_id']);
+                        $translator = $this->translationService->getByIdentifier($translation['resource_id']);
                         $verse->addTranslation($translation['text'], $translator);
                     }
                 }
@@ -234,7 +237,7 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
             ++$page;
 
             $verses = $this->makeRequest(
-                sprintf('/verses/by_chapter/%d', $chapter->getChapterNumber()),
+                sprintf('/verses/by_chapter/%d', $chapter->getIdentifier()),
                 [
                     'words' => false,
                     'page' => $page,

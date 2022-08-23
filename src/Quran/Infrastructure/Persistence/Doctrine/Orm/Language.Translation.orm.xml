@@ -4,20 +4,20 @@
                   xsi:schemaLocation="https://doctrine-project.org/schemas/orm/doctrine-mapping
                           https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-<entity name="App\Quran\Domain\Model\Language\Translation" table="language_translation">
-    <unique-constraints>
-        <unique-constraint columns="target_language_id,name" name="ltn_idx" />
-    </unique-constraints>
-    <id name="id" type="integer">
-        <generator strategy="AUTO"/>
-    </id>
-    <many-to-one field="targetLanguage" target-entity="App\Quran\Domain\Model\Language" >
-        <join-column name="target_language_id" referenced-column-name="id" />
-    </many-to-one>
-    <field name="name" type="string" length="50"/>
-    <many-to-one field="language" target-entity="App\Quran\Domain\Model\Language" inversed-by="translations">
-        <join-column name="language_id" referenced-column-name="id" />
-    </many-to-one>
-</entity>
+    <entity name="App\Quran\Domain\Model\Language\Translation" table="language_translation">
+        <unique-constraints>
+            <unique-constraint columns="target_language_id,name" name="lt_idx_1" />
+        </unique-constraints>
+        <id name="id" type="integer">
+            <generator strategy="AUTO"/>
+        </id>
+        <many-to-one field="targetLanguage" target-entity="App\Quran\Domain\Model\Language" >
+            <join-column name="target_language_id" referenced-column-name="id" />
+        </many-to-one>
+        <field name="name" type="string" length="50"/>
+        <many-to-one field="language" target-entity="App\Quran\Domain\Model\Language" inversed-by="translations">
+            <join-column name="language_id" referenced-column-name="id" />
+        </many-to-one>
+    </entity>
 
 </doctrine-mapping>

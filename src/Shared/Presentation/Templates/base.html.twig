@@ -10,6 +10,7 @@
 
     {% block javascripts %}
         {{ encore_entry_script_tags('app') }}
+        {{ encore_entry_script_tags('feed') }}
     {% endblock %}
 </head>
 <body class="bg-gray-100">
@@ -33,7 +34,7 @@
                     </svg>
                 </button>
                 <div class="collapse navbar-collapse flex-grow items-center" id="navbarSupportedContent">
-                    <a class=" flex items-center text-gray-900 hover:text-gray-900 focus:text-gray-900 mt-2 lg:mt-0 mr-1" href="{{ path('homepage') }}">
+                    <a class=" flex items-center text-gray-900 hover:text-gray-900 focus:text-gray-900 mt-2 lg:mt-0 mr-1" href="{{ path('shared_homepage') }}">
                         <img src="{{ asset('build/images/logo.png') }}" style="height: 15px" alt="" loading="lazy"/>
                     </a>
                     <!-- Left links -->
@@ -78,10 +79,10 @@
                         </a>
                         <ul class="dropdown-menu min-w-max absolute hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded-lg shadow-lg mt-1 hidden m-0 bg-clip-padding border-none left-auto right-0" aria-labelledby="dropdownMenuButton1">
                             <li>
-                                <a class=" dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100" href="{{ path('homepage', {_locale: 'en'}) }}">English</a>
+                                <a class=" dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100" href="{{ path('shared_homepage', {_locale: 'en'}) }}">English</a>
                             </li>
                             <li>
-                                <a class=" dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100" href="{{ path('homepage', {_locale: 'bn'}) }}">Bengali</a>
+                                <a class=" dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100" href="{{ path('shared_homepage', {_locale: 'bn'}) }}">Bengali</a>
                             </li>
                         </ul>
                     </div>

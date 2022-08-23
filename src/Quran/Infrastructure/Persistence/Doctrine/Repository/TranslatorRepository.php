@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Quran\Infrastructure\Persistence\Doctrine\Repository\Chapter\Verse\Translation;
+namespace App\Quran\Infrastructure\Persistence\Doctrine\Repository;
 
-use App\Quran\Domain\Model\Chapter\Verse\Translation\Translator;
+use App\Quran\Domain\Model\Translator;
 use App\Quran\Domain\Repository\Chapter\Verse\Translation\TranslatorRepositoryInterface;
 use App\Shared\Domain\ValueObject\Uuid;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -36,8 +36,8 @@ class TranslatorRepository extends ServiceEntityRepository implements Translator
         return $this->findAll();
     }
 
-    public function getByTranslatorNumber(int $translatorNumber)
+    public function getByIdentifier(int $identifier)
     {
-        return $this->findOneBy(['translatorNumber' => $translatorNumber]);
+        return $this->findOneBy(['identifier' => $identifier]);
     }
 }

@@ -4,17 +4,17 @@
                   xsi:schemaLocation="https://doctrine-project.org/schemas/orm/doctrine-mapping
                           https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-<entity name="App\Quran\Domain\Model\Language" table="language">
-    <id name="id" type="app_uuid" column="id" length="36"/>
-    <field name="name" type="string" length="50" unique="true"/>
-    <field name="nativeName" type="string" length="50"/>
-    <field name="isoCode" type="string" length="50"/>
-    <field name="direction" type="string" length="50"/>
-    <one-to-many field="translations" target-entity="App\Quran\Domain\Model\Language\Translation" mapped-by="language">
-        <cascade>
-            <cascade-persist/>
-        </cascade>
-    </one-to-many>
-</entity>
+    <entity name="App\Quran\Domain\Model\Language" table="language">
+        <id name="id" type="app_uuid" column="id" length="36"/>
+        <field name="name" type="string" length="50"/>
+        <field name="nativeName" type="string" length="50"/>
+        <field name="isoCode" type="string" length="50" unique="true"/>
+        <field name="direction" type="string" length="50"/>
+        <one-to-many field="translations" target-entity="App\Quran\Domain\Model\Language\Translation" mapped-by="language">
+            <cascade>
+                <cascade-persist/>
+            </cascade>
+        </one-to-many>
+    </entity>
 
 </doctrine-mapping>
