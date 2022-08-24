@@ -3,6 +3,7 @@
 namespace App\Quran\Infrastructure\Persistence\Doctrine\Repository;
 
 use App\Quran\Domain\Model\Chapter;
+use App\Quran\Domain\Model\Chapter\Translation as ChapterTranslationEntity;
 use App\Quran\Domain\Model\Chapter\Verse;
 use App\Quran\Domain\Model\Chapter\Verse\Translation as VerseTranslation;
 use App\Quran\Domain\Repository\ChapterRepositoryInterface;
@@ -63,5 +64,17 @@ class ChapterRepository extends ServiceEntityRepository implements ChapterReposi
             ->setParameter('t_identifier', $translatorIdentifier)
             ->getQuery()
             ->getOneOrNullResult();
+    }
+
+    public function getTranslationByIsoCode(string $isoCode)
+    {
+        return $this->_em->createQueryBuilder()
+            ->select('ct')
+            ->from(ChapterTranslationEntity::class, 'ct')
+            ->join('ct.language', 'l')
+            ->where('l.isoCode = :isoCode')
+            ->setParameter('isoCode', $isoCode)
+            ->getQuery()
+            ->getResult();
     }
 }

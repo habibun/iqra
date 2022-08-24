@@ -7,26 +7,18 @@ use App\Quran\Domain\Model\Chapter\Info;
 use App\Quran\Domain\Model\Translator;
 use App\Quran\Domain\Repository\ChapterRepositoryInterface;
 use App\Shared\Domain\ValueObject\Uuid;
-use Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-use Symfony\Component\Serializer\SerializerInterface;
 
 class ChapterService
 {
     private ChapterRepositoryInterface $chapterRepository;
-    private ContainerBagInterface $containerBag;
-    private SerializerInterface $serializer;
     private NormalizerInterface $normalizer;
 
     public function __construct(
         ChapterRepositoryInterface $chapterRepository,
-        ContainerBagInterface $containerBag,
-        SerializerInterface $serializer,
         NormalizerInterface $normalizer
     ) {
         $this->chapterRepository = $chapterRepository;
-        $this->containerBag = $containerBag;
-        $this->serializer = $serializer;
         $this->normalizer = $normalizer;
     }
 
@@ -74,6 +66,18 @@ class ChapterService
     public function getVerseByVerseNumber(int $verseNumber)
     {
         return $this->chapterRepository->getVerseByVerseNumber($verseNumber);
+    }
+
+    public function getList(string $locale)
+    {
+        $defaultContext = [
+            'groups' => 'chapter_list',
+        ];
+
+        $verse = $this->chapterRepository
+            ->getTranslationByIsoCode($locale);
+
+        return $this->normalizer->normalize($verse, 'json', $defaultContext);
     }
 
     public function getRandomVerse(string $locale)

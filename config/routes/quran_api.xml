@@ -5,6 +5,8 @@
         https://symfony.com/schema/routing/routing-1.0.xsd">
 
     <!--Api-->
-    <route id="quran_chapter_verse_random" path="api/chapter/verse/random"
-           controller="App\Quran\Presentation\Api\VerseController::random"/>
+    <route id="quran_chapter_random_verse" path="api/chapter/random-verse"
+           controller="App\Quran\Presentation\Api\ChapterController::randomVerse"/>
+    <route id="quran_chapter_list" path="api/chapters"
+           controller="App\Quran\Presentation\Api\ChapterController::list"/>
 </routes>
