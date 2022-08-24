@@ -19,6 +19,11 @@ class Translation
         $this->setChapter($chapter);
     }
 
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
     public function getName(): string
     {
         return $this->name;
@@ -48,5 +53,10 @@ class Translation
         $this->chapter = $chapter;
 
         return $this;
+    }
+
+    public function getChapter(): ?Chapter
+    {
+        return $this->chapter;
     }
 }

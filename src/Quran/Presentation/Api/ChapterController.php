@@ -16,6 +16,13 @@ class ChapterController extends AbstractController
         $this->chapterService = $chapterService;
     }
 
+    public function list(Request $request): JsonResponse
+    {
+        return new JsonResponse(
+            $this->chapterService->getList($request->getLocale())
+        );
+    }
+
     public function randomVerse(Request $request): JsonResponse
     {
         return new JsonResponse(
