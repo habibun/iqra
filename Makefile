@@ -17,7 +17,7 @@ reset: ## Reset project
 	symfony console app:fetch-quran
 
 .PHONY: lint-all
-lint-all: lint-cs lint-ps lint-twig ## Lint project
+lint-all: lint-cs lint-ps lint-es lint-twig ## Lint project
 
 .PHONY: fix-all
 fix-all: fix-cs fix-ps ## Fix project
