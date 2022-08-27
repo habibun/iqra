@@ -77,4 +77,22 @@ class ChapterRepository extends ServiceEntityRepository implements ChapterReposi
             ->getQuery()
             ->getResult();
     }
+
+    public function getVerseByIdentifierAndTranslatorIdentifier(int $identifier, int $translatorIdentifier)
+    {
+        return $this->_em->createQueryBuilder()
+            ->select('vt')
+            ->from(VerseTranslation::class, 'vt')
+            ->join('vt.translator', 't')
+            ->join('t.language', 'l')
+            ->join('vt.verse', 'v')
+            ->join('v.chapter', 'c')
+            ->where('c.identifier = :identifier')
+            ->andWhere('t.identifier = :t_identifier')
+            ->setParameter('identifier', $identifier)
+            ->setParameter('t_identifier', $translatorIdentifier)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

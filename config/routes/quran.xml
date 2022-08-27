@@ -3,4 +3,12 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://symfony.com/schema/routing
         https://symfony.com/schema/routing/routing-1.0.xsd">
+
+    <!--Index-->
+    <route id="quran_index" path="/"
+           controller="App\Quran\Presentation\Web\IndexController::index"/>
+
+    <!--Chapter-->
+    <route id="quran_chapter_details" path="/chapter/{id}"
+           controller="App\Quran\Presentation\Web\ChapterController::details"/>
 </routes>

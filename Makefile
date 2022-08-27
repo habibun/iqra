@@ -17,7 +17,7 @@ reset: ## Reset project
 	symfony console app:fetch-quran
 
 .PHONY: lint-all
-lint-all: lint-cs lint-ps lint-twig ## Lint project
+lint-all: lint-cs lint-ps lint-es lint-twig lint-doctrine ## Lint project
 
 .PHONY: fix-all
 fix-all: fix-cs fix-ps ## Fix project
@@ -59,6 +59,10 @@ lint-es: ## ESLint analyzer
 .PHONY: lint-twig
 lint-twig: ## Linting Twig Templates
 	symfony console lint:twig
+
+.PHONY: lint-doctrine
+lint-doctrine: ## Validate the mappings
+	symfony console doctrine:schema:validate
 
 .PHONY: fix-cs
 fix-cs: ## Execute PHP CS Fixer

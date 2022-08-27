@@ -193,4 +193,64 @@ class Chapter
     {
         return $this->identifier;
     }
+
+    public function getId(): Uuid
+    {
+        return $this->id;
+    }
+
+    public function getRevelationPlace(): string
+    {
+        return $this->revelationPlace;
+    }
+
+    public function getRevelationOrder(): int
+    {
+        return $this->revelationOrder;
+    }
+
+    public function isBismillahPre(): bool
+    {
+        return $this->bismillahPre;
+    }
+
+    public function getNameSimple(): string
+    {
+        return $this->nameSimple;
+    }
+
+    public function getNameComplex(): string
+    {
+        return $this->nameComplex;
+    }
+
+    public function getNameArabic(): string
+    {
+        return $this->nameArabic;
+    }
+
+    public function getVersesCount(): int
+    {
+        return $this->versesCount;
+    }
+
+    public function getPages(): array
+    {
+        return $this->pages;
+    }
+
+    public function getInfo(): Info
+    {
+        return $this->info;
+    }
+
+    public function getTranslations(): Collection
+    {
+        return $this->translations;
+    }
+
+    public function getVerses(): Collection
+    {
+        return $this->verses;
+    }
 }

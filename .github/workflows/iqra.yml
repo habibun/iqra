@@ -4,21 +4,26 @@ jobs:
   build:
     runs-on: ubuntu-latest
     services:
-      mysql:
-        image: mysql:8
+      postgres:
+        image: postgres:14.5
         env:
-          MYSQL_HOST: 127.0.0.1
-          MYSQL_DB: github_actions_test
-          MYSQL_USER: root
-          MYSQL_ALLOW_EMPTY_PASSWORD: yes
-          MYSQL_PASSWORD:
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
         ports:
-          - "3306:3306"
+          - 5432:5432
+    strategy:
+      matrix:
+        php-versions: [ '8.0']
     steps:
       - name: Setup Php and Composer
         uses: shivammathur/setup-php@2cb9b829437ee246e9b3cac53555a39208ca6d28
         with:
-          php-version: '8.0'
+            php-version: ${{ matrix.php-versions }}
+            extensions: mbstring, xml, ctype, iconv, intl, pdo, pdo_mysql, dom, filter, gd, iconv, json, mbstring, mysqli, pdo_pgsql, pgsql
       - name: Check PHP Version
         run: php -v
       - name: Check out repository
@@ -49,3 +54,8 @@ jobs:
         run: make lint-ps
       - name: Twig - Linting Twig Templates
         run: make lint-twig
+      - name: Doctrine - Update Database Schema
+        run: symfony console doctrine:schema:update --force
+      - name: Doctrine - Validate the mappings
+        run: symfony console doctrine:schema:validate
+

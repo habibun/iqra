@@ -3,7 +3,8 @@ module.exports = {
     content: [
         './node_modules/tw-elements/dist/js/**/*.js',
         './assets/**/*.{vue,js,ts,jsx,tsx}',
-        "./src/Shared/Presentation/Templates/**/*.twig"
+        "./src/Shared/Presentation/templates/**/*.twig",
+        "./src/Quran/Presentation/templates/**/*.twig",
     ],
     theme: {
         extend: {},

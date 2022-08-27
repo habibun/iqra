@@ -1,7 +1,11 @@
-GET https://dev.iqra.com/bn/api/quran/api/chapters
+GET https://dev.iqra.com/bn/api/quran/chapters
 Accept: application/json
 
 ###
-GET https://dev.iqra.com/en/api/quran/api/chapter/random-verse
+GET https://dev.iqra.com/en/api/quran/chapters/verses/random
+Accept: application/json
+
+###
+GET https://dev.iqra.com/en/api/quran/chapters/1
 Accept: application/json
 

@@ -23,7 +23,7 @@
                 <cascade-persist/>
             </cascade>
         </one-to-many>
-        <many-to-one field="chapter" target-entity="App\Quran\Domain\Model\Chapter">
+        <many-to-one field="chapter" target-entity="App\Quran\Domain\Model\Chapter" inversed-by="verses">
             <join-column name="chapter_id" referenced-column-name="id" />
         </many-to-one>
     </entity>

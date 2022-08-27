@@ -1,8 +1,10 @@
 import React ,{Component}from 'react';
 import ReactDom from 'react-dom';
 import axios from 'axios';
+import {RANDOM_VERSE} from '../apis/Url';
+import {formatUrl} from '../utils/Locale';
 
-class Feed extends Component {
+class Homepage extends Component {
     constructor(props) {
         super(props);
         this.state = { verse: [], loading: true};
@@ -13,16 +15,14 @@ class Feed extends Component {
     }
 
     getVerse() {
-        axios.get(`https://dev.iqra.com/en/api/quran/api/chapter/verse/random`).then(verse => {
-            console.log(verse);
+        axios.get(formatUrl(RANDOM_VERSE)).then(verse => {
             this.setState({ verse: verse.data, loading: false})
         })
     }
 
     render() {
-        console.log(this.state);
-        return <h2>Feed! <span> {this.state.verse.text} </span></h2>;
+        return <h2><span> {this.state.verse.text} </span></h2>;
     }
 }
 
-ReactDom.render(<Feed/>, document.getElementById('root'));
+ReactDom.render(<Homepage/>, document.getElementById('homepage'));

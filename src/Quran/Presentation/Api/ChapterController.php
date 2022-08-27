@@ -29,4 +29,11 @@ class ChapterController extends AbstractController
             $this->chapterService->getRandomVerse($request->getLocale())
         );
     }
+
+    public function details(int $id, Request $request): JsonResponse
+    {
+        return new JsonResponse(
+            $this->chapterService->getByIdentifierAndTranslatorIdentifier($id, $request->getLocale())
+        );
+    }
 }

@@ -1,7 +1,8 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
     paths:
-        '%kernel.project_dir%/src/Shared/Presentation/Templates': 'shared'
+        '%kernel.project_dir%/src/Shared/Presentation/templates': 'shared'
+        '%kernel.project_dir%/src/Quran/Presentation/templates': 'quran'
 
 when@test:
     twig:

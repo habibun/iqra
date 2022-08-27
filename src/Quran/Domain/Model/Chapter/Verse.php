@@ -209,4 +209,16 @@ class Verse
     {
         return $this->translations;
     }
+
+    public function getIdentifier(): int
+    {
+        return $this->identifier;
+    }
+
+    public function setIdentifier(int $identifier): Verse
+    {
+        $this->identifier = $identifier;
+
+        return $this;
+    }
 }
