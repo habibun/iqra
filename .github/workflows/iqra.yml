@@ -4,18 +4,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     services:
-      postgres:
-        # Docker Hub image
-        image: postgres
-        # Provide the password for postgres
+      mysql:
+        image: mysql:5.7
         env:
-          POSTGRES_PASSWORD: postgres
-        # Set health checks to wait until postgres has started
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+          MYSQL_ROOT_PASSWORD: root
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
       - name: Setup Php and Composer
         uses: shivammathur/setup-php@2cb9b829437ee246e9b3cac53555a39208ca6d28
