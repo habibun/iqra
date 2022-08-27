@@ -12,7 +12,8 @@ WORKDIR /var/www/symfony
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-RUN curl -sS https://get.symfony.com/cli/installer | bash
-RUN mv /root/.symfony/bin/symfony /usr/local/bin/symfony
+RUN curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | bash
+RUN apt install symfony-cli
+
 RUN git config --global user.email "habibun.noby@gmail.com" \
     && git config --global user.name "Habibun Noby"

@@ -10,6 +10,7 @@
 
 ###> miscellaneous ###
 /.idea
+/docker/mysql
 ###< miscellaneous ###
 
 ###> friendsofphp/php-cs-fixer ###
