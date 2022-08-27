@@ -36,4 +36,12 @@ class UuidType extends StringType
     {
         return self::APP_UUID;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function requiresSQLCommentHint(AbstractPlatform $platform)
+    {
+        return true;
+    }
 }
