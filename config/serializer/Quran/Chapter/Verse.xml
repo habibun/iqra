@@ -8,11 +8,13 @@
         <attribute name="identifier">
             <group>verse_details</group>
         </attribute>
-        <attribute name="id">
+        <attribute name="identifier">
             <group>verse_details</group>
+            <group>chapter_details</group>
         </attribute>
         <attribute name="translations">
             <group>verse_details</group>
+            <group>chapter_details</group>
         </attribute>
     </class>
 </serializer>

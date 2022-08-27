@@ -19,7 +19,6 @@
             prefix="/{_locale&lt;%app.supported_locales%&gt;}/quran"
             trailing-slash-on-root="false">
     </import>
-
     <import resource="routes/quran_api.xml"
             prefix="/{_locale&lt;%app.supported_locales%&gt;}/api/quran"
             trailing-slash-on-root="false">

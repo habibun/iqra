@@ -7,12 +7,17 @@
     <class name="App\Quran\Domain\Model\Chapter">
         <attribute name="identifier">
             <group>chapter_list</group>
-        </attribute>
-        <attribute name="id">
             <group>verse_details</group>
+        </attribute>
+        <attribute name="nameSimple">
+            <group>chapter_list</group>
+            <group>chapter_details</group>
         </attribute>
         <attribute name="translations">
             <group>verse_details</group>
+        </attribute>
+        <attribute name="verses">
+            <group>chapter_details</group>
         </attribute>
     </class>
 </serializer>

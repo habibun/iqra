@@ -20,4 +20,6 @@ interface ChapterRepositoryInterface
     public function getTranslationByIsoCode(string $isoCode);
 
     public function getVerseTranslationByVerseIdentifierAndTranslatorIdentifier(int $verseIdentifier, int $translatorIdentifier);
+
+    public function getVerseByIdentifierAndTranslatorIdentifier(int $identifier, int $translatorIdentifier);
 }

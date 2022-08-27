@@ -7,9 +7,11 @@
     <class name="App\Quran\Domain\Model\Chapter\Verse\Translation">
         <attribute name="id">
             <group>verse_details</group>
+            <group>chapter_details</group>
         </attribute>
         <attribute name="text">
             <group>verse_details</group>
+            <group>chapter_details</group>
         </attribute>
         <attribute name="translator">
             <group>verse_details</group>

@@ -70,28 +70,28 @@ class ChapterService
 
     public function getList(string $locale)
     {
-        $defaultContext = [
-            'groups' => 'chapter_list',
-        ];
-
         $verse = $this->chapterRepository
             ->getTranslationByIsoCode($locale);
 
-        return $this->normalizer->normalize($verse, 'json', $defaultContext);
+        return $this->normalizer->normalize($verse, 'json', ['groups' => 'chapter_list']);
     }
 
     public function getRandomVerse(string $locale)
     {
-        $defaultContext = [
-            'groups' => 'verse_details',
-        ];
-
         $verse = $this->chapterRepository
             ->getVerseTranslationByVerseIdentifierAndTranslatorIdentifier(
                 rand(1, 6236),
                 (int) Translator::DEFAULT[$locale]['identifier']
             );
 
-        return $this->normalizer->normalize($verse, 'json', $defaultContext);
+        return $this->normalizer->normalize($verse, 'json', ['groups' => 'verse_details']);
+    }
+
+    public function getByIdentifierAndTranslatorIdentifier(int $identifier, string $locale)
+    {
+        $chapter = $this->chapterRepository
+            ->getVerseByIdentifierAndTranslatorIdentifier($identifier, (int) Translator::DEFAULT[$locale]['identifier']);
+
+        return $this->normalizer->normalize($chapter, 'json', ['groups' => 'chapter_details']);
     }
 }
