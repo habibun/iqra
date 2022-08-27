@@ -5,12 +5,15 @@ jobs:
     runs-on: ubuntu-latest
     services:
       mysql:
-        image: mysql:5.7
+        image: mysql:8
         env:
-          MYSQL_ROOT_PASSWORD: root
+          MYSQL_HOST: 127.0.0.1
+          MYSQL_DB: db_name
+          MYSQL_USER: db_user
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_PASSWORD:
         ports:
-          - 3306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+          - "3306:3306"
     steps:
       - name: Setup Php and Composer
         uses: shivammathur/setup-php@2cb9b829437ee246e9b3cac53555a39208ca6d28
