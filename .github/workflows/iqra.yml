@@ -10,7 +10,6 @@ jobs:
           MYSQL_HOST: 127.0.0.1
           MYSQL_DB: db_name
           MYSQL_USER: db_user
-          MYSQL_ALLOW_EMPTY_PASSWORD: yes
           MYSQL_PASSWORD: db_password
         ports:
           - "3306:3306"
