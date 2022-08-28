@@ -77,4 +77,36 @@ class Language
             $this->translations[] = new Translation($this, $targetLanguage, $name);
         }
     }
+
+    public function getId(): Uuid
+    {
+        return $this->id;
+    }
+
+    public function getTranslations(): Collection
+    {
+        return $this->translations;
+    }
+
+    public function setTranslations(Collection $translations): Language
+    {
+        $this->translations = $translations;
+
+        return $this;
+    }
+
+    public function getNativeName(): string
+    {
+        return $this->nativeName;
+    }
+
+    public function getIsoCode(): string
+    {
+        return $this->isoCode;
+    }
+
+    public function getDirection(): string
+    {
+        return $this->direction;
+    }
 }

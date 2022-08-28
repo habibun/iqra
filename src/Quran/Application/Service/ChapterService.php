@@ -78,13 +78,24 @@ class ChapterService
 
     public function getRandomVerse(string $locale)
     {
-        $verse = $this->chapterRepository
+        $verseTranslation = $this->chapterRepository
             ->getVerseTranslationByVerseIdentifierAndTranslatorIdentifier(
                 rand(1, 6236),
                 (int) Translator::DEFAULT[$locale]['identifier']
             );
 
-        return $this->normalizer->normalize($verse, 'json', ['groups' => 'verse_details']);
+        $chapterName = null;
+        foreach ($verseTranslation->getVerse()->getChapter()->getTranslations() as $translation) {
+            if ($locale === $translation->getLanguage()->getIsoCode()) {
+                $chapterName = $translation->getName();
+            }
+        }
+
+        return [
+            'text' => $verseTranslation->getText(),
+            'chapter_name' => $chapterName,
+            'verse_key' => $verseTranslation->getVerse()->getVerseKey(),
+        ];
     }
 
     public function getByIdentifierAndTranslatorIdentifier(int $identifier, string $locale)
