@@ -11,6 +11,7 @@
 ###> miscellaneous ###
 /.idea
 /docker/postgresql
+/docker-compose.override.yml
 ###< miscellaneous ###
 
 ###> friendsofphp/php-cs-fixer ###
