@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  database:
+    ports:
+      - "5433"
+  php:
+    ports:
+      - "9001"
+  nginx:
+    ports:
+      - "81"
