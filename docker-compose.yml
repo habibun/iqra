@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   database:
-    image: 'postgres:14.5'
+    image: postgres:14.5-alpine
     environment:
       POSTGRES_PASSWORD: iqra
       POSTGRES_USER: iqra
@@ -10,7 +10,7 @@ services:
     ports:
       - '5432'
     volumes:
-      - ./docker/postgresql:/var/lib/postgresql/data:rw
+      - ./docker/postgresql:/var/lib/postgresql/data
   php:
     container_name: php
     build:
@@ -32,3 +32,11 @@ services:
     depends_on:
       - php
       - database
+  node:
+    image: node:16.16-alpine
+    working_dir: /var/www/symfony
+    volumes:
+      - ./:/var/www/symfony
+    ports:
+      - "8080"
+    tty: true
