@@ -8,10 +8,14 @@
         <attribute name="name">
             <group>chapter_list</group>
             <group>chapter_details</group>
+            <group>verse_details</group>
         </attribute>
         <attribute name="chapter">
             <group>chapter_list</group>
             <group>chapter_details</group>
+        </attribute>
+        <attribute name="language">
+            <group>verse_details</group>
         </attribute>
     </class>
 </serializer>

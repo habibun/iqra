@@ -21,7 +21,15 @@ class Homepage extends Component {
     }
 
     render() {
-        return <h2><span> {this.state.verse.text} </span></h2>;
+        return (
+            <p>
+                <h1 className="text-3xl font-bold mb-8">
+                    <span> {this.state.verse.text} </span>
+                </h1>
+                <hr className="my-6 border-gray-300"/>
+                <span> {this.state.verse.chapter_name} - {this.state.verse.verse_key} </span>
+            </p>
+        );
     }
 }
 

@@ -16,5 +16,8 @@
         <attribute name="translator">
             <group>verse_details</group>
         </attribute>
+        <attribute name="verse">
+            <group>verse_details</group>
+        </attribute>
     </class>
 </serializer>

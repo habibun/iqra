@@ -1,5 +1,22 @@
 console = symfony console
-compose = composer
+
+# Executables
+PHP      = php
+COMPOSER = composer
+GIT      = git
+YARN     = yarn
+
+# Executables: local only
+SYMFONY_CLI    = symfony
+DOCKER         = docker
+DOCKER_COMPOSE = docker-compose
+
+# Executables: vendors
+PHP_CS_FIXER  = ./vendor/bin/php-cs-fixer
+
+# Alias
+SYMFONY         = $(SYMFONY_CLI)
+SYMFONY_CONSOLE = $(SYMFONY_CLI) console
 
 ##--------------✨ Project ✨--------------
 .PHONY: help
@@ -21,6 +38,19 @@ lint-all: lint-cs lint-ps lint-es lint-twig lint-doctrine ## Lint project
 
 .PHONY: fix-all
 fix-all: fix-cs fix-ps ## Fix project
+
+##--------------✨ Docker ✨--------------
+.PHONY: up
+up: ## Start the docker hub
+	$(DOCKER_COMPOSE) up --detach
+
+.PHONY: build
+build: ## Builds the images
+	$(DOCKER_COMPOSE) build --pull --no-cache
+
+.PHONY: down
+down: ## Stop the docker hub
+	$(DOCKER_COMPOSE) down --remove-orphans
 
 ##--------------✨ Database ✨--------------
 .PHONY: db-diff

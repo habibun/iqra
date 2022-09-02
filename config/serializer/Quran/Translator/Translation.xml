@@ -4,18 +4,11 @@
             xsi:schemaLocation="http://symfony.com/schema/dic/serializer-mapping
         https://symfony.com/schema/dic/serializer-mapping/serializer-mapping-1.0.xsd"
 >
-    <class name="App\Quran\Domain\Model\Chapter\Verse">
-        <attribute name="identifier">
-            <group>verse_details</group>
-            <group>chapter_details</group>
-        </attribute>
-        <attribute name="verseKey">
+    <class name="App\Quran\Domain\Model\Translator\Translation">
+        <attribute name="name">
             <group>verse_details</group>
         </attribute>
-        <attribute name="translations">
-            <group>chapter_details</group>
-        </attribute>
-        <attribute name="chapter">
+        <attribute name="language">
             <group>verse_details</group>
         </attribute>
     </class>
