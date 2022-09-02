@@ -79,4 +79,3 @@ jobs:
 
       - name: Doctrine - Validate the mappings
         run: symfony console doctrine:schema:validate
-
