@@ -19,8 +19,8 @@ jobs:
           - 5432:5432
     strategy:
       matrix:
-        php-versions: [ '8.0']
-        node-version: [15.x, 16.16]
+        php-versions: [8.0]
+        node-version: [16.16]
     steps:
       - name: Setup Php and Composer
         uses: shivammathur/setup-php@2cb9b829437ee246e9b3cac53555a39208ca6d28
