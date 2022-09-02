@@ -50,12 +50,8 @@ jobs:
         run: symfony check:requirements
       - name: Clear Symfony Cache
         run:  symfony console cache:clear
-      - name: PHP CS Fixer - Coding Standards Checks
-        run: make lint-cs
-      - name: Psalm - Static Analysis Of PHP Code
-        run: make lint-ps
-      - name: Twig - Linting Twig Templates
-        run: make lint-twig
+      - name: Coding Standards Checks
+        run: make lint-all
       - name: Doctrine - Update Database Schema
         run: symfony console doctrine:schema:update --force
       - name: Doctrine - Validate the mappings
