@@ -1,4 +1,11 @@
 {
+    "license": "MIT",
+    "description": "Islamic Knowledge and Information",
+    "author": {
+        "name": "Habibun Noby",
+        "email": "habibun.noby@gmail.com"
+    },
+    "private": false,
     "devDependencies": {
         "@babel/preset-react": "^7.0.0",
         "@hotwired/stimulus": "^3.1.0",
@@ -19,8 +26,6 @@
         "tw-elements": "^1.0.0-alpha12",
         "webpack-notifier": "^1.15.0"
     },
-    "license": "UNLICENSED",
-    "private": true,
     "scripts": {
         "dev-server": "encore dev-server",
         "dev": "encore dev",
