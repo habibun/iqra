@@ -20,6 +20,7 @@ jobs:
     strategy:
       matrix:
         php-versions: [ '8.0']
+        node-version: [15.x, 16.x]
     steps:
       - name: Setup Php and Composer
         uses: shivammathur/setup-php@2cb9b829437ee246e9b3cac53555a39208ca6d28
@@ -48,6 +49,13 @@ jobs:
           mv /home/runner/.symfony5/bin/symfony /usr/local/bin/symfony
       - name: Check Symfony Requirements
         run: symfony check:requirements
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install dependencies
+        run: yarn
       - name: Clear Symfony Cache
         run:  symfony console cache:clear
       - name: Coding Standards Checks
