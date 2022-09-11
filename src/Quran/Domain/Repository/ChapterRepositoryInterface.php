@@ -9,7 +9,7 @@ interface ChapterRepositoryInterface
 {
     public function add(Chapter $chapter): void;
 
-    public function getByNameSimple(string $nameSimple): null|object;
+    public function getByNameSimple(string $nameSimple);
 
     public function nextIdentity(): Uuid;
 

@@ -25,8 +25,7 @@
                 <cascade-persist/>
             </cascade>
         </one-to-many>
-        <one-to-one field="info" target-entity="App\Quran\Domain\Model\Chapter\Info">
-            <join-column name="info_id" referenced-column-name="id" />
+        <one-to-one field="info" target-entity="App\Quran\Domain\Model\Chapter\Info" mapped-by="chapter">
             <cascade>
                 <cascade-persist/>
             </cascade>
