@@ -14,6 +14,7 @@
         <many-to-one field="language" target-entity="App\Quran\Domain\Model\Language">
             <join-column name="language_id" referenced-column-name="id" />
         </many-to-one>
+        <one-to-one field="chapter" target-entity="App\Quran\Domain\Model\Chapter" inversed-by="info" />
     </entity>
 
 </doctrine-mapping>

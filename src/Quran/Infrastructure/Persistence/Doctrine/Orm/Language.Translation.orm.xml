@@ -5,9 +5,6 @@
                           https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
     <entity name="App\Quran\Domain\Model\Language\Translation" table="language_translation">
-        <unique-constraints>
-            <unique-constraint columns="target_language_id,name" name="lt_idx_1" />
-        </unique-constraints>
         <id name="id" type="integer">
             <generator strategy="AUTO"/>
         </id>

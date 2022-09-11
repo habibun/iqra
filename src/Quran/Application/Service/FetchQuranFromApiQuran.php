@@ -5,6 +5,7 @@ namespace App\Quran\Application\Service;
 use App\Quran\Domain\Model\Chapter;
 use App\Quran\Domain\Model\Chapter\Info;
 use App\Quran\Domain\Model\Language;
+use App\Quran\Domain\Model\Translator;
 use App\Quran\Domain\Service\FetchQuranInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
@@ -90,9 +91,13 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
                 $translatedName = $lang['translated_name'];
                 // api.quran bug - tweaking translated name for bengali language
                 $bengali = Language::BENGALI['slug'];
-                if (Language::BENGALI['iso_code'] === $isoCode && $translatedName['language_name'] !== $bengali) {
+                if (Language::BENGALI['iso_code'] === $isoCode && 'English' === $translatedName['name']) {
                     $translatedName['language_name'] = $bengali;
                     $translatedName['name'] = 'ইংরেজি';
+                }
+                if (Language::BENGALI['iso_code'] === $isoCode && 'Bengali' === $translatedName['name']) {
+                    $translatedName['language_name'] = $bengali;
+                    $translatedName['name'] = 'বাংলা';
                 }
 
                 $targetLanguage = $this->languageService->getByName(ucfirst($translatedName['language_name']));
@@ -157,7 +162,6 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
                     echo sprintf('Fetching chapter: %d...%s', $ch['id'], PHP_EOL);
                     $chapterInfo = $this->makeRequest('/chapters/'.$ch['id'].'/info', ['language' => $isoCode]);
                     $chapterInfo = $chapterInfo['chapter_info'];
-                    $info = Info::create($chapterInfo['text'], $chapterInfo['short_text'], $chapterInfo['source'], $language);
                     $chapter = $this->chapterService->createChapter(
                         $this->chapterService->getNextIdentity(),
                         $ch['id'],
@@ -169,8 +173,8 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
                         $ch['name_arabic'],
                         $ch['verses_count'],
                         $ch['pages'],
-                        $info,
                     );
+                    Info::create($chapterInfo['text'], $chapterInfo['short_text'], $chapterInfo['source'], $language, $chapter);
                     $this->fetchVerse($chapter);
                 }
 
@@ -191,7 +195,7 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
         $translatorList = $this->translationService->getAll();
 
         $translators = [];
-        /** @var \App\Quran\Domain\Model\Translator $translator */
+        /** @var Translator $translator */
         foreach ($translatorList as $translator) {
             $translators[] = $translator->getIdentifier();
         }

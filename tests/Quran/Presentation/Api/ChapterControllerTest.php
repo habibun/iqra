@@ -9,7 +9,7 @@ class ChapterControllerTest extends WebTestCase
     public function testRandomVerse()
     {
         $client = static::createClient();
-//        $crawler = $client->request('GET', '/en/api/quran/chapters/verses/random');
+        $crawler = $client->request('GET', '/en/api/quran/chapters/verses/random');
 //        $this->assertResponseIsSuccessful();
         $this->assertEquals(1, 1);
     }

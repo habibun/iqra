@@ -35,8 +35,7 @@ class Chapter
         string $nameComplex,
         string $nameArabic,
         int $versesCount,
-        array $pages,
-        Info $info
+        array $pages
     ) {
         $this->id = $id;
         $this->setIdentifier($identifier);
@@ -48,7 +47,6 @@ class Chapter
         $this->setNameArabic($nameArabic);
         $this->setVersesCount($versesCount);
         $this->setPages($pages);
-        $this->setInfo($info);
 
         $this->translations = new ArrayCollection();
         $this->verses = new ArrayCollection();
@@ -64,8 +62,7 @@ class Chapter
         string $nameComplex,
         string $nameArabic,
         int $versesCount,
-        array $pages,
-        Info $info
+        array $pages
     ): static {
         return new static(
             $id,
@@ -77,8 +74,7 @@ class Chapter
             $nameComplex,
             $nameArabic,
             $versesCount,
-            $pages,
-            $info
+            $pages
         );
     }
 

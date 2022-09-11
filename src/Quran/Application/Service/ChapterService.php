@@ -3,7 +3,6 @@
 namespace App\Quran\Application\Service;
 
 use App\Quran\Domain\Model\Chapter;
-use App\Quran\Domain\Model\Chapter\Info;
 use App\Quran\Domain\Model\Translator;
 use App\Quran\Domain\Repository\ChapterRepositoryInterface;
 use App\Shared\Domain\ValueObject\Uuid;
@@ -32,8 +31,7 @@ class ChapterService
         string $nameComplex,
         string $nameArabic,
         int $versesCount,
-        array $pages,
-        Info $info
+        array $pages
     ): Chapter {
         $chapter = Chapter::create(
             $id,
@@ -45,8 +43,7 @@ class ChapterService
             $nameComplex,
             $nameArabic,
             $versesCount,
-            $pages,
-            $info
+            $pages
         );
         $this->chapterRepository->add($chapter);
 

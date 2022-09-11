@@ -24,7 +24,7 @@ class ChapterRepository extends ServiceEntityRepository implements ChapterReposi
         $this->getEntityManager()->persist($chapter);
     }
 
-    public function getByNameSimple(string $nameSimple): null|object
+    public function getByNameSimple(string $nameSimple)
     {
         return $this->findOneBy(['nameSimple' => $nameSimple]);
     }
