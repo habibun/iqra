@@ -10,7 +10,7 @@ services:
     ports:
       - '5432'
     volumes:
-      - ./docker/postgresql:/var/lib/postgresql/data
+      - ./docker/postgresql:/var/lib/postgresql/data:z
   php:
     container_name: php
     build:
