@@ -1,7 +1,8 @@
 version: '3.8'
 
 services:
-  database:
+  postgres:
+    container_name: postgres
     image: postgres:14.5-alpine
     environment:
       POSTGRES_PASSWORD: iqra
@@ -20,7 +21,7 @@ services:
     volumes:
       - ./:/var/www/symfony
     depends_on:
-      - database
+      - postgres
   nginx:
     container_name: nginx
     image: nginx:stable-alpine
@@ -31,8 +32,9 @@ services:
       - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - php
-      - database
+      - postgres
   node:
+    container_name: node
     image: node:16.16-alpine
     working_dir: /var/www/symfony
     volumes:
@@ -40,3 +42,5 @@ services:
     ports:
       - "8080"
     tty: true
+    depends_on:
+      - nginx
