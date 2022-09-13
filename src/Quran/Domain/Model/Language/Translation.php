@@ -48,4 +48,16 @@ class Translation
 
         return $this;
     }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function setId(int $id): Translation
+    {
+        $this->id = $id;
+
+        return $this;
+    }
 }

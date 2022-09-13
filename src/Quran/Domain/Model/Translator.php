@@ -98,4 +98,16 @@ class Translator
             $this->translations[] = new Translation($this, $targetLanguage, $name);
         }
     }
+
+    public function getId(): Uuid
+    {
+        return $this->id;
+    }
+
+    public function setId(Uuid $id): Translator
+    {
+        $this->id = $id;
+
+        return $this;
+    }
 }
