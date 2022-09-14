@@ -26,7 +26,7 @@ final class Version20220910081753 extends AbstractMigration
 
         foreach ($files as $file) {
             foreach (explode(';', file_get_contents(__DIR__.'./../Sql/'.$file)) as $sql) {
-                if (1 === strlen($sql)) {
+                if (empty($sql) || 1 === strlen($sql)) {
                     continue;
                 }
 
@@ -37,6 +37,5 @@ final class Version20220910081753 extends AbstractMigration
 
     public function down(Schema $schema): void
     {
-        $this->addSql('DROP TABLE language_translation');
     }
 }

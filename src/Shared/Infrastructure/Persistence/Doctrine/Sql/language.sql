@@ -1,2 +1,2 @@
-INSERT INTO public.language (id, name, native_name, iso_code, direction) VALUES ('4357538e-ae31-4fb4-ad19-7de3427cbf0e', 'English', 'English', 'en', 'ltr');
-INSERT INTO public.language (id, name, native_name, iso_code, direction) VALUES ('5c92c311-37a8-4ede-87ca-bbdd6790dff9', 'Bengali', 'বাংলা', 'bn', 'ltr');
+INSERT INTO public.language (id, name, native_name, iso_code, direction) VALUES ('72640dc1-6b4b-4591-a9d8-baa61310499b', 'English', 'English', 'en', 'ltr');
+INSERT INTO public.language (id, name, native_name, iso_code, direction) VALUES ('7d057294-d5c8-4371-871e-381ded0257bd', 'Bengali', 'বাংলা', 'bn', 'ltr');

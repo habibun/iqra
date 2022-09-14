@@ -17,6 +17,10 @@ class UuidType extends StringType
      */
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
+        if (null === $value) {
+            return null;
+        }
+
         return new Uuid($value);
     }
 
