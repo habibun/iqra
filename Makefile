@@ -31,7 +31,7 @@ init: ## Install project
 .PHONY: reset
 reset: ## Reset project
 	$(MAKE) db-reset
-	symfony console doctrine:migrations:migrate -n -vvv
+	@symfony console doctrine:migrations:migrate -n
 
 .PHONY: lint-all
 lint-all: lint-cs lint-ps lint-es lint-twig lint-doctrine ## Lint project

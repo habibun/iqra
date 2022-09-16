@@ -174,7 +174,9 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
                         $ch['verses_count'],
                         $ch['pages'],
                     );
-                    Info::create($chapterInfo['text'], $chapterInfo['short_text'], $chapterInfo['source'], $language, $chapter);
+                    $info = Info::create($chapterInfo['text'], $chapterInfo['short_text'], $chapterInfo['source'],
+                        $language, $chapter);
+                    $this->em->persist($info);
                     $this->fetchVerse($chapter);
                 }
 

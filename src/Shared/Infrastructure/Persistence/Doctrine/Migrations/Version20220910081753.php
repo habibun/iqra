@@ -8,7 +8,7 @@ use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
 /**
- * Auto-generated Migration: Please modify to your needs!
+ * Version20220910081753.
  */
 final class Version20220910081753 extends AbstractMigration
 {
@@ -17,22 +17,12 @@ final class Version20220910081753 extends AbstractMigration
         return 'Insert Predefined Data';
     }
 
+    /**
+     * @psalm-suppress PossiblyInvalidMethodCall
+     */
     public function up(Schema $schema): void
     {
-        $path = __DIR__.'/../Sql';
-        $files = array_values(array_filter(scandir($path), function ($file) use ($path) {
-            return !is_dir($path.'/'.$file);
-        }));
-
-        foreach ($files as $file) {
-            foreach (explode(';', file_get_contents(__DIR__.'./../Sql/'.$file)) as $sql) {
-                if (empty($sql) || 1 === strlen($sql)) {
-                    continue;
-                }
-
-                $this->addSql($sql);
-            }
-        }
+        $this->connection->getNativeConnection()->exec(file_get_contents(__DIR__.'./../Sql/postgres.sql'));
     }
 
     public function down(Schema $schema): void
