@@ -31,7 +31,7 @@ init: ## Install project
 .PHONY: reset
 reset: ## Reset project
 	$(MAKE) db-reset
-	@symfony console doctrine:migrations:migrate -n
+	$(MAKE) db-migrations
 
 .PHONY: lint-all
 lint-all: lint-cs lint-ps lint-es lint-twig lint-doctrine ## Lint project
@@ -63,6 +63,10 @@ db-reset: ## Database reset
 	${console} d:d:c --if-not-exists
 	${console} d:s:c --dump-sql
 	${console} d:s:c
+
+.PHONY: db-migrations
+db-migrations: ## Database migrations
+	@symfony console doctrine:migrations:migrate -n
 
 ##--------------✨ Composer ✨--------------
 .PHONY: composer-install

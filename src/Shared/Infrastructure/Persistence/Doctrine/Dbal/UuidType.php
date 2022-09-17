@@ -12,10 +12,7 @@ class UuidType extends StringType
 {
     public const APP_UUID = 'app_uuid';
 
-    /**
-     * {@inheritdoc}
-     */
-    public function convertToPHPValue($value, AbstractPlatform $platform)
+    public function convertToPHPValue($value, AbstractPlatform $platform): ?Uuid
     {
         if (null === $value) {
             return null;
@@ -24,7 +21,7 @@ class UuidType extends StringType
         return new Uuid($value);
     }
 
-    public function convertToDatabaseValue($value, AbstractPlatform $platform)
+    public function convertToDatabaseValue($value, AbstractPlatform $platform): string
     {
         if (!SymfonyUid::isValid($uuid = $value->getUuid())) {
             throw new InvalidUuidException();
@@ -33,18 +30,12 @@ class UuidType extends StringType
         return $uuid;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName(): string
     {
         return self::APP_UUID;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function requiresSQLCommentHint(AbstractPlatform $platform)
+    public function requiresSQLCommentHint(AbstractPlatform $platform): bool
     {
         return true;
     }
