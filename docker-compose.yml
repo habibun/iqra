@@ -30,6 +30,8 @@ services:
     volumes:
       - ./:/var/www/symfony
       - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    environment:
+      - NGINX_HOST=dev.iqra.docker
     depends_on:
       - php
       - postgres
