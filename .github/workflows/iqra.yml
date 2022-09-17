@@ -76,3 +76,15 @@ jobs:
 
       - name: Coding Standards & Doctrine Mapping Checks
         run: make lint-all
+      ## Tests
+      - name: Prepare db for test
+        run: |
+          symfony console d:d:d --force --if-exists --env=test
+          symfony console d:d:c --if-not-exists --env=test
+          symfony console d:s:c --dump-sql --env=test
+          symfony console d:s:c --env=test
+      - name: Doctrine migrations for test
+        run: symfony console doctrine:migrations:migrate -n --env=test
+
+      - name: Run Application Tests
+        run: symfony php bin/phpunit --stop-on-failure

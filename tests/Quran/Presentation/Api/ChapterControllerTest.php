@@ -6,11 +6,24 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class ChapterControllerTest extends WebTestCase
 {
+    public function testList()
+    {
+        $client = static::createClient();
+        $client->jsonRequest('GET', '/en/api/quran/chapters');
+        $this->assertResponseIsSuccessful();
+    }
+
     public function testRandomVerse()
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/en/api/quran/chapters/verses/random');
-//        $this->assertResponseIsSuccessful();
-        $this->assertEquals(1, 1);
+        $client->jsonRequest('GET', '/en/api/quran/chapters/verses/random');
+        $this->assertResponseIsSuccessful();
+    }
+
+    public function testDetails()
+    {
+        $client = static::createClient();
+        $client->jsonRequest('GET', '/en/api/quran/chapters/1');
+        $this->assertResponseIsSuccessful();
     }
 }
