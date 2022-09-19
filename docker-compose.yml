@@ -32,17 +32,18 @@ services:
       - ./docker/certbot/conf:/etc/letsencrypt
       - ./docker/certbot/www:/var/www/certbot
     environment:
-      - NGINX_HOST=dev.iqra.docker
+      - NGINX_HOST=dev.iqra.com
     depends_on:
       - php
       - postgres
       - certbot
   certbot:
+    container_name: certbot
     image: certbot/certbot
     volumes:
       - ./docker/certbot/conf:/etc/letsencrypt
       - ./docker/certbot/www:/var/www/certbot
-    command: certonly --webroot -w /var/www/certbot --force-renewal --email "habibun.noby@gmail.com" -d localhost --agree-tos
+    command: certonly --webroot -w /var/www/certbot --force-renewal --email "habibun.noby@gmail.com" -d dev.iqra.com --agree-tos
   node:
     container_name: node
     image: node:16.16-alpine
