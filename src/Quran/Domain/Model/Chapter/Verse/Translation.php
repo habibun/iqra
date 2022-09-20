@@ -9,19 +9,21 @@ class Translation
 {
     private int $id;
     private string $text;
+    private string $verseKey;
     private Verse $verse;
     private Translator $translator;
 
-    public function __construct(string $text, Translator $translator, Verse $verse)
+    public function __construct(string $text, string $verseKey, Translator $translator, Verse $verse)
     {
         $this->text = $text;
+        $this->verseKey = $verseKey;
         $this->verse = $verse;
         $this->translator = $translator;
     }
 
-    public static function create(string $text, Translator $translator, Verse $verse): static
+    public static function create(string $text, string $verseKey, Translator $translator, Verse $verse): static
     {
-        return new static($text, $translator, $verse);
+        return new static($text, $verseKey, $translator, $verse);
     }
 
     public function getText(): string
@@ -63,5 +65,17 @@ class Translation
     public function getId(): int
     {
         return $this->id;
+    }
+
+    public function getVerseKey(): string
+    {
+        return $this->verseKey;
+    }
+
+    public function setVerseKey(string $verseKey): Translation
+    {
+        $this->verseKey = $verseKey;
+
+        return $this;
     }
 }

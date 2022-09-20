@@ -208,8 +208,9 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
             [
                 'words' => false,
                 'page' => $page,
-                'per_page' => 10,
+                'per_page' => 50,
                 'translations' => implode(',', $translators),
+                'translation_fields' => 'verse_key',
                 'fields' => 'text_indopak',
             ]
         );
@@ -235,7 +236,13 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
 
                     foreach ($v['translations'] as $translation) {
                         $translator = $this->translationService->getByIdentifier($translation['resource_id']);
-                        $verse->addTranslation($translation['text'], $translator);
+                        // Api bug verse key translation
+                        $verseKey = $translation['verse_key'];
+                        if ($translator->getLanguage()->getIsoCode() === Language::BENGALI['iso_code']) {
+                            $verseKey = $this->translateVerseKey($translation['verse_key']);
+                        }
+
+                        $verse->addTranslation($translation['text'], $verseKey, $translator);
                     }
                 }
             }
@@ -247,11 +254,48 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
                 [
                     'words' => false,
                     'page' => $page,
-                    'per_page' => 10,
+                    'per_page' => 50,
                     'translations' => implode(',', $translators),
+                    'translation_fields' => 'verse_key',
                     'fields' => 'text_indopak',
                 ]
             );
         }
+    }
+
+    private function translateVerseKey(string $verseKey): string
+    {
+        $verseKey = explode(':', $verseKey);
+        $verseKeyFirst = $verseKey[0];
+        $verseKeyLast = $verseKey[1];
+
+        $numerals = [
+            '0' => '০',
+            '1' => '১',
+            '2' => '২',
+            '3' => '৩',
+            '4' => '৪',
+            '5' => '৫',
+            '6' => '৬',
+            '7' => '৭',
+            '8' => '৮',
+            '9' => '৯',
+        ];
+
+        // Translate first part
+        $chars = str_split($verseKeyFirst);
+        $verseKeyFirst = [];
+        foreach ($chars as $char) {
+            $verseKeyFirst[] = $numerals[(int) $char];
+        }
+
+        // Translate last part
+        $chars = str_split($verseKeyLast);
+        $verseKeyLast = [];
+        foreach ($chars as $char) {
+            $verseKeyLast[] = $numerals[(int) $char];
+        }
+
+        return sprintf('%s:%s', ...$verseKeyFirst, ...$verseKeyLast);
     }
 }

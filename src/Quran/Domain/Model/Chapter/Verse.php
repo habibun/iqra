@@ -200,9 +200,9 @@ class Verse
         $this->chapter = $chapter;
     }
 
-    public function addTranslation(string $text, Translator $translator): void
+    public function addTranslation(string $text, string $verseKey, Translator $translator): void
     {
-        $this->translations[] = Translation::create($text, $translator, $this);
+        $this->translations[] = Translation::create($text, $verseKey, $translator, $this);
     }
 
     public function getTranslations(): Collection
