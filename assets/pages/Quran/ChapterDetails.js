@@ -1,5 +1,5 @@
 import React ,{Component}from 'react';
-import ReactDom from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import axios from 'axios';
 import {CHAPTER_DETAILS} from '../../apis/Url';
 import {formatUrl} from '../../utils/Locale';
@@ -62,4 +62,6 @@ class ChapterDetails extends Component {
     }
 }
 
-ReactDom.render(<ChapterDetails/>, document.getElementById('chapter_details'));
+const container = document.getElementById('chapter_details');
+const root = createRoot(container);
+root.render(<ChapterDetails/>);

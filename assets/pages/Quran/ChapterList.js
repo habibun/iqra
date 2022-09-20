@@ -1,7 +1,7 @@
 import React ,{Component}from 'react';
-import ReactDom from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import axios from 'axios';
-import {CHAPTER_DETAILS, CHAPTER_LIST, WEB_CHAPTER_DETAILS} from '../../apis/Url';
+import {CHAPTER_LIST, WEB_CHAPTER_DETAILS} from '../../apis/Url';
 import {formatUrl} from '../../utils/Locale';
 
 class ChapterList extends Component {
@@ -63,4 +63,6 @@ class ChapterList extends Component {
     }
 }
 
-ReactDom.render(<ChapterList/>, document.getElementById('chapter_list'));
+const container = document.getElementById('chapter_list');
+const root = createRoot(container);
+root.render(<ChapterList/>);
