@@ -10,7 +10,7 @@
         </id>
         <field name="identifier" type="smallint"/>
         <field name="verseNumber" type="smallint"/>
-        <field name="verseKey" type="string"/>
+        <field name="verseKey" type="string" length="7"/>
         <field name="juzNumber" type="integer"/>
         <field name="hizbNumber" type="integer"/>
         <field name="rubElHizbNumber" type="integer"/>

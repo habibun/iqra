@@ -91,7 +91,7 @@ class ChapterService
         return [
             'text' => $verseTranslation->getText(),
             'chapter_name' => $chapterName,
-            'verse_key' => $verseTranslation->getVerse()->getVerseKey(),
+            'verse_key' => $verseTranslation->getVerseKey(),
         ];
     }
 

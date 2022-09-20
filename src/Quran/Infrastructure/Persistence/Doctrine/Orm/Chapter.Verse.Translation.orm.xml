@@ -9,6 +9,7 @@
             <generator strategy="AUTO"/>
         </id>
         <field name="text" type="string" length="3000"/>
+        <field name="verseKey" type="string" length="7"/>
         <many-to-one field="translator" target-entity="App\Quran\Domain\Model\Translator" >
             <join-column name="translator_id" referenced-column-name="id" />
         </many-to-one>

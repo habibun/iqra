@@ -66,6 +66,11 @@ class Translator
         return $this;
     }
 
+    public function getLanguage(): Language
+    {
+        return $this->language;
+    }
+
     public function setLanguage(Language $language): static
     {
         $this->language = $language;
