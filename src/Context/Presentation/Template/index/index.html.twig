@@ -1,0 +1,10 @@
+{% extends '@shared/base.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('chapter_list') }}
+{% endblock %}
+
+{% block content %}
+    <div id="chapter_list"></div>
+{% endblock %}
