@@ -10,15 +10,15 @@ use Doctrine\Common\Collections\Collection;
 
 class Context
 {
-    private Uuid $id;
+    private Uuid $uuid;
     private string $name;
     private Context $parent;
     private Collection $children;
     private Collection $translations;
 
-    private function __construct(Uuid $id, string $name, ?Context $parent)
+    private function __construct(Uuid $uuid, string $name, ?Context $parent)
     {
-        $this->id = $id;
+        $this->uuid = $uuid;
         $this->setName($name);
         $this->setParent($parent);
 
@@ -58,7 +58,7 @@ class Context
         return $this->parent;
     }
 
-    public function setParent(Context $parent): Context
+    public function setParent(?Context $parent): Context
     {
         $this->parent = $parent;
 

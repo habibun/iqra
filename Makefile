@@ -43,7 +43,7 @@ fix-all: fix-cs fix-ps ## Fix project
 .PHONY: up
 up: ## Start the docker hub
 	$(DOCKER_COMPOSE) up --force-recreate --no-deps --build -d
-	@grep -qF 'dev.iqra.docker' /etc/hosts || sudo bash -c 'echo $$(docker inspect -f "{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}" nginx) "dev.iqra.docker" >> /etc/hosts'
+	@sudo sed -i '/dev.iqra.docker/c\'"$$(docker inspect -f "{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}" nginx) dev.iqra.docker" /etc/hosts
 
 .PHONY: build
 build: ## Builds the images

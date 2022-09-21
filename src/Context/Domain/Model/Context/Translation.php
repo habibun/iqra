@@ -7,7 +7,7 @@ use App\Context\Domain\Model\Context;
 
 class Translation
 {
-    private int $id;
+    private int $uuid;
     private string $name;
     private Language $language;
     private Context $context;
@@ -19,9 +19,9 @@ class Translation
         $this->setContext($context);
     }
 
-    public function getId(): int
+    public function getUuid(): int
     {
-        return $this->id;
+        return $this->uuid;
     }
 
     public function getName(): string
