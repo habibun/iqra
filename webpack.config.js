@@ -24,6 +24,8 @@ Encore
     .addEntry('homepage', './assets/pages/Homepage.js')
     .addEntry('chapter_list', './assets/pages/Quran/ChapterList.js')
     .addEntry('chapter_details', './assets/pages/Quran/ChapterDetails.js')
+    .addEntry('group_list', './assets/pages/Context/GroupList.js')
+    .addEntry('group_details', './assets/pages/Context/GroupDetails.js')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')

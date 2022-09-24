@@ -2,9 +2,9 @@
 
 namespace App\Context\Domain\Repository;
 
-use App\Quran\Domain\Model\Chapter\Verse;
+use App\Context\Domain\Model\Context;
 
 interface ContextRepositoryInterface
 {
-    public function add(Verse $verse);
+    public function add(Context $context);
 }

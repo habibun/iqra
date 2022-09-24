@@ -1,27 +1,29 @@
 <?php
 
-namespace App\Context\Domain\Model\Context;
+namespace App\Context\Domain\Model\Group;
 
+use App\Context\Domain\Model\Group;
 use App\Quran\Domain\Model\Language;
-use App\Context\Domain\Model\Context;
+use App\Shared\Domain\ValueObject\Uuid;
 
 class Translation
 {
-    private int $uuid;
+    private Uuid $id;
     private string $name;
     private Language $language;
-    private Context $context;
+    private Group $group;
 
-    public function __construct(string $name, Language $language, Context $context)
+    public function __construct(Uuid $id, string $name, Language $language, Group $group)
     {
+        $this->id = $id;
         $this->setName($name);
         $this->setLanguage($language);
-        $this->setContext($context);
+        $this->setGroup($group);
     }
 
-    public function getId(): int
+    public function getId(): Uuid
     {
-        return $this->uuid;
+        return $this->id;
     }
 
     public function getName(): string
@@ -48,14 +50,14 @@ class Translation
         return $this;
     }
 
-    public function getContext(): Context
+    public function getGroup(): Group
     {
-        return $this->context;
+        return $this->group;
     }
 
-    public function setContext(Context $context): Translation
+    public function setGroup(Group $group): Translation
     {
-        $this->context = $context;
+        $this->group = $group;
 
         return $this;
     }

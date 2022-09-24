@@ -1,27 +1,25 @@
 <?php
 
-namespace App\Quran\Infrastructure\Persistence\Doctrine\Repository;
+namespace App\Context\Infrastructure\Persistence\Doctrine\Repository;
 
-use App\Quran\Domain\Model\Chapter;
-use App\Quran\Domain\Model\Chapter\Translation as ChapterTranslationEntity;
-use App\Quran\Domain\Model\Chapter\Verse;
-use App\Quran\Domain\Model\Chapter\Verse\Translation as VerseTranslation;
-use App\Quran\Domain\Repository\ChapterRepositoryInterface;
+use App\Context\Domain\Model\Context;
+use App\Context\Domain\Model\Context\Translation as ContextTranslationEntity;
+use App\Context\Domain\Repository\ContextRepositoryInterface;
 use App\Shared\Domain\ValueObject\Uuid;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Uid\Uuid as SymfonyUuid;
 
-class ChapterRepository extends ServiceEntityRepository implements ChapterRepositoryInterface
+class ContextRepository extends ServiceEntityRepository implements ContextRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Chapter::class);
+        parent::__construct($registry, Context::class);
     }
 
-    public function add(Chapter $chapter): void
+    public function add(Context $context): void
     {
-        $this->getEntityManager()->persist($chapter);
+        $this->getEntityManager()->persist($context);
     }
 
     public function getByNameSimple(string $nameSimple)
@@ -70,7 +68,7 @@ class ChapterRepository extends ServiceEntityRepository implements ChapterReposi
     {
         return $this->_em->createQueryBuilder()
             ->select('ct')
-            ->from(ChapterTranslationEntity::class, 'ct')
+            ->from(ContextTranslationEntity::class, 'ct')
             ->join('ct.language', 'l')
             ->where('l.isoCode = :isoCode')
             ->setParameter('isoCode', $isoCode)
@@ -86,7 +84,7 @@ class ChapterRepository extends ServiceEntityRepository implements ChapterReposi
             ->join('vt.translator', 't')
             ->join('t.language', 'l')
             ->join('vt.verse', 'v')
-            ->join('v.chapter', 'c')
+            ->join('v.context', 'c')
             ->where('c.identifier = :identifier')
             ->andWhere('t.identifier = :t_identifier')
             ->setParameter('identifier', $identifier)

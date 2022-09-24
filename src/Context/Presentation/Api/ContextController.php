@@ -2,38 +2,38 @@
 
 namespace App\Context\Presentation\Api;
 
-use App\Quran\Application\Service\ChapterService;
+use App\Context\Application\Service\ContextService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
-class ChapterController extends AbstractController
+class ContextController extends AbstractController
 {
-    private ChapterService $chapterService;
+    private ContextService $contextService;
 
-    public function __construct(ChapterService $chapterService)
+    public function __construct(ContextService $contextService)
     {
-        $this->chapterService = $chapterService;
+        $this->contextService = $contextService;
     }
 
     public function list(Request $request): JsonResponse
     {
         return new JsonResponse(
-            $this->chapterService->getList($request->getLocale())
+            $this->contextService->getList($request->getLocale())
         );
     }
 
     public function randomVerse(Request $request): JsonResponse
     {
         return new JsonResponse(
-            $this->chapterService->getRandomVerse($request->getLocale())
+            $this->contextService->getRandomVerse($request->getLocale())
         );
     }
 
     public function details(int $id, Request $request): JsonResponse
     {
         return new JsonResponse(
-            $this->chapterService->getByIdentifierAndTranslatorIdentifier($id, $request->getLocale())
+            $this->contextService->getByIdentifierAndTranslatorIdentifier($id, $request->getLocale())
         );
     }
 }

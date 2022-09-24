@@ -5,10 +5,10 @@ namespace App\Context\Presentation\Web;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 
-class IndexController extends AbstractController
+class GroupController extends AbstractController
 {
-    public function index(): Response
+    public function details(): Response
     {
-        return $this->render('@context/index/index.html.twig');
+        return $this->render('@context/group/details.html.twig');
     }
 }

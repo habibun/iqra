@@ -3,6 +3,7 @@ twig:
     paths:
         '%kernel.project_dir%/src/Shared/Presentation/templates': 'shared'
         '%kernel.project_dir%/src/Quran/Presentation/templates': 'quran'
+        '%kernel.project_dir%/src/Context/Presentation/Template': 'context'
 
 when@test:
     twig:

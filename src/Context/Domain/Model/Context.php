@@ -10,35 +10,22 @@ use Doctrine\Common\Collections\Collection;
 
 class Context
 {
-    private Uuid $uuid;
+    private Uuid $id;
     private string $name;
-    private Context $parent;
-    private Collection $children;
+    private Group $group;
     private Collection $translations;
 
-    private function __construct(Uuid $uuid, string $name, ?Context $parent)
+    public function __construct(Uuid $id, string $name, Group $group)
     {
-        $this->uuid = $uuid;
+        $this->id = $id;
         $this->setName($name);
-        $this->setParent($parent);
-
-        $this->children = new ArrayCollection();
+        $this->setGroup($group);
         $this->translations = new ArrayCollection();
     }
 
-    public static function create(Uuid $id, string $name, ?Context $parent): static
+    public static function create(Uuid $id, string $name, Group $group): static
     {
-        return new static($id, $name, $parent);
-    }
-
-    public function getTranslations(): Collection
-    {
-        return $this->translations;
-    }
-
-    public function addTranslation(string $name, Language $language, Context $parent): void
-    {
-        $this->translations[] = new Translation($name, $language, $this);
+        return new static($id, $name, $group);
     }
 
     public function getName(): string
@@ -53,27 +40,25 @@ class Context
         return $this;
     }
 
-    public function getParent(): Context
+    public function getParent(): Group
     {
-        return $this->parent;
+        return $this->group;
     }
 
-    public function setParent(?Context $parent): Context
+    public function setGroup(Group $group): Context
     {
-        $this->parent = $parent;
+        $this->group = $group;
 
         return $this;
     }
 
-    public function getChildren(): Collection
+    public function getTranslations(): Collection
     {
-        return $this->children;
+        return $this->translations;
     }
 
-    public function setChildren(Collection $children): Context
+    public function addTranslation(string $name, Language $language, Context $parent): void
     {
-        $this->children = $children;
-
-        return $this;
+        $this->translations[] = new Translation($name, $language, $this);
     }
 }
