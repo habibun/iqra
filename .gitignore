@@ -10,7 +10,8 @@
 
 ###> miscellaneous ###
 /.idea
-/docker/postgresql
+/docker/postgres/data
+/docker/logs
 /docker-compose.override.yml
 ###< miscellaneous ###
 
