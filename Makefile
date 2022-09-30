@@ -9,7 +9,7 @@ YARN     = yarn
 # Executables: local only
 SYMFONY_CLI    = symfony
 DOCKER         = docker
-DOCKER_COMPOSE = docker-compose
+DOCKER_COMPOSE = docker compose
 
 # Executables: vendors
 PHP_CS_FIXER  = ./vendor/bin/php-cs-fixer
@@ -33,6 +33,12 @@ reset: ## Reset project
 	$(MAKE) db-reset
 	$(MAKE) db-migrations
 
+.PHONY: restart-all
+restart-all: ## Restart all server
+	@sudo service nginx restart
+	@sudo service php8.0-fpm restart
+	@sudo service postgresql
+
 .PHONY: lint-all
 lint-all: lint-cs lint-ps lint-es lint-twig lint-doctrine ## Lint project
 
@@ -43,7 +49,8 @@ fix-all: fix-cs fix-ps ## Fix project
 .PHONY: up
 up: ## Start the docker hub
 	$(DOCKER_COMPOSE) up --force-recreate --no-deps --build -d
-	@grep -qF 'dev.iqra.docker' /etc/hosts || sudo bash -c 'echo $$(docker inspect -f "{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}" nginx) "dev.iqra.docker" >> /etc/hosts'
+	@#sudo sed -i '/dev.iqra.docker/c\'"$$(docker inspect -f "{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}" nginx) dev.iqra.docker" /etc/hosts
+	@truncate -s 0 ${PWD}/docker/logs/*/*.log
 
 .PHONY: build
 build: ## Builds the images

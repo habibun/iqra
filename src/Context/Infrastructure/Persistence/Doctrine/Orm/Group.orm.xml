@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="https://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="https://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="App\Context\Domain\Model\Group" table="context_group">
+        <id column="id" name="id" type="app_uuid" length="36"/>
+        <one-to-many field="contexts" target-entity="App\Context\Domain\Model\Context" mapped-by="group">
+            <cascade>
+                <cascade-persist/>
+            </cascade>
+        </one-to-many>
+        <one-to-many field="translations" target-entity="App\Context\Domain\Model\Group\Translation" mapped-by="group">
+            <cascade>
+                <cascade-persist/>
+            </cascade>
+        </one-to-many>
+    </entity>
+</doctrine-mapping>

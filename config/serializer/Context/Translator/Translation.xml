@@ -4,9 +4,19 @@
             xsi:schemaLocation="http://symfony.com/schema/dic/serializer-mapping
         https://symfony.com/schema/dic/serializer-mapping/serializer-mapping-1.0.xsd"
 >
-    <class name="App\Quran\Domain\Model\Language">
-        <attribute name="isoCode">
-            <group>verse_details</group>
+    <class name="App\Context\Domain\Model\Group\Translation">
+        <attribute name="id">
+            <group>group_details</group>
+        </attribute>
+        <attribute name="name">
+            <group>group_list</group>
+            <group>group_details</group>
+        </attribute>
+        <attribute name="summary">
+            <group>group_list</group>
+            <group>group_details</group>
+        </attribute>
+        <attribute name="group">
             <group>group_list</group>
             <group>group_details</group>
         </attribute>

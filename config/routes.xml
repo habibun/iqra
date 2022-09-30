@@ -24,4 +24,14 @@
             trailing-slash-on-root="false">
     </import>
 
+    <!--Context-->
+    <import resource="routes/context.xml"
+            prefix="/{_locale&lt;%app.supported_locales%&gt;}/context"
+            trailing-slash-on-root="false">
+    </import>
+    <import resource="routes/context_api.xml"
+            prefix="/{_locale&lt;%app.supported_locales%&gt;}/api/contexts"
+            trailing-slash-on-root="false">
+    </import>
+
 </routes>

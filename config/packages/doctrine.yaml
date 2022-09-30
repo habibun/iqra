@@ -12,12 +12,18 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
         auto_mapping: true
         mappings:
-            App:
+            Quran:
                 is_bundle: false
                 type: xml
                 dir: '%kernel.project_dir%/src/Quran/Infrastructure/Persistence/Doctrine/Orm'
                 prefix: 'App\Quran\Domain\Model'
                 alias: Quran
+            Context:
+                is_bundle: false
+                type: xml
+                dir: '%kernel.project_dir%/src/Context/Infrastructure/Persistence/Doctrine/Orm'
+                prefix: 'App\Context\Domain\Model'
+                alias: Context
 
 when@test:
     doctrine:
