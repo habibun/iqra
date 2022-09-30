@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:81';
+const BASE_URL = process.env.BASE_URL;
 const LOCALE = 'LOCALE';
 
 /* homepage */
