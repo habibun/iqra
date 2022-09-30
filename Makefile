@@ -49,7 +49,7 @@ fix-all: fix-cs fix-ps ## Fix project
 .PHONY: up
 up: ## Start the docker hub
 	$(DOCKER_COMPOSE) up --force-recreate --no-deps --build -d
-	@sudo sed -i '/dev.iqra.docker/c\'"$$(docker inspect -f "{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}" nginx) dev.iqra.docker" /etc/hosts
+	@#sudo sed -i '/dev.iqra.docker/c\'"$$(docker inspect -f "{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}" nginx) dev.iqra.docker" /etc/hosts
 	@truncate -s 0 ${PWD}/docker/logs/*/*.log
 
 .PHONY: build

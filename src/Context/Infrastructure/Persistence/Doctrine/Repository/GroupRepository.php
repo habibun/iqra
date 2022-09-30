@@ -3,12 +3,12 @@
 namespace App\Context\Infrastructure\Persistence\Doctrine\Repository;
 
 use App\Context\Domain\Model\Group;
+use App\Context\Domain\Model\Group\Translation as GroupTranslationEntity;
 use App\Context\Domain\Repository\GroupRepositoryInterface;
 use App\Shared\Domain\ValueObject\Uuid;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Uid\Uuid as SymfonyUuid;
-use App\Context\Domain\Model\Group\Translation as GroupTranslationEntity;
 
 class GroupRepository extends ServiceEntityRepository implements GroupRepositoryInterface
 {

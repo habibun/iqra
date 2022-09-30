@@ -23,7 +23,7 @@ class ChapterList extends Component {
     render() {
         const loading = this.state.loading;
         let groupDetails = formatUrl(WEB_CONTEXT_GROUP_DETAILS);
-        console.log(groupDetails);
+        console.log(this.state.groups);
         return(
         <div>
             <section className="row-section">

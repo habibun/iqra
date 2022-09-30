@@ -12,7 +12,7 @@
             <group>group_list</group>
             <group>group_details</group>
         </attribute>
-        <attribute name="language">
+        <attribute name="summary">
             <group>group_list</group>
             <group>group_details</group>
         </attribute>

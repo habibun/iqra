@@ -11,52 +11,24 @@ use Doctrine\Common\Collections\Collection;
 class Group
 {
     private Uuid $id;
-    private string $name;
-    private string $summary;
     private Collection $contexts;
     private Collection $translations;
 
-    private function __construct(Uuid $id, string $name, string $summary)
+    public function __construct(Uuid $id)
     {
         $this->id = $id;
-        $this->setName($name);
-        $this->setSummary($summary);
         $this->contexts = new ArrayCollection();
         $this->translations = new ArrayCollection();
     }
 
-    public static function create(Uuid $id, string $name, string $summary): static
+    public static function create(Uuid $id): static
     {
-        return new static($id, $name, $summary);
+        return new static($id);
     }
 
     public function getId(): Uuid
     {
         return $this->id;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): Group
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    public function getSummary(): string
-    {
-        return $this->summary;
-    }
-
-    public function setSummary(string $summary): Group
-    {
-        $this->summary = $summary;
-
-        return $this;
     }
 
     public function getContexts(): Collection
@@ -74,8 +46,8 @@ class Group
         return $this->translations;
     }
 
-    public function addTranslation(Uuid $id, string $name, Language $language): void
+    public function addTranslation(Uuid $id, string $name, string $summary, Language $language): void
     {
-        $this->translations[] = new Translation($id, $name, $language, $this);
+        $this->translations[] = new Translation($id, $name, $summary, $language, $this);
     }
 }

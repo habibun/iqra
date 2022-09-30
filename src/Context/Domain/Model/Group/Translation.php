@@ -10,13 +10,15 @@ class Translation
 {
     private Uuid $id;
     private string $name;
+    private string $summary;
     private Language $language;
     private Group $group;
 
-    public function __construct(Uuid $id, string $name, Language $language, Group $group)
+    public function __construct(Uuid $id, string $name, string $summary, Language $language, Group $group)
     {
         $this->id = $id;
         $this->setName($name);
+        $this->setSummary($summary);
         $this->setLanguage($language);
         $this->setGroup($group);
     }
@@ -58,6 +60,18 @@ class Translation
     public function setGroup(Group $group): Translation
     {
         $this->group = $group;
+
+        return $this;
+    }
+
+    public function getSummary(): string
+    {
+        return $this->summary;
+    }
+
+    public function setSummary(string $summary): Translation
+    {
+        $this->summary = $summary;
 
         return $this;
     }

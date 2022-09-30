@@ -6,8 +6,6 @@
 
     <entity name="App\Context\Domain\Model\Group" table="context_group">
         <id column="id" name="id" type="app_uuid" length="36"/>
-        <field name="name" type="string" length="50"/>
-        <field name="summary" type="string" length="255"/>
         <one-to-many field="contexts" target-entity="App\Context\Domain\Model\Context" mapped-by="group">
             <cascade>
                 <cascade-persist/>

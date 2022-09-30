@@ -1,4 +1,4 @@
-const BASE_URL = 'http://dev.iqra.docker';
+const BASE_URL = 'http://localhost:81';
 const LOCALE = 'LOCALE';
 
 /* homepage */

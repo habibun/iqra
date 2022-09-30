@@ -7,6 +7,7 @@
     <entity name="App\Context\Domain\Model\Group\Translation" table="context_group_translation">
         <id column="id" name="id" type="app_uuid" length="36"/>
         <field name="name" type="string" length="50"/>
+        <field name="summary" type="string" length="255"/>
         <many-to-one field="language" target-entity="App\Quran\Domain\Model\Language"/>
         <many-to-one field="group" target-entity="App\Context\Domain\Model\Group" inversed-by="translations"/>
     </entity>

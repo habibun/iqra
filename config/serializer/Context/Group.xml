@@ -9,13 +9,5 @@
             <group>group_list</group>
             <group>group_details</group>
         </attribute>
-        <attribute name="name">
-            <group>group_list</group>
-            <group>group_details</group>
-        </attribute>
-        <attribute name="summary">
-            <group>group_list</group>
-            <group>group_details</group>
-        </attribute>
     </class>
 </serializer>
