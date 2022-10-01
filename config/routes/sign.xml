@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<routes xmlns="http://symfony.com/schema/routing"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://symfony.com/schema/routing
+        https://symfony.com/schema/routing/routing-1.0.xsd">
+
+    <!--Index-->
+    <route id="sign_index" path="/"
+           controller="App\Sign\Presentation\Web\IndexController::index"/>
+
+    <!--Group-->
+    <route id="sign_details" path="/sign/{id}"
+           controller="App\Sign\Presentation\Web\SignController::details"/>
+</routes>
