@@ -1,13 +1,13 @@
 import React ,{Component}from 'react';
 import { createRoot } from 'react-dom/client';
 import axios from 'axios';
-import {CONTEXT_GROUP_LIST, WEB_CONTEXT_GROUP_DETAILS} from '../../apis/Url';
+import {SIGN_LIST, WEB_SIGN_DETAILS} from '../../apis/Url';
 import {formatUrl} from '../../utils/Locale';
 
-class ChapterList extends Component {
+class SignList extends Component {
     constructor(props) {
         super(props);
-        this.state = { groups: [], loading: true};
+        this.state = { signs: [], loading: true};
     }
 
     componentDidMount() {
@@ -15,14 +15,14 @@ class ChapterList extends Component {
     }
 
     getVerse() {
-        axios.get(formatUrl(CONTEXT_GROUP_LIST)).then(groups => {
-            this.setState({ groups: groups.data, loading: false})
+        axios.get(formatUrl(SIGN_LIST)).then(signs => {
+            this.setState({ signs: signs.data, loading: false})
         })
     }
 
     render() {
         const loading = this.state.loading;
-        let groupDetails = formatUrl(WEB_CONTEXT_GROUP_DETAILS);
+        let signDetails = formatUrl(WEB_SIGN_DETAILS);
         return(
         <div>
             <section className="row-section">
@@ -33,17 +33,17 @@ class ChapterList extends Component {
                         </div>
                     ) : (
                         <div className={'row'}>
-                            { this.state.groups.map(res =>
-                                <a href={groupDetails.replace('ID', res.group.id.uuid)} key={res.group.id.uuid}>
+                            { this.state.signs.map(res =>
+                                <a href={signDetails.replace('ID', res.sign.id.uuid)} key={res.sign.id.uuid}>
                                     <div className="flex my-3" >
                                         <div className="block rounded-lg shadow-lg bg-white max-w-sm text-center">
                                             <div className="p-6">
                                                 <h5 className="text-gray-900 text-xl font-medium mb-2">
-                                                    {res.name}
+                                                    {res.title}
                                                 </h5>
                                             </div>
                                             <div className="py-3 px-6 border-t border-gray-300 text-gray-600">
-                                                {res.name}
+                                                {res.summary}
                                             </div>
                                         </div>
                                     </div>
@@ -58,6 +58,6 @@ class ChapterList extends Component {
     }
 }
 
-const container = document.getElementById('group_list');
+const container = document.getElementById('sign_list');
 const root = createRoot(container);
-root.render(<ChapterList/>);
+root.render(<SignList/>);

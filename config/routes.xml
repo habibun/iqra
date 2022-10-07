@@ -34,4 +34,14 @@
             trailing-slash-on-root="false">
     </import>
 
+    <!--Sign-->
+    <import resource="routes/sign.xml"
+            prefix="/{_locale&lt;%app.supported_locales%&gt;}/sign"
+            trailing-slash-on-root="false">
+    </import>
+    <import resource="routes/sign_api.xml"
+            prefix="/{_locale&lt;%app.supported_locales%&gt;}/api/signs"
+            trailing-slash-on-root="false">
+    </import>
+
 </routes>

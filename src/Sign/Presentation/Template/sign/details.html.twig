@@ -1,0 +1,10 @@
+{% extends '@shared/base.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('sign_details') }}
+{% endblock %}
+
+{% block content %}
+    <div id="sign_details"></div>
+{% endblock %}
