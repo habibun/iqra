@@ -24,7 +24,12 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Context/Infrastructure/Persistence/Doctrine/Orm'
                 prefix: 'App\Context\Domain\Model'
                 alias: Context
-
+            Sign:
+                is_bundle: false
+                type: xml
+                dir: '%kernel.project_dir%/src/Sign/Infrastructure/Persistence/Doctrine/Orm'
+                prefix: 'App\Sign\Domain\Model'
+                alias: Sign
 when@test:
     doctrine:
         dbal:

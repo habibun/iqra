@@ -2,31 +2,31 @@
 
 namespace App\Sign\Presentation\Api;
 
-use App\Context\Application\Service\GroupService;
+use App\Sign\Application\Service\SignService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class SignController extends AbstractController
 {
-    private GroupService $groupService;
+    private SignService $signService;
 
-    public function __construct(GroupService $groupService)
+    public function __construct(SignService $signService)
     {
-        $this->groupService = $groupService;
+        $this->signService = $signService;
     }
 
     public function list(Request $request): JsonResponse
     {
         return new JsonResponse(
-            $this->groupService->getList($request->getLocale())
+            $this->signService->getList($request->getLocale())
         );
     }
 
     public function details(string $id, Request $request): JsonResponse
     {
         return new JsonResponse(
-            $this->groupService->getByIdAndLanguageIso($id, $request->getLocale())
+            $this->signService->getByIdAndLanguageIso($id, $request->getLocale())
         );
     }
 }

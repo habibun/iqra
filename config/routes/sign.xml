@@ -9,6 +9,6 @@
            controller="App\Sign\Presentation\Web\IndexController::index"/>
 
     <!--Group-->
-    <route id="sign_details" path="/sign/{id}"
+    <route id="sign_details" path="/{id}"
            controller="App\Sign\Presentation\Web\SignController::details"/>
 </routes>

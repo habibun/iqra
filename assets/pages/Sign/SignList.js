@@ -4,7 +4,7 @@ import axios from 'axios';
 import {SIGN_LIST, WEB_SIGN_DETAILS} from '../../apis/Url';
 import {formatUrl} from '../../utils/Locale';
 
-class ChapterList extends Component {
+class SignList extends Component {
     constructor(props) {
         super(props);
         this.state = { signs: [], loading: true};
@@ -23,7 +23,6 @@ class ChapterList extends Component {
     render() {
         const loading = this.state.loading;
         let signDetails = formatUrl(WEB_SIGN_DETAILS);
-        console.log(this.state.signs);
         return(
         <div>
             <section className="row-section">
@@ -40,11 +39,11 @@ class ChapterList extends Component {
                                         <div className="block rounded-lg shadow-lg bg-white max-w-sm text-center">
                                             <div className="p-6">
                                                 <h5 className="text-gray-900 text-xl font-medium mb-2">
-                                                    {res.name}
+                                                    {res.title}
                                                 </h5>
                                             </div>
                                             <div className="py-3 px-6 border-t border-gray-300 text-gray-600">
-                                                {res.name}
+                                                {res.summary}
                                             </div>
                                         </div>
                                     </div>
@@ -61,4 +60,4 @@ class ChapterList extends Component {
 
 const container = document.getElementById('sign_list');
 const root = createRoot(container);
-root.render(<ChapterList/>);
+root.render(<SignList/>);

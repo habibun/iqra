@@ -8,6 +8,8 @@
         <attribute name="uuid">
             <group>group_list</group>
             <group>group_details</group>
+            <group>sign_list</group>
+            <group>sign_details</group>
         </attribute>
     </class>
 </serializer>

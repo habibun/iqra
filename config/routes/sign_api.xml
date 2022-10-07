@@ -5,8 +5,8 @@
         https://symfony.com/schema/routing/routing-1.0.xsd">
 
     <!--Api-->
-    <route id="api_sign_list" path="/signs"
+    <route id="api_sign_list" path="/"
            controller="App\Sign\Presentation\Api\SignController::list"/>
-    <route id="api_sign_details" path="/signs/{id}"
+    <route id="api_sign_details" path="/{id}"
            controller="App\Sign\Presentation\Api\SignController::details"/>
 </routes>

@@ -45,7 +45,7 @@ class SignDetails extends Component {
                                         <div className="block rounded-lg shadow-lg bg-white max-w-sm text-center">
                                             <div className="p-6">
                                                 <h5 className="text-gray-900 text-xl font-medium mb-2">
-                                                    {res.name}
+                                                    {res.title}
                                                 </h5>
                                             </div>
                                             <div className="py-3 px-6 border-t border-gray-300 text-gray-600">
