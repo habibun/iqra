@@ -1,11 +1,7 @@
 <?php
 
 $finder = PhpCsFixer\Finder::create()
-    ->in(__DIR__)
-    ->exclude('bin')
-    ->exclude('var')
-    ->exclude('node_modules')
-    ->notPath('public/index.php')
+    ->in(__DIR__.'/src')
 ;
 
 return (new PhpCsFixer\Config())

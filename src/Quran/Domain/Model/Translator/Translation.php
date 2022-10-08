@@ -2,8 +2,8 @@
 
 namespace App\Quran\Domain\Model\Translator;
 
-use App\Shared\Domain\Model\Language;
 use App\Quran\Domain\Model\Translator;
+use App\Shared\Domain\Model\Language;
 
 class Translation
 {

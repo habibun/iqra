@@ -4,10 +4,10 @@ namespace App\Quran\Application\Service;
 
 use App\Quran\Domain\Model\Chapter;
 use App\Quran\Domain\Model\Chapter\Info;
-use App\Shared\Application\Service\LanguageService;
-use App\Shared\Domain\Model\Language;
 use App\Quran\Domain\Model\Translator;
 use App\Quran\Domain\Service\FetchQuranInterface;
+use App\Shared\Application\Service\LanguageService;
+use App\Shared\Domain\Model\Language;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
