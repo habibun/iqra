@@ -4,10 +4,10 @@ namespace App\Quran\Application\Service;
 
 use App\Quran\Domain\Model\Translator;
 use App\Quran\Domain\Repository\Chapter\Verse\Translation\TranslatorRepositoryInterface;
+use App\Shared\Application\Service\BaseService;
 use App\Shared\Domain\Model\Language;
-use App\Shared\Domain\ValueObject\Uuid;
 
-class TranslatorService
+class TranslatorService extends BaseService
 {
     private TranslatorRepositoryInterface $translationRepository;
 
@@ -16,17 +16,12 @@ class TranslatorService
         $this->translationRepository = $translationRepository;
     }
 
-    public function createTranslator(Uuid $id, int $identifier, string $name, string $authorName, ?string $slug, Language $language): Translator
+    public function createTranslator(int $identifier, string $name, string $authorName, ?string $slug, Language $language): Translator
     {
-        $translator = Translator::create($id, $identifier, $name, $authorName, $slug, $language);
+        $translator = Translator::create($this->getNextIdentity(), $identifier, $name, $authorName, $slug, $language);
         $this->translationRepository->add($translator);
 
         return $translator;
-    }
-
-    public function getNextIdentity(): Uuid
-    {
-        return $this->translationRepository->nextIdentity();
     }
 
     public function getAll()

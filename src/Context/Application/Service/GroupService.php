@@ -4,9 +4,10 @@ namespace App\Context\Application\Service;
 
 use App\Context\Domain\Model\Group;
 use App\Context\Domain\Repository\GroupRepositoryInterface;
+use App\Shared\Application\Service\BaseService;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-class GroupService
+class GroupService extends BaseService
 {
     private GroupRepositoryInterface $groupRepository;
     private NormalizerInterface $normalizer;
@@ -21,8 +22,7 @@ class GroupService
 
     public function createGroup(): Group
     {
-        $id = $this->groupRepository->nextIdentity();
-        $group = Group::create($id);
+        $group = Group::create($this->getNextIdentity());
         $this->groupRepository->add($group);
 
         return $group;

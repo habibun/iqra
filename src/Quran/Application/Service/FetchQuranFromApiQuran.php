@@ -80,7 +80,6 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
                 $language = $this->languageService->getByIsoCode($lang['iso_code']);
                 if (!$language) {
                     $language = $this->languageService->createLanguage(
-                        $this->languageService->getNextIdentity(),
                         $lang['name'],
                         $lang['native_name'],
                         $lang['iso_code'],
@@ -130,7 +129,6 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
                 $translator = $this->translationService->getByIdentifier($tran['id']);
                 if (!$translator) {
                     $translator = $this->translationService->createTranslator(
-                        $this->translationService->getNextIdentity(),
                         $tran['id'],
                         $tran['name'],
                         $tran['author_name'],
@@ -164,7 +162,6 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
                     $chapterInfo = $this->makeRequest('/chapters/'.$ch['id'].'/info', ['language' => $isoCode]);
                     $chapterInfo = $chapterInfo['chapter_info'];
                     $chapter = $this->chapterService->createChapter(
-                        $this->chapterService->getNextIdentity(),
                         $ch['id'],
                         $ch['revelation_place'],
                         $ch['revelation_order'],

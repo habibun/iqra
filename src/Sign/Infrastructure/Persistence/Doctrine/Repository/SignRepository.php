@@ -2,13 +2,11 @@
 
 namespace App\Sign\Infrastructure\Persistence\Doctrine\Repository;
 
-use App\Shared\Domain\ValueObject\Uuid;
 use App\Sign\Domain\Model\Sign;
 use App\Sign\Domain\Model\Sign\Translation as SignTranslationEntity;
 use App\Sign\Domain\Repository\SignRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\Uid\Uuid as SymfonyUuid;
 
 class SignRepository extends ServiceEntityRepository implements SignRepositoryInterface
 {
@@ -20,11 +18,6 @@ class SignRepository extends ServiceEntityRepository implements SignRepositoryIn
     public function add(Sign $sign): void
     {
         $this->getEntityManager()->persist($sign);
-    }
-
-    public function nextIdentity(): Uuid
-    {
-        return Uuid::fromString((string) SymfonyUuid::v4());
     }
 
     public function getTranslationByIsoCode(string $isoCode)

@@ -4,10 +4,8 @@ namespace App\Shared\Infrastructure\Persistence\Doctrine\Repository;
 
 use App\Shared\Domain\Model\Language;
 use App\Shared\Domain\Repository\LanguageRepositoryInterface;
-use App\Shared\Domain\ValueObject\Uuid;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\Uid\Uuid as SymfonyUuid;
 
 class LanguageRepository extends ServiceEntityRepository implements LanguageRepositoryInterface
 {
@@ -29,10 +27,5 @@ class LanguageRepository extends ServiceEntityRepository implements LanguageRepo
     public function getByName(string $name)
     {
         return $this->findOneBy(['name' => $name]);
-    }
-
-    public function nextIdentity(): Uuid
-    {
-        return Uuid::fromString((string) SymfonyUuid::v4());
     }
 }

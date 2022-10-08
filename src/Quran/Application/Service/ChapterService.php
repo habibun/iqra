@@ -5,10 +5,10 @@ namespace App\Quran\Application\Service;
 use App\Quran\Domain\Model\Chapter;
 use App\Quran\Domain\Model\Translator;
 use App\Quran\Domain\Repository\ChapterRepositoryInterface;
-use App\Shared\Domain\ValueObject\Uuid;
+use App\Shared\Application\Service\BaseService;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-class ChapterService
+class ChapterService extends BaseService
 {
     private ChapterRepositoryInterface $chapterRepository;
     private NormalizerInterface $normalizer;
@@ -22,7 +22,6 @@ class ChapterService
     }
 
     public function createChapter(
-        Uuid $id,
         int $identifier,
         string $revelationPlace,
         int $revelationOrder,
@@ -34,7 +33,7 @@ class ChapterService
         array $pages
     ): Chapter {
         $chapter = Chapter::create(
-            $id,
+            $this->getNextIdentity(),
             $identifier,
             $revelationPlace,
             $revelationOrder,
@@ -53,11 +52,6 @@ class ChapterService
     public function getByNameSimple(string $nameSimple)
     {
         return $this->chapterRepository->getByNameSimple($nameSimple);
-    }
-
-    public function getNextIdentity(): Uuid
-    {
-        return $this->chapterRepository->nextIdentity();
     }
 
     public function getVerseByVerseNumber(int $verseNumber)

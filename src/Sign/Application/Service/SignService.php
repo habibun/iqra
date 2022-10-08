@@ -2,11 +2,12 @@
 
 namespace App\Sign\Application\Service;
 
+use App\Shared\Application\Service\BaseService;
 use App\Sign\Domain\Model\Sign;
 use App\Sign\Domain\Repository\SignRepositoryInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-class SignService
+class SignService extends BaseService
 {
     private SignRepositoryInterface $signRepository;
     private NormalizerInterface $normalizer;
@@ -21,8 +22,7 @@ class SignService
 
     public function createSign(string $image): Sign
     {
-        $id = $this->signRepository->nextIdentity();
-        $sign = Sign::create($id, $image);
+        $sign = Sign::create($this->getNextIdentity(), $image);
         $this->signRepository->add($sign);
 
         return $sign;

@@ -5,10 +5,8 @@ namespace App\Context\Infrastructure\Persistence\Doctrine\Repository;
 use App\Context\Domain\Model\Group;
 use App\Context\Domain\Model\Group\Translation as GroupTranslationEntity;
 use App\Context\Domain\Repository\GroupRepositoryInterface;
-use App\Shared\Domain\ValueObject\Uuid;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\Uid\Uuid as SymfonyUuid;
 
 class GroupRepository extends ServiceEntityRepository implements GroupRepositoryInterface
 {
@@ -20,11 +18,6 @@ class GroupRepository extends ServiceEntityRepository implements GroupRepository
     public function add(Group $group): void
     {
         $this->getEntityManager()->persist($group);
-    }
-
-    public function nextIdentity(): Uuid
-    {
-        return Uuid::fromString((string) SymfonyUuid::v4());
     }
 
     public function getTranslationByIsoCode(string $isoCode)
