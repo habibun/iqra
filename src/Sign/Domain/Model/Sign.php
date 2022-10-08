@@ -2,7 +2,7 @@
 
 namespace App\Sign\Domain\Model;
 
-use App\Quran\Domain\Model\Language;
+use App\Shared\Domain\Model\Language;
 use App\Shared\Domain\ValueObject\Uuid;
 use App\Sign\Domain\Model\Sign\Translation;
 use Doctrine\Common\Collections\ArrayCollection;

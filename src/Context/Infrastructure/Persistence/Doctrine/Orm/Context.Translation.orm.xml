@@ -7,7 +7,7 @@
     <entity name="App\Context\Domain\Model\Context\Translation" table="context_translation">
         <id column="id" name="uuid" type="app_uuid" length="36"/>
         <field name="name" type="string" length="50"/>
-        <many-to-one field="language" target-entity="App\Quran\Domain\Model\Language"/>
+        <many-to-one field="language" target-entity="App\Shared\Domain\Model\Language"/>
         <many-to-one field="context" target-entity="App\Context\Domain\Model\Context" inversed-by="translations"/>
     </entity>
 </doctrine-mapping>

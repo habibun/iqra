@@ -30,6 +30,12 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Sign/Infrastructure/Persistence/Doctrine/Orm'
                 prefix: 'App\Sign\Domain\Model'
                 alias: Sign
+            Shared:
+                is_bundle: false
+                type: xml
+                dir: '%kernel.project_dir%/src/Shared/Infrastructure/Persistence/Doctrine/Orm'
+                prefix: 'App\Shared\Domain\Model'
+                alias: Sign
 when@test:
     doctrine:
         dbal:

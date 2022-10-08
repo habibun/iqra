@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Quran\Domain\Model\Language;
+namespace App\Shared\Domain\Model\Language;
 
-use App\Quran\Domain\Model\Language;
+use App\Shared\Domain\Model\Language;
 
 class Translation
 {

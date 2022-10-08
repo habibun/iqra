@@ -3,7 +3,7 @@
 namespace App\Context\Domain\Model\Context;
 
 use App\Context\Domain\Model\Context;
-use App\Quran\Domain\Model\Language;
+use App\Shared\Domain\Model\Language;
 
 class Translation
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Quran\Domain\Model;
+namespace App\Shared\Domain\Model;
 
-use App\Quran\Domain\Model\Language\Translation;
+use App\Shared\Domain\Model\Language\Translation;
 use App\Shared\Domain\ValueObject\Uuid;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Quran\Infrastructure\Persistence\Doctrine\Repository;
+namespace App\Shared\Infrastructure\Persistence\Doctrine\Repository;
 
-use App\Quran\Domain\Model\Language;
-use App\Quran\Domain\Repository\LanguageRepositoryInterface;
+use App\Shared\Domain\Model\Language;
+use App\Shared\Domain\Repository\LanguageRepositoryInterface;
 use App\Shared\Domain\ValueObject\Uuid;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;

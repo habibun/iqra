@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Quran\Domain\Repository;
+namespace App\Shared\Domain\Repository;
 
-use App\Quran\Domain\Model\Language;
+use App\Shared\Domain\Model\Language;
 use App\Shared\Domain\ValueObject\Uuid;
 
 interface LanguageRepositoryInterface

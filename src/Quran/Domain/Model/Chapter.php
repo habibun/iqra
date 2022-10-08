@@ -5,6 +5,7 @@ namespace App\Quran\Domain\Model;
 use App\Quran\Domain\Model\Chapter\Info;
 use App\Quran\Domain\Model\Chapter\Translation;
 use App\Quran\Domain\Model\Chapter\Verse;
+use App\Shared\Domain\Model\Language;
 use App\Shared\Domain\ValueObject\Uuid;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;

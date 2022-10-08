@@ -9,7 +9,7 @@
         <field name="title" type="string" length="50"/>
         <field name="summary" type="string" length="255"/>
         <field name="description" type="string" length="2000"/>
-        <many-to-one field="language" target-entity="App\Quran\Domain\Model\Language"/>
+        <many-to-one field="language" target-entity="App\Shared\Domain\Model\Language"/>
         <many-to-one field="sign" target-entity="App\Sign\Domain\Model\Sign" inversed-by="translations"/>
     </entity>
 </doctrine-mapping>

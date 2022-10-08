@@ -3,7 +3,7 @@
 namespace App\Context\Domain\Model;
 
 use App\Context\Domain\Model\Context\Translation;
-use App\Quran\Domain\Model\Language;
+use App\Shared\Domain\Model\Language;
 use App\Shared\Domain\ValueObject\Uuid;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Quran\Application\Service;
+namespace App\Shared\Application\Service;
 
-use App\Quran\Domain\Model\Language;
-use App\Quran\Domain\Repository\LanguageRepositoryInterface;
+use App\Shared\Domain\Model\Language;
+use App\Shared\Domain\Repository\LanguageRepositoryInterface;
 use App\Shared\Domain\ValueObject\Uuid;
 
 class LanguageService

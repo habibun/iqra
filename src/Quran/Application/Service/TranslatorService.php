@@ -2,7 +2,7 @@
 
 namespace App\Quran\Application\Service;
 
-use App\Quran\Domain\Model\Language;
+use App\Shared\Domain\Model\Language;
 use App\Quran\Domain\Model\Translator;
 use App\Quran\Domain\Repository\Chapter\Verse\Translation\TranslatorRepositoryInterface;
 use App\Shared\Domain\ValueObject\Uuid;

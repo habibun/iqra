@@ -2,8 +2,8 @@
 
 namespace App\Tests\Fixtures\Sign;
 
-use App\Quran\Application\Service\LanguageService;
-use App\Quran\Domain\Model\Language;
+use App\Shared\Application\Service\LanguageService;
+use App\Shared\Domain\Model\Language;
 use App\Shared\Domain\ValueObject\Uuid;
 use App\Sign\Application\Service\SignService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
