@@ -7,7 +7,7 @@ use App\Shared\Domain\Model\Language;
 
 class Translation
 {
-    private int $uuid;
+    private int $id;
     private string $name;
     private Language $language;
     private Context $context;
@@ -21,7 +21,7 @@ class Translation
 
     public function getId(): int
     {
-        return $this->uuid;
+        return $this->id;
     }
 
     public function getName(): string

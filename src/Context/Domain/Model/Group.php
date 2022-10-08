@@ -46,8 +46,8 @@ class Group
         return $this->translations;
     }
 
-    public function addTranslation(Uuid $id, string $name, string $summary, Language $language): void
+    public function addTranslation(string $name, string $summary, Language $language): void
     {
-        $this->translations[] = new Translation($id, $name, $summary, $language, $this);
+        $this->translations[] = new Translation($name, $summary, $language, $this);
     }
 }

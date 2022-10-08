@@ -5,7 +5,9 @@
                           https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
     <entity name="App\Sign\Domain\Model\Sign\Translation" table="sign_translation">
-        <id column="id" name="id" type="app_uuid" length="36"/>
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
         <field name="title" type="string" length="50"/>
         <field name="summary" type="string" length="255"/>
         <field name="description" type="string" length="2000"/>

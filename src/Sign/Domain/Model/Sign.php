@@ -48,8 +48,8 @@ class Sign
         return $this->translations;
     }
 
-    public function addTranslation(Uuid $id, string $title, string $description, string $summary, Language $language): void
+    public function addTranslation(string $title, string $description, string $summary, Language $language): void
     {
-        $this->translations[] = new Translation($id, $title, $summary, $description, $language, $this);
+        $this->translations[] = new Translation($title, $summary, $description, $language, $this);
     }
 }

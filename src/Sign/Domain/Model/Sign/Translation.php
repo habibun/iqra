@@ -3,21 +3,19 @@
 namespace App\Sign\Domain\Model\Sign;
 
 use App\Shared\Domain\Model\Language;
-use App\Shared\Domain\ValueObject\Uuid;
 use App\Sign\Domain\Model\Sign;
 
 class Translation
 {
-    private Uuid $id;
+    private int $id;
     private string $title;
     private string $summary;
     private string $description;
     private Language $language;
     private Sign $sign;
 
-    public function __construct(Uuid $id, string $title, string $summary, string $description, Language $language, Sign $sign)
+    public function __construct(string $title, string $summary, string $description, Language $language, Sign $sign)
     {
-        $this->id = $id;
         $this->title = $title;
         $this->summary = $summary;
         $this->description = $description;
@@ -25,7 +23,7 @@ class Translation
         $this->sign = $sign;
     }
 
-    public function getId(): Uuid
+    public function getId(): int
     {
         return $this->id;
     }
