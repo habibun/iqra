@@ -32,7 +32,7 @@ class Sign extends Fixture
         $summary = 'Wuḍūʾ is the Islamic procedure for cleansing parts of the body, a type of ritual purification, or ablution';
         $description = 'Wuḍūʾ is the Islamic procedure for cleansing parts of the body, a type of ritual purification, or ablution';
         $language = $this->languageService->getByIsoCode(Language::ENGLISH['iso_code']);
-        $sign->addTranslation($uuid, $title, $summary, $description, $language);
+        $sign->addTranslation($title, $summary, $description, $language);
 
         // Translation bengali
         $uuid = \Symfony\Component\Uid\Uuid::v4();
@@ -41,7 +41,7 @@ class Sign extends Fixture
         $summary = 'অযু হল ইসলামের বিধান অনুসারে দেহের অঙ্গ-প্রতঙ্গ ধৌত করার মাধ্যমে পবিত্রতা অর্জনের একটি পন্থা।';
         $description = 'অযু হল ইসলামের বিধান অনুসারে দেহের অঙ্গ-প্রতঙ্গ ধৌত করার মাধ্যমে পবিত্রতা অর্জনের একটি পন্থা।';
         $language = $this->languageService->getByIsoCode(Language::BENGALI['iso_code']);
-        $sign->addTranslation($uuid, $title, $description, $summary, $language);
+        $sign->addTranslation($title, $description, $summary, $language);
 
         $manager->persist($sign);
 

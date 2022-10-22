@@ -30,7 +30,7 @@ class ContextGroup extends Fixture
         $name = 'Wudu';
         $summary = 'Wuḍūʾ is the Islamic procedure for cleansing parts of the body, a type of ritual purification, or ablution';
         $language = $this->languageService->getByIsoCode(Language::ENGLISH['iso_code']);
-        $group->addTranslation($uuid, $name, $summary, $language);
+        $group->addTranslation($name, $summary, $language);
 
         // Translation bengali
         $uuid = \Symfony\Component\Uid\Uuid::v4();
@@ -38,7 +38,7 @@ class ContextGroup extends Fixture
         $name = 'অযু';
         $summary = 'অযু হল ইসলামের বিধান অনুসারে দেহের অঙ্গ-প্রতঙ্গ ধৌত করার মাধ্যমে পবিত্রতা অর্জনের একটি পন্থা।';
         $language = $this->languageService->getByIsoCode(Language::BENGALI['iso_code']);
-        $group->addTranslation($uuid, $name, $summary, $language);
+        $group->addTranslation($name, $summary, $language);
 
         $manager->persist($group);
 
