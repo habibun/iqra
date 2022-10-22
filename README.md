@@ -66,7 +66,7 @@ Continue reading to learn more about how you can contribute to [Iqra GitHub Repo
 **Project is created with:**
 * [PHP][php-url]: `^8.0`
 * [Symfony][symfony-url]: `^5.4`
-* [MariaDB][maria_db-url]: `^10.8`
+* [PostgreSQL][postgre_sql-url]: `^10.8`
 * [Node.js][node_js-url]: `^16.16`
 * [React][react-url]: `^18.2`
 * [Tailwind CSS][tailwindcss-url]: `^3.1`
@@ -84,7 +84,7 @@ To get a local copy up and running follow these simple example steps.
 * [Composer][composer-url]
 * [Git][git-url]
 * [Nginx][nginx-url]
-* [MariaDB][maria_db-url]
+* [PostgreSQL][postgre_sql-url]
 * [Node.js][node_js-url]
 * [Setting up the Symfony][symfony_setup-url]
 
@@ -138,6 +138,7 @@ Distributed under the MIT License. See **[LICENSE][license-url]** for more infor
 ## Acknowledgments  
 * [PHP](https://www.php.net)
 * [Symfony](https://symfony.com)
+* [PostgreSQL](https://www.postgresql.org/)
 * [Github](https://github.com)
 * [Tailwind CSS](https://tailwindcss.com)
 * [Tailwind Elements](https://tailwind-elements.com)
@@ -160,7 +161,7 @@ Distributed under the MIT License. See **[LICENSE][license-url]** for more infor
 [product-screenshot]: docs/images/screenshot.png
 [symfony-url]: https://symfony.com/
 [php-url]: https://www.php.net/
-[maria_db-url]: https://mariadb.org/
+[postgre_sql-url]: https://www.postgresql.org/
 [tailwindcss-url]: https://tailwindcss.com/
 [react-url]: https://reactjs.org/
 [repository-url]: https://github.com/habibun/iqra
