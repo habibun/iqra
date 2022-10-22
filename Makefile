@@ -40,7 +40,7 @@ restart-all: ## Restart all server
 	@sudo service postgresql
 
 .PHONY: lint-all
-lint-all: lint-cs lint-ps lint-es lint-twig lint-doctrine ## Lint project
+lint-all: lint-cs lint-ps lint-twig lint-doctrine lint-container lint-es ## Lint project
 
 .PHONY: fix-all
 fix-all: fix-cs fix-ps ## Fix project
@@ -85,7 +85,7 @@ composer-install: ## Composer install
 composer-update: ## Composer update
 	symfony composer update
 
-##--------------✨ Coding standards ✨--------------
+##--------------✨ Linting ✨--------------
 .PHONY: lint-cs
 lint-cs: ## PHP CS Fixer analyzer
 	symfony php ./vendor/bin/php-cs-fixer fix --dry-run -v
@@ -106,6 +106,11 @@ lint-twig: ## Linting Twig Templates
 lint-doctrine: ## Validate the mappings
 	symfony console doctrine:schema:validate
 
+.PHONY: lint-container
+lint-container: ## Validate type hint arguments
+	symfony console lint:container
+
+##--------------✨ Fixing ✨--------------
 .PHONY: fix-cs
 fix-cs: ## Execute PHP CS Fixer
 	symfony php ./vendor/bin/php-cs-fixer fix
