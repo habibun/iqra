@@ -58,7 +58,7 @@ class User
         });
 
         if (!$exists) {
-            $this->translations[] = new Translation($this, $targetLanguage, $name);
+            $this->translations[] = new Translation($name, $targetLanguage, $this);
         }
     }
 
