@@ -3,12 +3,12 @@
 namespace App\Shared\Application\Service;
 
 use App\Shared\Domain\ValueObject\Uuid;
-use Symfony\Component\Uid\Uuid as SymfonyUuid;
+use App\Shared\Infrastructure\Persistence\Doctrine\Repository\BaseRepository;
 
 class BaseService
 {
     protected function getNextIdentity(): Uuid
     {
-        return Uuid::fromString((string) SymfonyUuid::v4());
+        return BaseRepository::getNextIdentity();
     }
 }
