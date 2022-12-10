@@ -46,19 +46,23 @@ lint-all: lint-cs lint-ps lint-twig lint-doctrine lint-container lint-es ## Lint
 fix-all: fix-cs fix-ps ## Fix project
 
 ##--------------✨ Docker ✨--------------
-.PHONY: up
-up: ## Start the docker hub
+.PHONY: docker-up
+docker-up: ## Start the docker hub
 	$(DOCKER_COMPOSE) up --build -d
 	@#sudo sed -i '/dev.iqra.docker/c\'"$$(docker inspect -f "{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}" nginx) dev.iqra.docker" /etc/hosts
 	@truncate -s 0 ${PWD}/docker/logs/*/*.log
 
-.PHONY: build
-build: ## Builds the images
+.PHONY: docker-build
+docker-build: ## Builds the images
 	$(DOCKER_COMPOSE) build --pull --no-cache
 
-.PHONY: down
-down: ## Stop the docker hub
+.PHONY: docker-down
+docker-down: ## Stop the docker hub
 	$(DOCKER_COMPOSE) down --remove-orphans
+
+.PHONY: docker-log
+docker-log: ## Docker logs
+	$(DOCKER_COMPOSE) logs -f -t
 
 ##--------------✨ Database ✨--------------
 .PHONY: db-diff
