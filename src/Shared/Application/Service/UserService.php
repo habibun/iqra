@@ -3,21 +3,23 @@
 namespace App\Shared\Application\Service;
 
 use App\Shared\Application\Dto\SignUpUserRequest;
-use App\Shared\Application\Dto\SignUpUserResponse;
 use App\Shared\Domain\Exception\UserAlreadyExistsException;
 use App\Shared\Domain\Model\User;
 use App\Shared\Domain\Repository\UserRepositoryInterface;
+use Doctrine\ORM\EntityManagerInterface;
 
 class UserService extends BaseService
 {
     private UserRepositoryInterface $userRepository;
+    private EntityManagerInterface $em;
 
-    public function __construct(UserRepositoryInterface $userRepository)
+    public function __construct(UserRepositoryInterface $userRepository, EntityManagerInterface $em)
     {
         $this->userRepository = $userRepository;
+        $this->em = $em;
     }
 
-    public function signUp(SignUpUserRequest $request): SignUpUserResponse
+    public function signUp(SignUpUserRequest $request)
     {
         $name = $request->name();
         $email = $request->email();
@@ -30,7 +32,6 @@ class UserService extends BaseService
 
         $user = User::create($this->getNextIdentity(), $name, $email);
         $this->userRepository->add($user);
-
-        return new SignUpUserResponse($user);
+        $this->em->flush();
     }
 }
