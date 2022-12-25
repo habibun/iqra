@@ -6,4 +6,7 @@
 
     <route id="shared_register" path="/sign-up"
            controller="App\Shared\Presentation\Controller\UserController::signUp"/>
+
+    <route id="shared_sign_in" path="/sign-in"
+           controller="App\Shared\Presentation\Controller\UserController::signIn"/>
 </routes>

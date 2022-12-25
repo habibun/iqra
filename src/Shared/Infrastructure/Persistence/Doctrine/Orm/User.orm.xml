@@ -8,6 +8,7 @@
         <id name="id" type="app_uuid" column="id" length="36"/>
         <field name="name" type="string" length="50"/>
         <field name="email" type="string" length="50"/>
+        <field name="password" type="string" length="100"/>
         <one-to-many field="translations" target-entity="App\Shared\Domain\Model\User\Translation" mapped-by="user">
             <cascade>
                 <cascade-persist/>
