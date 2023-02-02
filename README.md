@@ -2,13 +2,13 @@
 <br />
 <div align="center">
   <a href="https://github.com/habibun/iqra">
-    <img src="docs/images/logo.png" alt="Logo" width="100" height="40">
+    <img src="docs/images/logo.png" alt="Logo" width="117" height="48">
   </a>
 
   <!-- <h3 align="center">iqra</h3> -->
 
   <p align="center">
-     Islamic knowledge and information
+     The knowledge and insights of Islam
     <!-- 
     <br />
     <a href="https://github.com/habibun/iqra"><strong>Explore the docs »</strong></a>
@@ -59,7 +59,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
-The official source code repository for iqra.  
+The official source code repository for [iqra.page][iqra-url]  
 <br />
 Continue reading to learn more about how you can contribute to [Iqra GitHub Repository][repository-url]. Your help will surely go a long way, In Sha'a Allah.
 
@@ -67,7 +67,7 @@ Continue reading to learn more about how you can contribute to [Iqra GitHub Repo
 * [PHP][php-url]: `^8.0`
 * [Symfony][symfony-url]: `^5.4`
 * [PostgreSQL][postgre_sql-url]: `^15.0` `||` [MySQL][mysql-url]: `^8.0`
-* [Node.js][node_js-url]: `^16.16`
+* [Node.js][node_js-url]: `^18.13`
 * [React][react-url]: `^18.2`
 * [Tailwind CSS][tailwindcss-url]: `^3.1`
 
@@ -75,7 +75,6 @@ Continue reading to learn more about how you can contribute to [Iqra GitHub Repo
 ---
 <!-- GETTING STARTED -->
 ## Getting Started
-This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
@@ -84,31 +83,38 @@ To get a local copy up and running follow these simple example steps.
 * [Composer][composer-url]
 * [Git][git-url]
 * [Nginx][nginx-url]
-* [PostgreSQL][postgre_sql-url]
+* [PostgreSQL][postgre_sql-url] `||` [MySQL][mysql-url]
 * [Node.js][node_js-url]
-* [Setting up the Symfony][symfony_setup-url]
 
 
 ### Installation  
 1. Clone the repo
-   ```sh
+   ```bash
    git clone https://github.com/habibun/iqra.git
    ```
 2. Install composer packages
-   ```sh
+   ```bash
    symfony composer install
    ```
 3. Install yarn packages
-   ```sh
-   yarn install
+   ```bash
+   npm install
    ```
 4. Create `env.local`
-   ```sh
+   ```bash
    cp env env.local
    ```
 5. Update `env.local`
-6. Run `yarn dev-server`
+6. Run `npm dev-server`
 7. Run ``symfony serve``
+8. [Optional] You can install [nginx][nginx-url] and setup [server blocks][server_blocks-url]  
+
+
+**Learn more**
+* [Setting up the Symfony](https://symfony.com/doc/5.4/setup.html)
+* [Configuring a Web Server](https://symfony.com/doc/current/setup/web_server_configuration.html#nginx)
+* [Installing NGINX Open Source](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/)
+* [Server Block Examples][server_blocks-url]
 
 
 ---
@@ -145,6 +151,10 @@ Distributed under the MIT License. See **[LICENSE][license-url]** for more infor
 * [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
 * [React](https://reactjs.org/)
 * [Ubuntu](https://ubuntu.com/)
+* [Nginx](https://www.nginx.com/)
+* [MySQL](https://www.mysql.com/)
+* [GitHub](https://github.com/)
+* [GitHub Actions](https://github.com/features/actions)
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
@@ -171,5 +181,6 @@ Distributed under the MIT License. See **[LICENSE][license-url]** for more infor
 [node_js-url]: https://nodejs.org/en/
 [git-url]: https://git-scm.com/
 [nginx-url]: https://www.nginx.com/
-[symfony_setup-url]: https://symfony.com/doc/5.4/setup.html
+[iqra-url]: https://iqra.page
+[server_blocks-url]: https://www.nginx.com/resources/wiki/start/topics/examples/server_blocks/
 
