@@ -134,6 +134,18 @@
     "laminas/laminas-code": {
         "version": "4.5.0"
     },
+    "lexik/jwt-authentication-bundle": {
+        "version": "2.16",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "2.5",
+            "ref": "5b2157bcd5778166a5696e42f552ad36529a07a6"
+        },
+        "files": [
+            "config/packages/lexik_jwt_authentication.yaml"
+        ]
+    },
     "monolog/monolog": {
         "version": "2.3.5"
     },
@@ -371,6 +383,18 @@
     },
     "symfony/runtime": {
         "version": "v5.4.0"
+    },
+    "symfony/security-bundle": {
+        "version": "5.4",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "5.3",
+            "ref": "98f1f2b0d635908c2b40f3675da2d23b1a069d30"
+        },
+        "files": [
+            "config/packages/security.yaml"
+        ]
     },
     "symfony/service-contracts": {
         "version": "v2.4.1"
