@@ -7,7 +7,8 @@
     <!--Shared-->
     <route id="shared_homepage_no_locale"
            path="/"
-           controller="App\Shared\Presentation\Controller\HomepageController::indexNoLocale"/>
+           controller="App\Shared\Presentation\Controller\HomepageController::indexNoLocale"
+    />
 
     <import resource="routes/shared.xml"
             prefix="/{_locale&lt;%app.supported_locales%&gt;}"
@@ -18,6 +19,10 @@
             prefix="/{_locale&lt;%app.supported_locales%&gt;}/api"
             trailing-slash-on-root="false">
     </import>
+
+    <route id="api_login_check"
+           path="/api/login_check"
+    />
 
     <!--Quran-->
     <import resource="routes/quran.xml"
@@ -45,7 +50,7 @@
             trailing-slash-on-root="false">
     </import>
     <import resource="routes/sign_api.xml"
-            prefix="/{_locale&lt;%app.supported_locales%&gt;}/api/sign-in"
+            prefix="/{_locale&lt;%app.supported_locales%&gt;}/api/signs"
             trailing-slash-on-root="false">
     </import>
 

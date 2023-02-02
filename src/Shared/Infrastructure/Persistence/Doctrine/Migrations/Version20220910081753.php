@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Shared\Infrastructure\Persistence\Doctrine\Migrations;
 
-use Doctrine\DBAL\Platforms\MySQL80Platform;
+use Doctrine\DBAL\Platforms\MySQLPlatform;
 use Doctrine\DBAL\Platforms\PostgreSQLPlatform;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
@@ -24,7 +24,7 @@ final class Version20220910081753 extends AbstractMigration
      */
     public function up(Schema $schema): void
     {
-        if ($this->platform instanceof MySQL80Platform) {
+        if ($this->platform instanceof MySQLPlatform) {
             $this->connection->getNativeConnection()->exec(file_get_contents(__DIR__.'./../Sql/mysql.sql'));
         }
 

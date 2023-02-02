@@ -13,10 +13,10 @@ security:
             security: false
 
         login:
-            pattern: ^/%app.default_locale%/api/sign-in
+            pattern: ^/%app.default_locale%/api/login
             stateless: true
             json_login:
-                check_path: /%app.default_locale%/api/sign-in
+                check_path: /%app.default_locale%/api/login_check
                 success_handler: lexik_jwt_authentication.handler.authentication_success
                 failure_handler: lexik_jwt_authentication.handler.authentication_failure
 
@@ -26,7 +26,7 @@ security:
             jwt: ~
 
     access_control:
-        - { path: ^/%app.default_locale%/api/sign-in, roles: PUBLIC_ACCESS }
+        - { path: ^/%app.default_locale%/api/login, roles: PUBLIC_ACCESS }
         - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/admin,     roles: ROLE_ADMIN }
 

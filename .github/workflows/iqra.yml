@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     services:
       postgres:
-        image: postgres:14.5
+        image: postgres:15.1
         env:
           POSTGRES_PASSWORD: postgres
           POSTGRES_USER: postgres
@@ -20,7 +20,7 @@ jobs:
     strategy:
       matrix:
         php-versions: [8.0]
-        node-version: [16.16]
+        node-version: [18.13]
     steps:
       - name: Install Php and Composer
         uses: shivammathur/setup-php@2cb9b829437ee246e9b3cac53555a39208ca6d28
@@ -34,7 +34,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'yarn'
+          cache: 'npm'
 
       - name: Install Symfony CLI
         run: |
