@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     private Uuid $id;
@@ -54,7 +55,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function addTranslation(Language $targetLanguage, string $name): void
+    public function addTranslation(string $name, Language $targetLanguage): void
     {
         $exists = $this->translations->exists(function ($key, $value) use ($targetLanguage, $name) {
             return $value->getTargetLanguage() === $targetLanguage && $value->getName() === $name;
@@ -118,9 +119,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // TODO: Implement eraseCredentials() method.
     }
 
-    public function getUsername()
+    public function getUsername(): string
     {
-        $this->email;
+        return $this->email;
     }
 
     public function __call(string $name, array $arguments)

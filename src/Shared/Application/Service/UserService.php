@@ -24,15 +24,21 @@ class UserService extends BaseService
 
     public function signUp(SignUpUserRequest $request)
     {
-        $name = $request->name();
         $email = $request->email();
-        $password = $request->password();
-
         $user = $this->userRepository->getByEmail($email);
         if ($user) {
             throw new UserAlreadyExistsException();
         }
 
+        $user = $this->create($request->name(), $email, $request->password());
+        $this->userRepository->add($user);
+        $this->em->flush();
+
+        return $user;
+    }
+
+    public function create(string $name, string $email, string $password): User
+    {
         $user = User::create($this->getNextIdentity(), $name, $email);
         $hashedPassword = $this->userPasswordHasher->hashPassword(
             $user,
@@ -40,6 +46,7 @@ class UserService extends BaseService
         );
         $user->setPassword($hashedPassword);
         $this->userRepository->add($user);
-        $this->em->flush();
+
+        return $user;
     }
 }

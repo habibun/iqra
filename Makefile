@@ -27,6 +27,7 @@ help: ## Help
 init: ## Install project
 	@echo '\033[1;42m The .env.local was just created. Feel free to put your config in it.\033[0m';
 	@cp -n ./.env ./.env.local;
+	$(SYMFONY_CONSOLE) lexik:jwt:generate-keypair
 
 .PHONY: reset
 reset: ## Reset project

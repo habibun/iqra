@@ -66,7 +66,7 @@ Continue reading to learn more about how you can contribute to [Iqra GitHub Repo
 **Project is created with:**
 * [PHP][php-url]: `^8.0`
 * [Symfony][symfony-url]: `^5.4`
-* [PostgreSQL][postgre_sql-url]: `^15.0`
+* [PostgreSQL][postgre_sql-url]: `^15.0` `||` [MySQL][mysql-url]: `^8.0`
 * [Node.js][node_js-url]: `^16.16`
 * [React][react-url]: `^18.2`
 * [Tailwind CSS][tailwindcss-url]: `^3.1`
@@ -162,6 +162,7 @@ Distributed under the MIT License. See **[LICENSE][license-url]** for more infor
 [symfony-url]: https://symfony.com/
 [php-url]: https://www.php.net/
 [postgre_sql-url]: https://www.postgresql.org/
+[mysql-url]: https://www.mysql.com/
 [tailwindcss-url]: https://tailwindcss.com/
 [react-url]: https://reactjs.org/
 [repository-url]: https://github.com/habibun/iqra

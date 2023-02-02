@@ -30,4 +30,3 @@ class SignUpUserRequest
         return $this->password;
     }
 }
-
