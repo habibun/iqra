@@ -11,9 +11,9 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserService extends BaseService
 {
-    private UserRepositoryInterface $userRepository;
-    private EntityManagerInterface $em;
-    private UserPasswordHasherInterface $userPasswordHasher;
+    private readonly UserRepositoryInterface $userRepository;
+    private readonly EntityManagerInterface $em;
+    private readonly UserPasswordHasherInterface $userPasswordHasher;
 
     public function __construct(UserRepositoryInterface $userRepository, EntityManagerInterface $em, UserPasswordHasherInterface $userPasswordHasher)
     {

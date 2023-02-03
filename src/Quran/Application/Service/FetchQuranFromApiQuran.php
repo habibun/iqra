@@ -14,11 +14,11 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 class FetchQuranFromApiQuran implements FetchQuranInterface
 {
     private const baseUrl = 'https://api.quran.com/api/v4';
-    private HttpClientInterface $client;
-    private ChapterService $chapterService;
-    private LanguageService $languageService;
-    private TranslatorService $translationService;
-    private EntityManagerInterface $em;
+    private readonly HttpClientInterface $client;
+    private readonly ChapterService $chapterService;
+    private readonly LanguageService $languageService;
+    private readonly TranslatorService $translationService;
+    private readonly EntityManagerInterface $em;
 
     public function __construct(
         HttpClientInterface $client,
@@ -100,7 +100,7 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
                     $translatedName['name'] = 'বাংলা';
                 }
 
-                $targetLanguage = $this->languageService->getByName(ucfirst($translatedName['language_name']));
+                $targetLanguage = $this->languageService->getByName(ucfirst((string) $translatedName['language_name']));
                 $language->addTranslation(
                     $targetLanguage,
                     $translatedName['name']
@@ -178,7 +178,7 @@ class FetchQuranFromApiQuran implements FetchQuranInterface
                     $this->fetchVerse($chapter);
                 }
 
-                $language = $this->languageService->getByName(ucfirst($ch['translated_name']['language_name']));
+                $language = $this->languageService->getByName(ucfirst((string) $ch['translated_name']['language_name']));
                 $chapter->addTranslation(
                     $ch['translated_name']['name'],
                     $language,

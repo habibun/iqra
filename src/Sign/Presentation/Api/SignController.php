@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class SignController extends AbstractController
 {
-    private SignService $signService;
+    private readonly SignService $signService;
 
     public function __construct(SignService $signService)
     {

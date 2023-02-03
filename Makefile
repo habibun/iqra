@@ -123,3 +123,13 @@ fix-cs: ## Execute PHP CS Fixer
 .PHONY: fix-ps
 fix-ps: ## Execute Psalm
 	symfony php ./vendor/bin/psalter --issues=all
+
+
+##--------------✨ Rector ✨--------------
+.PHONY: rector-dry
+rector-dry: ## Rector to see preview of suggested changed
+	symfony php ./vendor/bin/rector process --dry-run
+
+.PHONY: rector
+rector: ## Rector to make changes happen
+	symfony php ./vendor/bin/rector process

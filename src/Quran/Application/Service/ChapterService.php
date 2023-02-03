@@ -10,8 +10,8 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 class ChapterService extends BaseService
 {
-    private ChapterRepositoryInterface $chapterRepository;
-    private NormalizerInterface $normalizer;
+    private readonly ChapterRepositoryInterface $chapterRepository;
+    private readonly NormalizerInterface $normalizer;
 
     public function __construct(
         ChapterRepositoryInterface $chapterRepository,
@@ -71,7 +71,7 @@ class ChapterService extends BaseService
     {
         $verseTranslation = $this->chapterRepository
             ->getVerseTranslationByVerseIdentifierAndTranslatorIdentifier(
-                rand(1, 6236),
+                random_int(1, 6236),
                 (int) Translator::DEFAULT[$locale]['identifier']
             );
 

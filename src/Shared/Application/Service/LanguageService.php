@@ -7,7 +7,7 @@ use App\Shared\Domain\Repository\LanguageRepositoryInterface;
 
 class LanguageService extends BaseService
 {
-    private LanguageRepositoryInterface $languageRepository;
+    private readonly LanguageRepositoryInterface $languageRepository;
 
     public function __construct(LanguageRepositoryInterface $languageRepository)
     {

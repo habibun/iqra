@@ -4,7 +4,7 @@ namespace App\Shared\Domain\ValueObject;
 
 class Uuid implements \Stringable
 {
-    private string $uuid;
+    private readonly string $uuid;
 
     public function __construct(string $uuid)
     {

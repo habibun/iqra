@@ -9,10 +9,10 @@ use Doctrine\Common\Collections\Collection;
 
 class Language
 {
-    public const ENGLISH = ['iso_code' => 'en', 'slug' => 'english', 'name' => 'English'];
-    public const BENGALI = ['iso_code' => 'bn', 'slug' => 'bengali', 'name' => 'Bengali'];
+    final public const ENGLISH = ['iso_code' => 'en', 'slug' => 'english', 'name' => 'English'];
+    final public const BENGALI = ['iso_code' => 'bn', 'slug' => 'bengali', 'name' => 'Bengali'];
 
-    private Uuid $id;
+    private readonly Uuid $id;
     private string $name;
     private string $nativeName;
     private string $isoCode;
@@ -69,9 +69,7 @@ class Language
 
     public function addTranslation(Language $targetLanguage, string $name): void
     {
-        $exists = $this->translations->exists(function ($key, $value) use ($targetLanguage, $name) {
-            return $value->getTargetLanguage() === $targetLanguage && $value->getName() === $name;
-        });
+        $exists = $this->translations->exists(fn($key, $value) => $value->getTargetLanguage() === $targetLanguage && $value->getName() === $name);
 
         if (!$exists) {
             $this->translations[] = new Translation($this, $targetLanguage, $name);

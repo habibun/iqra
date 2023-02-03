@@ -9,7 +9,7 @@ use App\Shared\Domain\Model\Language;
 
 class TranslatorService extends BaseService
 {
-    private TranslatorRepositoryInterface $translationRepository;
+    private readonly TranslatorRepositoryInterface $translationRepository;
 
     public function __construct(TranslatorRepositoryInterface $translationRepository)
     {

@@ -10,7 +10,7 @@ use Doctrine\Common\Collections\Collection;
 
 class Sign
 {
-    private Uuid $id;
+    private readonly Uuid $id;
     private ?string $image;
     private Collection $translations;
 

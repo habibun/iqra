@@ -10,7 +10,7 @@ use Doctrine\Common\Collections\Collection;
 
 class Translator
 {
-    public const DEFAULT = ['en' => ['identifier' => '20'], 'bn' => ['identifier' => '161']];
+    final public const DEFAULT = ['en' => ['identifier' => '20'], 'bn' => ['identifier' => '161']];
 
     private Uuid $id;
     private int $identifier;
@@ -96,9 +96,7 @@ class Translator
 
     public function addTranslation(Language $targetLanguage, string $name): void
     {
-        $exists = $this->translations->exists(function ($key, $value) use ($targetLanguage, $name) {
-            return $value->getLanguage() === $targetLanguage && $value->getName() === $name;
-        });
+        $exists = $this->translations->exists(fn($key, $value) => $value->getLanguage() === $targetLanguage && $value->getName() === $name);
 
         if (!$exists) {
             $this->translations[] = new Translation($this, $targetLanguage, $name);

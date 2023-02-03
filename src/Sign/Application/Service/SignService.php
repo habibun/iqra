@@ -9,8 +9,8 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 class SignService extends BaseService
 {
-    private SignRepositoryInterface $signRepository;
-    private NormalizerInterface $normalizer;
+    private readonly SignRepositoryInterface $signRepository;
+    private readonly NormalizerInterface $normalizer;
 
     public function __construct(
         SignRepositoryInterface $signRepository,

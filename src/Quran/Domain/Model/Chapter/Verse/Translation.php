@@ -7,7 +7,7 @@ use App\Quran\Domain\Model\Translator;
 
 class Translation
 {
-    private int $id;
+    private readonly int $id;
     private string $text;
     private string $verseKey;
     private Verse $verse;

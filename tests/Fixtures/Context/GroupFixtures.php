@@ -10,8 +10,8 @@ use Doctrine\Persistence\ObjectManager;
 
 class GroupFixtures extends Fixture
 {
-    private LanguageService $languageService;
-    private GroupService $groupService;
+    private readonly LanguageService $languageService;
+    private readonly GroupService $groupService;
 
     public function __construct(LanguageService $languageService, GroupService $groupService)
     {

@@ -7,7 +7,7 @@ use App\Sign\Domain\Model\Sign;
 
 class Translation
 {
-    private int $id;
+    private readonly int $id;
     private string $title;
     private string $summary;
     private string $description;

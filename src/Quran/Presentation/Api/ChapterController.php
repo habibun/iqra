@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ChapterController extends AbstractController
 {
-    private ChapterService $chapterService;
+    private readonly ChapterService $chapterService;
 
     public function __construct(ChapterService $chapterService)
     {

@@ -10,7 +10,7 @@ use Doctrine\Common\Collections\Collection;
 
 class Group
 {
-    private Uuid $id;
+    private readonly Uuid $id;
     private Collection $contexts;
     private Collection $translations;
 

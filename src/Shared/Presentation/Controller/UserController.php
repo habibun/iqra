@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class UserController extends AbstractController
 {
-    private UserService $userService;
+    private readonly UserService $userService;
 
     public function __construct(UserService $userService)
     {

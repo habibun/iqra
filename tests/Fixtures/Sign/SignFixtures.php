@@ -11,8 +11,8 @@ use Doctrine\Persistence\ObjectManager;
 
 class SignFixtures extends Fixture
 {
-    private LanguageService $languageService;
-    private SignService $signService;
+    private readonly LanguageService $languageService;
+    private readonly SignService $signService;
 
     public function __construct(LanguageService $languageService, SignService $signService)
     {

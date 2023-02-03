@@ -4,9 +4,9 @@ namespace App\Shared\Application\Dto;
 
 class SignUpUserRequest
 {
-    private string $name;
-    private string $email;
-    private string $password;
+    private readonly string $name;
+    private readonly string $email;
+    private readonly string $password;
 
     public function __construct(string $name, string $email, string $password)
     {

@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
-    private Uuid $id;
+    private readonly Uuid $id;
     private string $name;
     private string $email;
     private string $password;
@@ -57,9 +57,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function addTranslation(string $name, Language $targetLanguage): void
     {
-        $exists = $this->translations->exists(function ($key, $value) use ($targetLanguage, $name) {
-            return $value->getTargetLanguage() === $targetLanguage && $value->getName() === $name;
-        });
+        $exists = $this->translations->exists(fn($key, $value) => $value->getTargetLanguage() === $targetLanguage && $value->getName() === $name);
 
         if (!$exists) {
             $this->translations[] = new Translation($name, $targetLanguage, $this);

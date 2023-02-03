@@ -10,8 +10,8 @@ use Doctrine\Persistence\ObjectManager;
 
 class UserFixtures extends Fixture
 {
-    private UserService $userService;
-    private LanguageService $languageService;
+    private readonly UserService $userService;
+    private readonly LanguageService $languageService;
 
     public function __construct(UserService $userService, LanguageService $languageService)
     {

@@ -7,7 +7,7 @@ use App\Shared\Domain\Model\Language;
 
 class Translation
 {
-    private int $id;
+    private readonly int $id;
     private string $name;
     private Language $language;
     private Context $context;

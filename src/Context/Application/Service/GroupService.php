@@ -9,8 +9,8 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 class GroupService extends BaseService
 {
-    private GroupRepositoryInterface $groupRepository;
-    private NormalizerInterface $normalizer;
+    private readonly GroupRepositoryInterface $groupRepository;
+    private readonly NormalizerInterface $normalizer;
 
     public function __construct(
         GroupRepositoryInterface $groupRepository,

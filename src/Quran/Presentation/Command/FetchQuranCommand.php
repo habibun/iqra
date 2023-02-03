@@ -11,7 +11,7 @@ class FetchQuranCommand extends Command
 {
     protected static $defaultName = 'app:fetch-quran';
     protected static $defaultDescription = 'Fetch quran.';
-    private FetchQuranInterface $fetchQuran;
+    private readonly FetchQuranInterface $fetchQuran;
 
     public function __construct(FetchQuranInterface $fetchQuran)
     {

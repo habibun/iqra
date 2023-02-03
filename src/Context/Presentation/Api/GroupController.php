@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class GroupController extends AbstractController
 {
-    private GroupService $groupService;
+    private readonly GroupService $groupService;
 
     public function __construct(GroupService $groupService)
     {

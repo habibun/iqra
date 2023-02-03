@@ -7,12 +7,12 @@ use App\Shared\Domain\Model\Language;
 
 class Info
 {
-    private int $id;
-    private string $text;
-    private string $shortText;
-    private string $source;
-    private Language $language;
-    private Chapter $chapter;
+    private readonly int $id;
+    private readonly string $text;
+    private readonly string $shortText;
+    private readonly string $source;
+    private readonly Language $language;
+    private readonly Chapter $chapter;
 
     public function __construct(string $text, string $shortText, string $source, Language $language, Chapter $chapter)
     {
