@@ -96,7 +96,7 @@ To get a local copy up and running follow these simple example steps.
    ```bash
    symfony composer install
    ```
-3. Install yarn packages
+3. Install npm packages
    ```bash
    npm install
    ```
