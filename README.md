@@ -66,7 +66,7 @@ Continue reading to learn more about how you can contribute to [Iqra GitHub Repo
 **Project is created with:**
 * [PHP][php-url]: `^8.0`
 * [Symfony][symfony-url]: `^5.4`
-* [PostgreSQL][postgre_sql-url]: `^15.1` `||` [MySQL][mysql-url]: `^8.0`
+* [PostgreSQL][postgre_sql-url]: `^15.1` || [MySQL][mysql-url]: `^8.0`
 * [Node.js][node_js-url]: `^18.13`
 * [React][react-url]: `^18.2`
 * [Tailwind CSS][tailwindcss-url]: `^3.1`
@@ -83,7 +83,7 @@ To get a local copy up and running follow these simple example steps.
 * [Composer][composer-url]
 * [Git][git-url]
 * [Nginx][nginx-url]
-* [PostgreSQL][postgre_sql-url] `||` [MySQL][mysql-url]
+* [PostgreSQL][postgre_sql-url] || [MySQL][mysql-url]
 * [Node.js][node_js-url]
 
 
