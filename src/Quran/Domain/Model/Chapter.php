@@ -12,7 +12,7 @@ use Doctrine\Common\Collections\Collection;
 
 class Chapter
 {
-    private readonly Uuid $id;
+    private Uuid $id;
     private int $identifier;
     private string $revelationPlace;
     private int $revelationOrder;

@@ -12,7 +12,7 @@ class Language
     final public const ENGLISH = ['iso_code' => 'en', 'slug' => 'english', 'name' => 'English'];
     final public const BENGALI = ['iso_code' => 'bn', 'slug' => 'bengali', 'name' => 'Bengali'];
 
-    private readonly Uuid $id;
+    private Uuid $id;
     private string $name;
     private string $nativeName;
     private string $isoCode;
