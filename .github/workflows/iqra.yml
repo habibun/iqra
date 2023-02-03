@@ -19,7 +19,7 @@ jobs:
           - 5432:5432
     strategy:
       matrix:
-        php-versions: [8.0]
+        php-versions: [8.0, 8.1]
         node-version: [18.13]
     steps:
       - name: Install Php and Composer
