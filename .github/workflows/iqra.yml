@@ -39,16 +39,7 @@ jobs:
       - name: Install Symfony CLI
         run: |
           wget https://get.symfony.com/cli/installer -O - | bash
-          mv /home/runner/.symfony5/bin/symfony /usr/local/bin/symfony      
-
-#      - name: Cache Composer packages
-#        id: composer-cache
-#        uses: actions/cache@v2
-#        with:
-#          path: vendor
-#          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-#          restore-keys: |
-#            ${{ runner.os }}-php-
+          mv /home/runner/.symfony5/bin/symfony /usr/local/bin/symfony
 
       - name: Check PHP Version
         run: php -v
@@ -75,6 +66,11 @@ jobs:
 
       - name: Check Symfony Requirements
         run: symfony check:requirements
+
+      - name: Get npm cache directory
+        id: npm-cache-dir
+        shell: bash
+        run: echo "dir=$(npm config get cache)" >> ${GITHUB_OUTPUT}
 
       - name: Install node dependencies
         run: npm install
