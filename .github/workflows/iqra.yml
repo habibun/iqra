@@ -75,8 +75,8 @@ jobs:
       - name: Install node dependencies
         run: npm install
 
-      - name: Doctrine - Update Database Schema
-        run: symfony console doctrine:schema:update --force
+      - name: Doctrine - Processes the schema and either create it directly
+        run: symfony console doctrine:schema:create --dump-sql
 
       - name: Clear Symfony Cache
         run:  symfony console cache:clear
