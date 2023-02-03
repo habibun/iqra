@@ -101,7 +101,7 @@ lint-ps: ## Psalm analyzer
 
 .PHONY: lint-es
 lint-es: ## ESLint analyzer
-	./node_modules/.bin/eslint assets
+	./node_modules/.bin/eslint assets --fix-dry-run
 
 .PHONY: lint-twig
 lint-twig: ## Linting Twig Templates

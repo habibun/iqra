@@ -96,7 +96,7 @@ class Translator
 
     public function addTranslation(Language $targetLanguage, string $name): void
     {
-        $exists = $this->translations->exists(fn($key, $value) => $value->getLanguage() === $targetLanguage && $value->getName() === $name);
+        $exists = $this->translations->exists(fn ($key, $value) => $value->getLanguage() === $targetLanguage && $value->getName() === $name);
 
         if (!$exists) {
             $this->translations[] = new Translation($this, $targetLanguage, $name);

@@ -57,7 +57,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function addTranslation(string $name, Language $targetLanguage): void
     {
-        $exists = $this->translations->exists(fn($key, $value) => $value->getTargetLanguage() === $targetLanguage && $value->getName() === $name);
+        $exists = $this->translations->exists(fn ($key, $value) => $value->getTargetLanguage() === $targetLanguage && $value->getName() === $name);
 
         if (!$exists) {
             $this->translations[] = new Translation($name, $targetLanguage, $this);
