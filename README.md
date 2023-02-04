@@ -144,6 +144,7 @@ Distributed under the MIT License. See **[LICENSE][license-url]** for more infor
 ## Acknowledgments  
 * [PHP](https://www.php.net)
 * [Symfony](https://symfony.com)
+* [Quran.com API](https://github.com/quran/quran.com-api)
 * [PostgreSQL](https://www.postgresql.org/)
 * [Github](https://github.com)
 * [Tailwind CSS](https://tailwindcss.com)
